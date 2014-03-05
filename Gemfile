@@ -47,6 +47,7 @@ group :production do
 	gem 'rails_12factor', '0.0.2'
 end
 	
+#gem 'multi_json', '~> 1.9.0'
 
 
 # Use ActiveModel has_secure_password
