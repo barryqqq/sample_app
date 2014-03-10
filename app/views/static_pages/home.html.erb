@@ -1,16 +1,9 @@
 
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
 
 
 <%= provide(:title, "Home") %>
-
-
-
-
 
  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
  
@@ -40,53 +33,50 @@
 	
 	google.maps.event.addDomListener(window, 'load', initialize);
 
-    </script>
+</script>
 
 <style>
-	
-	
+
 	#map-canvas {
 		width:100%;
         height:440px ;
         margin: 0px;
         padding: 0px;
       }
+
+     .row {
+     	padding-left: 15px;
+     } 
 </style>
 
-</head>
-
-<body>
 
 	
     
-    <div class="container">
-    	<div class="jumbotron">
-        	<h1>Welcome !!</h1>
-             <p> ............................ </p>
-             
-        </div>
-        
-    	<div class="row">
-        
-          <div class="col-xd-5 col-md-9">
-          
-          	<div id="map-canvas"></div>
-          	
-          </div>
-     
-          <div class="col-md-3">
-            <img class="img-round" data-src="holder.js/260x440" alt="Generic placeholder image">
-        
-          </div>
-        
-        </div><!-- row -->
-        	
+<div class="container">
+	<div class="jumbotron">
+    	<h1>Welcome !!</h1>
+         <p> ............................ </p>
+         
+    </div>
     
-    </div><!-- container -->
-
-
-
- 	
+	<div class="row">
     
-</body>
-</html>
+      <div class="col-xd-5 col-md-9">
+      
+      	<div id="map-canvas"></div>
+      	
+      	
+      </div>
+ 
+      <div class="col-md-3">
+        <img class="img-round" data-src="holder.js/260x440" alt="Generic placeholder image">
+      </div>
+    
+    </div><!-- row -->
+
+    <br/><br/><br/><br/><br/>
+
+</div><!-- container -->
+
+
+
