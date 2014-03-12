@@ -53,48 +53,57 @@
 	});
 </script>
 
+<% provide(:title, 'Sign up') %>
 
 <div class="container">
 	
 
 	<div class="row">
 		<div class="span8">
-			<form id="registration_form" class="form-horizontal" method="POST" action="/users">
+			<%= form_for(@user) do |f| %>
+			<!--<form id="registration_form" class="form-horizontal" method="POST" action="/users">-->
 				<fieldset>
 					<legend> Registration </legend>
 					
 					<div class="control-group">
-						<label class="control-label"> Name </label>
+						
+						<%= f.label :name, :class => "control-label" %>
 						<div class="controls">
-							<input type="text" class="" id="user_name" name="user[name]" rel="popover" data-content="ENter your Name" data-original-title="Name">
+							<%= f.text_field :name %>
+							
 						</div>	
 					</div>	
 
 					<div class="control-group">
-						<label class="control-label"> Email </label>
+						<%= f.label :email, :class => "control-label" %>
+						
 						<div class="controls">
-							<input type="text" class="" id="user_email" name="user[email]" rel="popover" data-content="ENter your Email" data-original-title="Email">
+							<%= f.text_field :email %>
+							
 						</div>	
 					</div>
 
 					<div class="control-group">
-						<label class="control-label"> Password </label>
+						<%= f.label :password, :class => "control-label" %>
+						
 						<div class="controls">
-							<input type="password" class="" id="user_password" name="user[password]" rel="popover" data-content="ENter your Password" data-original-title="Password">
+							<%= f.password_field :password %>
 						</div>	
 					</div>	
 
 					<div class="control-group">
-						<label class="control-label"> Confirm Password </label>
+						<%= f.label :password_confirmation, "Confirm Password", :class => "control-label" %>
+						
 						<div class="controls">
-							<input type="password" class="" id="cuser_confirm_password" name="user[confirm_password]" rel="popover" data-content="Type your password again" data-original-title="Confirm Password">
+							<%= f.password_field :password_confirmation %>
 						</div>	
 					</div>	
 
 					<div class="control-group">
 						<label class="control-label"></label>
 						<div class="controls">
-							<button type="submit" class="btn btn-success"> Create My account </button>
+							<%= f.submit "Create my account", class: "btn btn-primary btn-large" %>
+							  
 						</div>	
 					</div>		
 
@@ -102,7 +111,8 @@
 
 
 				</fieldset>		
-			</form>	
+			<!--</form>	-->
+			<% end %>
 		</div>	
 	</div>	
 </div>	
