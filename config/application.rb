@@ -26,6 +26,7 @@ module SampleApp
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     #i18n.enforce_available_locales = true
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
 
   end
 end

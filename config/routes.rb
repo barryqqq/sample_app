@@ -2,11 +2,14 @@ SampleApp::Application.routes.draw do
  
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
+  resources :properties
 
   root 'static_pages#home'
   
   get "static_pages/help"
  
+  match '/post', to: 'static_pages#post', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/home', to: 'static_pages#home', via: 'get'
   match '/signup', to: 'users#new', via: 'get'

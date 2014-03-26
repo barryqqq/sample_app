@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
   before_action :sign_in_user, only: [:edit, :update, :show, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :signed_in_user, only: [:edit, :update, :index]
@@ -13,6 +14,11 @@ class UsersController < ApplicationController
     
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+
+    if signed_in?
+      @post = current_user.microposts.build 
+    end
   end
 
   def new
@@ -54,17 +60,22 @@ class UsersController < ApplicationController
 
   end  
 
+  def post 
+    
+  end   
 
 
 
   private
+  
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:avatar, :name, :email, :password, :password_confirmation)
     end 
 
 
     #before filters
 
+=begin
     def signed_in_user
       unless signed_in?
         store_location
@@ -72,7 +83,7 @@ class UsersController < ApplicationController
         redirect_to signin_url
       end
     end      
-
+=end
 
 
     def sign_in_user

@@ -1,0 +1,349 @@
+ <script type="text/javascript">
+ 	/*
+ 	 $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker();
+  })
+ */
+ </script>
+
+<h3> Location </h3>
+      
+               
+        
+        <form class="form-horizontal">
+    	<div class="row">
+        
+        
+        	
+        	<div class="col-xd-6 col-md-6 form-group">
+            	<label class="radio">
+  					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>exactly address
+				</label>
+            </div>
+
+            <div class="col-xd-6 col-md-6 form-group">
+            	<label class="radio">
+  					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+  						blur address
+				</label>
+                
+            	
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xd-6 col-md-6 radio_s_1">
+          
+          	
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="addr_1">Address : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control group1" id="addr_1" placeholder="Address" />
+                    </div>	
+                
+                </div>
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="addr_2">Address : </label>
+                    <div class="col-lg-8 col-xs-8">
+                    	<input type="text" class="form-control group1" id="addr_2" placeholder="Address" />
+                    </div>	
+                </div>
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="city">City : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control group1" id="city" placeholder="city" />
+                    </div>	
+                
+                </div>
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="zipcode">Zipcode : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control group1" id="zipcode" placeholder="zipcode" />
+                    </div>	
+                
+                </div>
+                
+                 
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="country">Country : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control" id="country" value="USA" disabled="disabled"/>
+                    </div>	
+                
+                </div>
+                
+                
+            
+           
+          	 
+          	
+          </div>
+     
+          <div class="col-xd-6 col-md-6 text-muted radio_s_2" >
+          
+          		<div class="form-group">
+                	<label class="control-label col-xs-3" for="addr_1">Address : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control group2" id="addr_1" placeholder="Address"  disabled="disabled"/>
+                    </div>	
+                
+                </div>
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="addr_2">Address : </label>
+                    <div class="col-lg-8 col-xs-8">
+                    	<input type="text" class="form-control group2" id="addr_2" placeholder="Address" disabled="disabled"/>
+                    </div>	
+                </div>
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="city">City : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control group2" id="city" placeholder="city" disabled="disabled"/>
+                    </div>	
+                
+                </div>
+                
+                <div class="form-group">
+                	<label class="control-label col-xs-3" for="zipcode">Zipcode : </label>
+                    <div class="col-lg-8 col-xs-8">
+                        <input type="text" class="form-control group2" id="zipcode" placeholder="zipcode" disabled="disabled"/>
+                    </div>	
+                
+                </div>
+        
+          </div>
+          
+          
+         
+          
+          
+          
+         	
+        </div><!-- row -->
+        
+         <h3> Type </h3>
+         	<div class="row">
+                <div class="col-lg-4">
+                	<label>Style</label>
+                	<select class="form-control">
+    					<option>Whole</option>
+    					<option>Share Apt</option>
+    					<option>Sublease</option>
+  					</select>
+                </div>
+                
+                <div class="col-lg-1">
+                	<label>Bed</label>
+                	<input type="text" class="form-control">
+                </div>
+                
+                <div class="col-lg-1">
+                	<label>Bath</label>
+                	<input type="text" class="form-control">
+                </div>
+                <div class="col-lg-6">
+                	
+                </div>
+                
+                
+            </div><!-- row -->
+
+            <div id="sublease_section" class="row sublease">
+            	<div class="col-lg-4">
+                
+                	<div class="input-daterange datepicker input-group" id="datepicker">
+
+                		<span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+    					<input type="text" class="form-control st" name="start_date" id="start_date"/>
+    					
+    					<span class="input-group-addon"> to </span>
+    					
+    					
+    					
+    					<input type="text" class="form-control" name="end_date" id="end_date"/>
+
+
+    					
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+
+               		<div class="input-group">
+               			<span class="input-group-addon"> Except </span>	
+                		<input type="text" id="exception_dates" class="form-control" >
+                	</div>	
+                
+
+                </div> 
+            </div><!-- row --> 
+
+            <style type="text/css">
+
+            	/* default hide the sublease datepicker */
+            	.sublease {
+    				display: none !important;
+				}
+
+            </style>
+
+
+         	<script type="text/javascript">
+
+         		$(document).ready(function () {
+
+         			// exactly address radio
+         			$( "#optionsRadios1" ).on( "click", function() {
+  						$('.group1').removeAttr("disabled"); 
+						$('.group2').attr("disabled","disabled");
+						$( '.radio_s_2' ).addClass( "text-muted");  
+						$( '.radio_s_1' ).removeClass( "text-muted");
+
+					});
+
+					//blur address radio
+					$( "#optionsRadios2" ).on( "click", function() {
+  						
+  						$('.group2').removeAttr("disabled"); 
+						$('.group1').attr("disabled","disabled");  
+  						$( '.radio_s_1' ).addClass( "text-muted");  
+						$( '.radio_s_2' ).removeClass( "text-muted");
+					});
+
+
+  					$('#datepicker').datepicker()
+
+					
+        			
+  					/*
+  					var start_date;
+  					var end_date;			
+
+  					$('#exception_dates').focus(function(){
+  						start_date = $('#start_date').val();
+  						end_date = $('#end_date').val();
+  						
+  						//alert(start_date);	
+  					});
+					*/
+  					//alert(end_date);
+					$('#exception_dates').datepicker({
+						
+						multidate:true,
+                		multidateSeparator:',',
+                		//startDate:start_date,
+                		//endDate:end_date
+
+                		//startDate: "03/19/2014",
+                		//endDate:"04/16/2014"
+            		});  	
+
+
+  					// if select the sublease option then shows datepicker
+
+  					$( "select" ).change(function() {
+    					var str = "Sublease";
+    					$( "select option:selected" ).each(function() {
+      						if (str == $( this ).text()){
+      							$("#sublease_section").removeClass('sublease');
+      						} else {
+      							$("#sublease_section").addClass('sublease');	
+      						}     					
+    					});
+    				
+  					})
+  				});
+			</script>
+			
+         
+         <h3> Price </h3>
+             <div class="row">
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label><input type="checkbox" checked="checked"> Rent </label>
+                    </div>
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-usd"></span>
+                        </span>
+                        <input type="text" class="form-control text-right" placeholder="US Dollar" >
+                        <span class="input-group-addon">.00</span>
+
+                    </div>
+                </div> 
+                     
+                
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Broker Fee </label>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-user"></span>
+                        </span>
+                        <input type="text" class="form-control text-right" placeholder="US Dollar" disabled="disabled">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Deposite </label>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-file"></span>
+                        </span>
+                        <input type="text" class="form-control text-right" placeholder="Amount" disabled="disabled">
+                        <span class="input-group-addon">month(s)</span>
+                    </div>
+                </div>
+                
+            </div><!-- row -->
+         
+         <h3> Description </h3>
+         	<textarea class="form-control" rows="4" placeholder="!@#$%^&*()(*&^%$#@#$%^&"></textarea>
+         
+         <h3> Media </h3>
+         
+         <h3> Contact Infomation </h3>
+         
+             <div class="row">
+                <div class="col-xd-12 col-md-12 form-group" >
+              
+                    <label class="control-label col-md-2" for="email">Email : </label>    
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="email" placeholder="abc@example.com"  />
+                    </div>
+                </div>	
+                
+                <div class="col-xd-12 col-md-12 form-group" >
+                
+                     <label class="control-label col-md-2" for="phone">Phone : </label>    
+                     
+                    <div class="col-lg-6 ">
+                    
+                        <input type="text" class="form-control" id="phone" placeholder="xxx-xxx-xxxx"  />
+                       
+                    </div>	
+                </div>       
+             </div><!-- row -->
+         
+        
+         <div class="pull-right">
+         	<button class="btn btn-large btn-primary">Submit</button>
+         </div>
+         
+         
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </form>	
