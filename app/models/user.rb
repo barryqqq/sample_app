@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   	:storage => :s3,
   	:bucket => 'around_you_and_me',
   	:s3_credentials => {
-      :access_key_id => 'AKIAISIXGQLGCTCLR3DQ',
-      :secret_access_key => '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'
+      :access_key_id => '',
+      :secret_access_key => ''
     },
   	styles: {
     	mini: '32X32>',
