@@ -42,7 +42,7 @@ SampleApp::Application.configure do
     :storage => :s3,
     :s3_protocol => 'http',
     :s3_credentials => {
-      :bucket => ENV['around_you_and_me'],
+      #:bucket => ENV['around_you_and_me'],
       :access_key_id => ENV['AKIAISIXGQLGCTCLR3DQ'],
       :secret_access_key => ENV['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']  
 
