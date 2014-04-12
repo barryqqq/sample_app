@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   		#handle successful save
       redirect_to @user
   	else
+      flash[:danger] = "field can not blank."
   		render 'new'
   	end		
   end	
@@ -63,6 +64,7 @@ class UsersController < ApplicationController
   def post 
     
   end   
+
 
 
 

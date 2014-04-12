@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 -->
 
-
+  
   
 
 
@@ -50,6 +50,9 @@
 
   <%= render 'layouts/shim' %>
 </head>
+
+
+
 <body>
 
   <%= render 'layouts/header' %>
@@ -75,4 +78,9 @@
     
 
 </body>
+<script>
+    $(document).ready(function(){
+      $(".alert").fadeOut(8000);
+    });
+  </script>
 </html>

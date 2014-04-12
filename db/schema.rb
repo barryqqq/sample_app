@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326105021) do
+ActiveRecord::Schema.define(version: 20140411064409) do
+
+  create_table "collections", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -22,28 +29,45 @@ ActiveRecord::Schema.define(version: 20140326105021) do
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
 
+  create_table "photos", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "property_id"
+  end
+
   create_table "properties", force: true do |t|
+    t.integer  "user_id"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
+    t.string   "state"
     t.string   "zipcode"
     t.string   "country"
-    t.boolean  "exactly_addr"
-    t.string   "b_address_1"
-    t.string   "b_address_2"
+    t.string   "radio_addr"
+    t.string   "b_address1"
+    t.string   "b_address2"
     t.string   "b_city"
+    t.string   "b_state"
     t.string   "b_zipcode"
-    t.float    "price"
+    t.string   "category"
+    t.integer  "bed"
+    t.integer  "bath"
+    t.decimal  "price",                     precision: 7, scale: 2
     t.boolean  "hasBrokerFee"
     t.boolean  "hasDeposit"
-    t.float    "broker_fee"
+    t.decimal  "broker_fee",                precision: 7, scale: 2
     t.string   "deposit"
-    t.string   "description"
+    t.text     "description",   limit: 255
     t.string   "contact_email"
     t.string   "contact_phone"
     t.boolean  "archive"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "contact_name"
   end
 
   create_table "users", force: true do |t|

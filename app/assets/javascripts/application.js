@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require all
+//= require jquery-fileupload/basic
 //= require turbolinks
 //= require bootstrap.min
 //= require bootstrap-datepicker

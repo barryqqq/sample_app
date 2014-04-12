@@ -13,6 +13,8 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'jquery-fileupload-rails'
+
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do

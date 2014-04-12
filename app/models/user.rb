@@ -1,26 +1,34 @@
 class User < ActiveRecord::Base
+
+	has_many :microposts, dependent: :destroy
+	has_many :properties, dependent: :destroy
+
+	has_many :properties, :through => :collections
+	
 	# This method associates the attribute ":avatar" with a file attachment
   	has_attached_file :avatar, 
+
+  	
+  	#:default_url => "/images/normal/missing.png",
+
+  	
   	:storage => :s3,
   	:bucket => 'around_you_and_me',
   	:s3_credentials => {
-      :access_key_id => 'AKIAISIXGQLGCTCLR3DQ',
-      :secret_access_key => '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'
+      :access_key_id => 'AKIAIKA5OXN7ULENLE4A',
+      :secret_access_key => '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'
     },
+
+
   	styles: {
     	mini: '32X32>',
     	thumb: '100x100>',
-    	square: '200x200#',
+    	#square: '200x200#',
     	medium: '300x300>'
   	}
 
-	has_many :microposts, dependent: :destroy
-	#attr_accessor :email, :name
-
 	
-
-
-
+	
   	
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
@@ -29,6 +37,7 @@ class User < ActiveRecord::Base
   	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 	validates :name, presence: true, length: {maximum: 50}
+
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
 	

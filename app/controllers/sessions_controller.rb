@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
 
 	#create a new session
+	#login
 	def create 		
 		user = User.find_by(email: params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
@@ -10,7 +11,7 @@ class SessionsController < ApplicationController
 			#redirect_to user
 			redirect_back_or user
 		else
-			flash.now[:danger] = 'invalid email/password combination'
+			flash.now[:danger] = 'invalid email / password combination'
 			render 'new'
 		end		
 
@@ -19,6 +20,8 @@ class SessionsController < ApplicationController
 	# page for a new session (sign in)
 	def new
 	end
+
+	
 
 	#delete a session
 	def destroy
