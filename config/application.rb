@@ -25,6 +25,7 @@ module SampleApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += %w(.svg .eot .woff .ttf)
     #i18n.enforce_available_locales = true
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
 
@@ -35,7 +36,7 @@ module SampleApp
     }
 
     # for glyphicons on heroku
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    #config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.assets.precompile += %w(.svg .eot .woff .ttf)
 
   end
