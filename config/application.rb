@@ -34,5 +34,8 @@ module SampleApp
         #:s3_host_name => 's3-eu-west-1.amazonaws.com'
     }
 
+    # for glyphicons on heroku
+    config.assets.precompile += %w( '.woff', '.eot', '.svg', '.ttf' )
+    #config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   end
 end

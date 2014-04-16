@@ -1,11 +1,11 @@
 #Amazon AWS Config
 development:
-  access_key_id: 
-  secret_access_key:
+  access_key_id: AKIAIKA5OXN7ULENLE4A
+  secret_access_key: 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
   bucket: 
 
 production:
-  access_key_id: 
-  secret_access_key: 
-  bucket: 
+  access_key_id: AKIAIKA5OXN7ULENLE4A
+  secret_access_key: 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 
+  bucket: around_you_and_me
   
