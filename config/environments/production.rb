@@ -79,6 +79,7 @@ SampleApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # for glyphicons on heroku
-  config.assets.precompile += %w( '.woff', '.eot', '.svg', '.ttf' )
-
+  #config.assets.precompile += %w( '.woff', '.eot', '.svg', '.ttf' )
+  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+  
 end
