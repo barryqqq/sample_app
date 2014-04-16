@@ -1,0 +1,627 @@
+ <script type="text/javascript">
+ 	/*
+ 	 $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker();
+  })
+ */
+ </script>
+
+<% provide(:title, 'Post new property') %>
+
+<h3> Location </h3>
+            
+  <%= form_for(Property.new, :html => { :class => "form-horizontal" }) do |f|  %>
+  
+    	<div class="row">
+        	
+        	<div class="col-xs-6 col-md-6 form-group">
+            	<label class="radio">
+                <%= radio_button :property, :radio_addr, "0", :checked => "checked", :class => "radio_addr_1" %> 
+                exactly address
+
+             <!--  
+  					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>exactly address
+          -->
+				</label>
+            </div>
+
+            <div class="col-xs-6 col-md-6 form-group">
+            	<label class="radio">
+                <%= radio_button :property, :radio_addr, "1", :class => "radio_addr_2" %> 
+                blur address
+            <!--    
+  					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+  						blur address
+             --> 
+				</label>
+                
+            	
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-xs-12 radio_s_1">
+          
+          	
+                <div class="form-group">
+                  <!--
+                	<label class="control-label col-xs-3" for="addr_1">Address : </label>
+                -->
+                  <%= f.label :address1, "Address :", :class => "control-label col-lg-3" %>
+
+                    <div class="col-lg-8 col-xs-12">
+                      <%= f.text_field :address1, :class => "form-control group1", :placeholder => "Address" %>
+                      
+                      <!--  <input type="text" class="form-control group1" id="addr_1" placeholder="Address" />
+                    -->
+                    </div>	
+                
+                </div>
+                
+                <div class="form-group">
+                  <%= f.label :address2, "Address :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                    	 <%= f.text_field :address2, :class => "form-control group1", :placeholder => "Address" %>
+                    </div>	
+                </div>
+                
+                <div class="form-group">
+                	
+                  <%= f.label :city, "City :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                        <%= f.text_field :city, :class => "form-control group1", :placeholder => "City" %>
+                    </div>	
+                
+                </div>
+
+                <div class="form-group">
+                  
+                  <%= f.label :state, "State :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                        <%= f.text_field :state, :class => "form-control group1", :placeholder => "State" %>
+                    </div>  
+                
+                </div>
+                
+                <div class="form-group">
+                	
+                  <%= f.label :zipcode, "Zipcode :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                        <%= f.text_field :zipcode, :class => "form-control group1", :placeholder => "Zipcode" %>
+                    </div>	
+                
+                </div>
+                
+                 
+                
+                <div class="form-group">
+                	<%= f.label :country, "Country :", :class => "control-label col-lg-3 text-muted" %>
+                    <div class="col-lg-8 col-xs-12">
+                        <%= f.text_field :country, :class => "form-control", :value => "United States", :disabled => "disabled" %>
+                    </div>	
+                
+                </div>
+                
+                
+            
+           
+          	 
+          	
+          </div>
+     
+          <div class="col-lg-6 col-md-6 col-xs-12 text-muted radio_s_2" >
+          
+          		<div class="form-group">
+                	
+                  <%= f.label :b_address1, "Address :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                        
+                      <%= f.text_field :b_address1, :class => "form-control group2", :placeholder => "Street 1", :disabled => "disabled" %>
+                    </div>	
+                
+                </div>
+                
+                <div class="form-group">
+                	
+                  <%= f.label :b_address2, "Address :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                    	
+                       <%= f.text_field :b_address2, :class => "form-control group2", :placeholder => "Street 2", :disabled => "disabled" %>
+                    </div>	
+                </div>
+                
+                <div class="form-group">
+                	
+                  <%= f.label :b_city, "City :", :class => "control-label col-lg-3" %>
+
+                    <div class="col-lg-8 col-xs-12">
+                       
+                        <%= f.text_field :b_city, :class => "form-control group2", :placeholder => "City", :disabled => "disabled" %>
+                    </div>	
+                
+                </div>
+
+                <div class="form-group">
+                  
+                  <%= f.label :b_state, "State :", :class => "control-label col-lg-3" %>
+
+                    <div class="col-lg-8 col-xs-12">
+                       
+                        <%= f.text_field :b_state, :class => "form-control group2", :placeholder => "State", :disabled => "disabled" %>
+                    </div>  
+                
+                </div>
+                
+                <div class="form-group">
+                  <%= f.label :b_zipcode, "Zipcode :", :class => "control-label col-lg-3" %>
+                    <div class="col-lg-8 col-xs-12">
+                       
+                        <%= f.text_field :b_zipcode, :class => "form-control group2", :placeholder => "Zipcode", :disabled => "disabled" %>
+                    </div>	
+                
+                </div>
+        
+          </div>
+          
+          
+         	
+        </div><!-- row -->
+        
+         <h3> Type </h3>
+         	<div class="row">
+            <div class="col-lg-4 col-xs-12">
+              <label>Category</label>
+              <%= f.select :category, ['Whole', 'Share Apt', 'Sublease' ], {}, :class => "form-control" %>
+                	
+            </div>
+                
+            <div class="col-lg-1 col-xs-12">
+            	<label>Bed</label>
+            	
+              <%= f.text_field :bed, :class => "form-control " %>
+            </div>
+            
+            <div class="col-lg-1 col-xs-12">
+            	<label>Bath</label>
+            	
+              <%= f.text_field :bath, :class => "form-control " %>
+            </div>
+            <div class="col-lg-6">
+            	
+            </div>
+            
+            
+          </div><!-- row -->
+
+          <div id="sublease_section" class="row sublease">
+            <div class="col-lg-4 col-xs-12">
+                
+              <div class="input-daterange datepicker input-group" id="datepicker">
+
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+
+    					<input type="text" class="form-control st" name="start_date" id="start_date"/>
+    					
+    					<span class="input-group-addon"> to </span>
+    					
+    					
+    					
+    					<input type="text" class="form-control" name="end_date" id="end_date"/>
+    					
+					  </div>
+				  </div>
+
+				    <div class="col-lg-6 col-xs-12">
+
+              <div class="input-group">
+               	<span class="input-group-addon"> Except </span>	
+                <input type="text" id="exception_dates" class="form-control" >
+              </div>	
+                
+
+            </div> 
+          </div><!-- row --> 
+
+            <style type="text/css">
+
+            	/* default hide the sublease datepicker */
+            	.sublease {
+    				    display: none !important;
+				      }
+
+            </style>
+
+
+         	<script type="text/javascript">
+
+         		$(document).ready(function () {  
+
+         			// exactly address radio
+         			$( ".radio_addr_1" ).on( "click", function() {
+
+  						  $('.group1').removeAttr("disabled"); 
+						    $('.group2').attr("disabled","disabled");
+						    $( '.radio_s_2' ).addClass( "text-muted");  
+						    $( '.radio_s_1' ).removeClass( "text-muted");
+
+					     });
+
+					    //blur address radio
+					    $( ".radio_addr_2" ).on( "click", function() {
+  						
+  						  $('.group2').removeAttr("disabled"); 
+						    $('.group1').attr("disabled","disabled");  
+  						  $( '.radio_s_1' ).addClass( "text-muted");  
+						    $( '.radio_s_2' ).removeClass( "text-muted");
+					    });
+
+
+  					  $('#datepicker').datepicker()
+
+					
+        			
+    					/*
+    					var start_date;
+    					var end_date;			
+
+    					$('#exception_dates').focus(function(){
+    						start_date = $('#start_date').val();
+    						end_date = $('#end_date').val();
+    						
+    						//alert(start_date);	
+    					});
+  					*/
+    					//alert(end_date);
+					    $('#exception_dates').datepicker({
+						
+						    multidate:true,
+                multidateSeparator:',',
+            		//startDate:start_date,
+            		//endDate:end_date
+
+            		//startDate: "03/19/2014",
+            		//endDate:"04/16/2014"
+            	});  	
+
+
+    					// if select the sublease option then shows datepicker
+
+    					$( "select" ).change(function() {
+      					var str = "Sublease";
+      					$( "select option:selected" ).each(function() {
+        						if (str == $( this ).text()){
+        							$("#sublease_section").removeClass('sublease');
+        						} else {
+        							$("#sublease_section").addClass('sublease');	
+        						}     					
+      					});
+      				
+    					});
+
+
+
+              //default set rent checkbox checked
+				      $("#rent_checkbox").prop("checked", "checked");
+
+              // set rent_checkbox always on
+              $('#rent_checkbox').change(function() {
+                $("#rent_checkbox").prop("checked", "checked"); 
+              }); 
+
+              
+              //broker fee
+              $('#property_hasBrokerFee').change(function() {
+                if ($('#property_hasBrokerFee').is (':checked')){
+                  $('#property_broker_fee').removeAttr("disabled");   
+
+                } else {
+                  $('#property_broker_fee').val('');
+                  $('#property_broker_fee').attr("disabled","disabled"); 
+                     
+                }
+              }); 
+
+               //deposit
+              $('#property_hasDeposit').change(function() {
+                if ($('#property_hasDeposit').is (':checked')){
+                  $('#property_deposit').removeAttr("disabled");   
+
+                } else {
+                  $('#property_deposit').val('');
+                  $('#property_deposit').attr("disabled","disabled"); 
+                     
+                }
+              });   
+
+          });// document ready function 
+           
+
+              
+               
+
+			</script>
+			
+         
+         <h3> Price </h3>
+             <div class="row">
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label> <input type="checkbox" id="rent_checkbox"> Rent (per month)</label>
+                    </div>
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-usd"></span>
+                        </span>
+                      
+                        <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar" %>
+                        <span class="input-group-addon">.00</span>
+
+                    </div>
+                </div> 
+                     
+
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label><%= f.check_box :hasBrokerFee %> Broker Fee </label>
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-user"></span>
+                        </span>
+                        <%= f.text_field :broker_fee, :class => "form-control text-right", :placeholder => "US Dollar", :disabled => "disabled" %>
+                        
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="checkbox">
+                        <label><%= f.check_box :hasDeposit %> Deposit </label>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                        	<span class="glyphicon glyphicon-file"></span>
+                        </span>
+                        
+                        <%= f.text_field :deposit, :class => "form-control text-right", :placeholder => "Amount", :disabled => "disabled" %>
+                        <span class="input-group-addon">month(s)</span>
+                    </div>
+                </div>
+                
+            </div><!-- row -->
+         
+         <h3> Description </h3>
+         	
+         <%= f.text_area :description, :class => "form-control", :rows => "15", :placeholder => "!@#$%^&*()(*&^%$#@#$%^&" %>
+         
+<style type="text/css">
+  .col_image {
+  
+  padding-top: 10px;
+}
+  .progressbar {
+    width: 400px;
+}
+</style>
+
+         <h3> Media </h3>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-xs-12" >
+
+              <button type="button" class="btn btn-success btn-lg" id="trigger_select_btn">
+                <span class="glyphicon glyphicon-folder-open"></span><div>  Select file from ...</div> 
+              </button>
+
+              
+              <button type="button" class="btn btn-info btn-lg" id="trigger_upload_btn" style="display: none;" >
+                <span class="glyphicon glyphicon-cloud-upload"></span><div id="upload_text"></div>
+              </button>
+             
+            </div>
+
+            <div class="col-xs-12 col-md-9 col-lg-9 col_image" >
+ 
+              <%= fields_for (:photo) do |photo| %>
+              <div id="show_picture">
+
+                <!--
+                <div class="col-xs-12 col-md-12 col-lg-12 image_1" >
+                  <div class="col-xs-10 col-md-10 col-lg-10 col_image" >                 
+                    <img class="img-round" data-src="holder.js/400x300" alt="Generic placeholder image">
+                    <%#= photo.hidden_field 'image_id[]', :value => '51' %>
+                    <input id='photo_image_id' name='photo[]' type='hidden' value='51'/>
+                  </div>
+
+                  <div class="col-xs-2 col-md-2 col-lg-2 col_image" >                 
+                    <button type="button" class="btn btn-warning" id="image_1" >
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button> 
+                  </div>
+                </div>
+                -->
+
+              </div> <!-- show_picture-->
+              <% end %>
+            </div> 
+
+
+          </div>  <!--row -->  
+
+
+          <script type="text/javascript">
+          $(document).ready(function(){
+
+            var progress = setInterval(function() {
+              var $bar = $('.bar');
+
+
+              if ($bar.width()==400) {
+                clearInterval(progress);
+                $('.progress').removeClass('active');
+              } else {
+                $bar.width($bar.width()+40);
+              }
+              $bar.text($bar.width()/4 + "%");
+            }, 800);
+
+          });
+
+          </script>
+
+
+
+         <h3> Contact Infomation </h3>
+         
+             <div class="row">
+                <div class="col-xs-12 col-md-12 form-group" >
+                  <%= f.label :contact_name, "Name :", :class => "control-label col-md-2" %>
+                       
+                    <div class="col-lg-6">
+                        <%= f.text_field :contact_name, :class => "form-control", :value => current_user.name %>
+                    </div>
+                </div>  
+
+                <div class="col-xs-12 col-md-12 form-group" >
+                  <%= f.label :contact_email, "Email :", :class => "control-label col-md-2" %>
+                       
+                    <div class="col-lg-6">
+                        <%= f.text_field :contact_email, :class => "form-control", :value => current_user.email %>
+                    </div>
+                </div>	
+                
+                <div class="col-xs-12 col-md-12 form-group" >
+                
+                     
+                    <%= f.label :contact_phone, "Phone :", :class => "control-label col-md-2" %>
+                    <div class="col-lg-6 ">
+                      <%= f.text_field :contact_phone, :class => "form-control", :placeholder => "xxx-xxx-xxxx" %>
+                       
+                    </div>	
+                </div>       
+             </div><!-- row -->
+         
+        
+         <div class="pull-right">
+         	
+          <%= f.submit "Submit", class: "btn btn-primary btn-large" %>
+         </div>
+         
+         
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        
+  <% end %>
+
+  <%#= form_for(@photo, :html => { :class => "form-horizontal", :multipart => true  }) do |form| %>
+  <FORM action="/photos" class="form-horizontal" enctype="multipart/form-data" method="post">
+    
+    <input id="upload_file" type="file" name="photo[image]" multiple="true" style="display: none;"> 
+
+     <%#= f.file_field :image, :class => "upload_file", multiple: true, :name => "photo[image]" %>   
+
+    <button type="button" class="btn btn-default btn-lg" id="upload_btn" style="display: none;">
+      <span class="glyphicon glyphicon-cloud-upload"></span> Upload
+    </button>
+    
+
+  </form>     
+  
+  <%# end %>
+       
+
+        <script type="text/javascript">
+
+
+          $( "#trigger_select_btn" ).on( "click", function() { 
+            
+            $("#upload_file").click();       // trigger to select file
+            
+            $(":file").change(function(){    // after file selected
+              $("#trigger_select_btn").hide();                 // hide select button
+              $("#trigger_upload_btn").show();                 // show  upload button and text  
+             
+              //truncate the file name
+              var file_name = $(":file").val();
+
+              var shortText = jQuery.trim(file_name).substring(0, 20);
+
+              $( "#upload_text" ).text( shortText );
+               
+              
+            });
+            return false;
+          });
+
+
+          $( "#trigger_upload_btn" ).on( "click", function() {
+            $("#upload_btn").click();          //trigger to upload file
+
+            return false;
+          });
+
+          /*
+          $( "#image_1" ).on( "click", function() {
+            $( ".image_1" ).remove();  
+          });
+          */
+        
+          $(document).on("click", "#upload_btn", function(){  
+            
+                    
+            var form_data = new FormData();
+            form_data.append('image', $('#upload_file').prop('files')[0]);
+            
+            $.ajax({
+             
+              url: "<%= photos_path %>",
+              data: form_data,
+              type: 'POST',
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: 'json',
+
+
+                
+              success: function(data){
+                alert('success');
+
+                $("#trigger_upload_btn").hide();                 // hide upload button
+                $("#trigger_select_btn").show();                 // show  select button and text  
+                $( "#upload_text" ).text(" ");
+                 //var json = $.parseJSON(data);
+                var json = data;
+                  
+                var btn_name = "image_" + json.id;   
+                  //$('#show_thumb').append('Id: ' + json.id + " "    );
+                /*
+                $('#show_picture').append("<div class='col-xs-12 col-md-12 form-group'><img src=" + json.image_url_medium + "class='img-rounded' alt='Rounded Image'></div>"   );
+                */
+
+                
+                 $('#show_picture').append(" <div class='col-xs-12 col-md-12 col-lg-12 " + btn_name + "' ><div class='col-xs-10 col-md-10 col-lg-10 col_image' ><img src='" + json.image_url_medium + "'><input id='photo_image_id' name='photo[]' type='hidden' value='" + json.id + "'/></div><div class='col-xs-2 col-md-2 col-lg-2 col_image' ><button type='button' class='btn btn-warning' id='" + btn_name + "' ><span class='glyphicon glyphicon-remove'></span></button></div></div><script>$( '#" + btn_name + "' ).on( 'click', function() { $( '." + btn_name + "' ).remove();});</" + "script>" );
+
+
+              }, 
+              error: function(){
+                alert('failure');
+                $("#trigger_upload_btn").hide();                 // hide upload button
+                $("#trigger_select_btn").show();                 // show  select button and text  
+                $( "#upload_text" ).text(" ");
+
+              }
+
+
+            })
+
+            return false;
+
+          })
+        
+        </script>
+
+

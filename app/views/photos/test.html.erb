@@ -1,0 +1,56 @@
+<!-- <input id="upload_file" type="file"> -->
+        
+        <%= form_for(@photo, :html => { :class => "form-horizontal" }) do |f|  %>
+
+          <%= f.file_field :photo, :class => "upload_file" %>
+
+          <%= f.submit "Submit", class: "btn btn-primary btn-large upload_btn" %>
+
+        <%= end %>
+
+<!--
+        <button type="button" class="btn btn-default btn-lg" id="upload_btn">
+          <span class="glyphicon glyphicon-cloud-upload"></span> Upload
+        </button>
+        <div id="show_thumb"></div>
+
+   -->     
+
+
+
+
+        <script type="text/javascript">
+        /*
+          $(document).on("click", ".upload_btn", function(){  
+            
+                    
+            var form_data = new FormData();
+            form_data.append('photo', $('.upload_file').prop('files')[0]);
+            
+            $.ajax({
+             
+              url: '/photos',
+              data: form_data,
+              type: 'POST',
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: 'json',
+              
+              success: function(data){
+                alert('success');
+              }, 
+              error: function(){
+                alert('failure');
+              }
+
+
+            })
+
+            alert('done');
+            return false;
+
+
+          })
+*/
+        </script>

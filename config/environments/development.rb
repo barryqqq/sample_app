@@ -27,18 +27,6 @@ SampleApp::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-=begin
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => ENV['around_you_and_me'],
-    :s3_credentials => {
-      
-      :access_key_id => ENV['AKIAIKA5OXN7ULENLE4A'],
-      :secret_access_key => ENV['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']  
 
-    }
-
-  }
-=end
   
 end

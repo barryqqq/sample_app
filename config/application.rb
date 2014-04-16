@@ -28,5 +28,11 @@ module SampleApp
     #i18n.enforce_available_locales = true
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
 
+    # Paperclip (for Amazon) (we use EU servers)
+    config.paperclip_defaults = {
+        :storage => :s3,
+        #:s3_host_name => 's3-eu-west-1.amazonaws.com'
+    }
+
   end
 end

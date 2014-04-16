@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	has_many :microposts, dependent: :destroy
 	has_many :properties, dependent: :destroy
 
-	has_many :properties, :through => :collections
+	#has_many :properties, :through => :collections
 	
 	# This method associates the attribute ":avatar" with a file attachment
   	has_attached_file :avatar, 
@@ -14,12 +14,7 @@ class User < ActiveRecord::Base
   	
   	:storage => :s3,
   	:bucket => 'around_you_and_me',
-  	:s3_credentials => {
-      :access_key_id => 'AKIAIKA5OXN7ULENLE4A',
-      :secret_access_key => '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'
-    },
-
-
+  	:s3_credentials => "#{Rails.root}/config/s3.yml",
   	styles: {
     	mini: '32X32>',
     	thumb: '100x100>',

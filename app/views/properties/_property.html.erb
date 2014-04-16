@@ -1,0 +1,32 @@
+	
+
+	
+
+        <tr>
+            <td><%= link_to property.id, property %> </td>
+            <td class="to_the_left"><%= property.address1 %> <%= property.address2 %> <%= property.city %> <%= property.state %> <%= property.zipcode %> </td>
+
+            <td><%= property.category %></td>
+            <td><%= property.bed %></td>
+            <td><%= property.bath %></td>
+            <td><%= property.price %></td>
+            <td><%= property.broker_fee %></td>
+            <td><%= property.deposit %></td>
+            <td class="to_the_left"><%= truncate( property.description, length: 50) %></td>
+            <td><%= property.contact_name %></td>
+            <td><%= property.contact_email %></td>
+            <td><%= property.contact_phone %></td>
+            <td><%= property.user.name %></td>
+            <td>
+                <%= link_to property, method: :delete, data: {confirm: "Are you sure to delete this property ? "} do %> <div><span class='glyphicon glyphicon-trash'></span></div>
+                <% end %>
+            </td>
+           
+        </tr>
+       
+   
+
+	
+	
+
+
