@@ -19,5 +19,5 @@
 /config/application.yml
 
 # Ignore s3 credentials
-/congig/s3.yml
+/config/s3.yml
 
