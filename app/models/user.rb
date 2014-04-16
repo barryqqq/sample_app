@@ -14,14 +14,7 @@ class User < ActiveRecord::Base
   	
   	:storage => :s3,
   	:bucket => 'around_you_and_me',
-<<<<<<< HEAD
   	:s3_credentials => "#{Rails.root}/config/s3.yml",
-=======
-  	:s3_credentials => {
-      :access_key_id => '',
-      :secret_access_key => ''
-    },
->>>>>>> 8b21820ca08669b76cfaf7130d6eddfc626ebcf7
   	styles: {
     	mini: '32X32>',
     	thumb: '100x100>',

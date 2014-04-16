@@ -38,20 +38,6 @@ SampleApp::Application.configure do
   ActiveModel::SecurePassword.min_cost = true
 
 
-<<<<<<< HEAD
-=======
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_protocol => 'http',
-    :s3_credentials => {
-      :bucket => ENV['around_you_and_me'],
-      :access_key_id => ENV[''],
-      :secret_access_key => ENV['']  
-
-    }
-
-  }
->>>>>>> 8b21820ca08669b76cfaf7130d6eddfc626ebcf7
 
 
 
