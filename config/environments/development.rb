@@ -15,7 +15,7 @@ SampleApp::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
+ 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -27,6 +27,21 @@ SampleApp::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+<<<<<<< HEAD
 
+=======
+=begin
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['around_you_and_me'],
+      :access_key_id => ENV[''],
+      :secret_access_key => ENV['']  
+
+    }
+
+  }
+=end
+>>>>>>> 8b21820ca08669b76cfaf7130d6eddfc626ebcf7
   
 end
