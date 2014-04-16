@@ -37,7 +37,7 @@ module SampleApp
 
     # for glyphicons on heroku
     #config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
-    config.assets.precompile += %w(.svg .eot .woff .ttf)
+    #config.assets.precompile += %w(.svg .eot .woff .ttf)
 
   end
 end
