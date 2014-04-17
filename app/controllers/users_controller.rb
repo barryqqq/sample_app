@@ -28,15 +28,21 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
-  	if @user.save 
+  	
+    if @user.save 
       sign_in @user
+      #send welcome email
+      UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to join us !!"
-  		#handle successful save
+		  #handle successful save
       redirect_to @user
+
   	else
       flash[:danger] = "field can not blank."
   		render 'new'
-  	end		
+  	end	
+
+
   end	
 
   def edit
