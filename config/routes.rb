@@ -9,7 +9,7 @@ SampleApp::Application.routes.draw do
   end
     
   resources :photos 
-   
+  resources :reset_password, only: [:new, :create] 
 
 
   root 'static_pages#home'
@@ -24,6 +24,7 @@ SampleApp::Application.routes.draw do
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+
   
   #match '/photos', to: 'photos/#create', via: 'post'
   #get '/test', to: 'photos/#show'
