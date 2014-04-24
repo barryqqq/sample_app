@@ -17,4 +17,5 @@
 //= require turbolinks
 //= require bootstrap.min
 //= require bootstrap-datepicker
+//= require holder
 //= require_tree .
