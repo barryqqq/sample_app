@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,40 +8,8 @@
   <meta name="author" content="">
   <link rel="shortcut icon" href="../../assets/ico/favicon.ico">	
 
-  <script src="https://imsky.github.io/holder/holder.js"></script>
+ 
 
-  <!-- Latest compiled and minified CSS 
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
--->
-  <!-- Optional theme 
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
--->
-
-  
-  
-
-
-  <style type="text/css">
-  /*
-  body {
-  	  padding-top: 70px;
-	}
-	
-	footer {
-      background-color: #333333;
-      color: #DDDDDD;
-      font-size: 13px;
-      font-style: normal;
-      height: 60px;
-      line-height: 60px;
-	}
-
-	.search-btn {
-	  height:34px;
-	}
-
-  */
-  </style>
 
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -52,10 +20,10 @@
 </head>
 
 
-
 <body>
 
   <%= render 'layouts/header' %>
+
   <div class="container">
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %> </div>
@@ -70,12 +38,6 @@
     <%= render 'layouts/footer' %>
   </div>  
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-     -->
-    
 
 </body>
 <script>
