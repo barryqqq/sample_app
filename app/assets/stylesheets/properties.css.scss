@@ -1,3 +1,50 @@
 // Place all the styles related to the Properties controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+th, td{
+		text-align: center;
+	}
+
+	.to_the_left{
+		text-align: left;	
+	}
+
+	.table-striped > tbody > tr:nth-child(odd) > td, 
+	.table-striped > tbody > tr:nth-child(odd) > th {
+   		
+ 	}
+
+    .box {
+        margin-bottom: 10px;
+        margin-left: px;
+    } 
+
+
+    .btn.active, .btn:active {
+        /*background-color: #AFEEEE;*/
+    } 
+
+
+    .btn-title:hover,
+    .btn-title:focus,
+    .btn-title:active,
+    .btn-title.active,
+    .btn-title {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: normal;
+        
+        color: #555;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+       
+    } 
+
+    .more_section, 
+    .date_section {
+        display: none;
+    }
+    

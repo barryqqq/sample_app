@@ -1,31 +1,221 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 
+<script>   
+ 
+    var map;
+    var myLatlng = new google.maps.LatLng(40.719017, -73.839066);
+    function initialize() {
+      var mapOptions = {
+        zoom: 12,
+        center:myLatlng
+      };
+      
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+      
+      // To add the marker to the map, use the 'map' property
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title:"Hello World!",
+        animation: google.maps.Animation.DROP
+        
+      });
+        
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<style>
+
+    #map-canvas {
+        width:100%;
+        height:440px ;
+        margin: 0px;
+        padding: 0px;
+      }
+
+     
+</style> 
+
 <style type="text/css">
-	th, td{
-		text-align: center;
-	}
-
-	.to_the_left{
-		text-align: left;	
-	}
-
-	.table-striped > tbody > tr:nth-child(odd) > td, 
-	.table-striped > tbody > tr:nth-child(odd) > th {
-   		
- 	}
-
+	
 
 </style>
 
 
 
 <% provide(:title, "All Properties ") %>
+<div class="row box">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="btn-group check_box" data-toggle="buttons">
+            <label class="btn btn-default category_1">
+            <input type="checkbox" name="category" id="category_1" value="Whole"> Whole
+            </label>
+            <label class="btn btn-default category_2">
+            <input type="checkbox" name="category" id="category_2" value="Shared Apt" > Shared Apt 
+            </label>
+            <label class="btn btn-default category_3">
+            <input type="checkbox" name="category" id="category_3" value="Sublease"> Sublease
+            </label>
+        </div>
+        
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6 date_section">
+         <div class="input-daterange datepicker input-group" id="datepicker">
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            <input type="text" class="form-control st" name="start_date" id="start_date"/>
+            <span class="input-group-addon"> to </span>                
+            <input type="text" class="form-control" name="end_date" id="end_date"/>             
+        </div>
+    </div>    
+
+
+     <div class="col-lg-4 col-md-6 col-sm-6 room_section">
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default btn-title ">Bed</label>
+            <label class="btn btn-default">
+            <input type="radio"> 1
+            </label>
+            <label class="btn btn-default">
+            <input type="radio"> 2
+            </label>
+            <label class="btn btn-default">
+            <input type="radio"> 3+
+            </label>
+        </div>
+
+   
+         <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default btn-title">Bath</label>
+
+            <label class="btn btn-default">
+            <input type="radio"> 1
+            </label>
+            <label class="btn btn-default">
+            <input type="radio"> 2
+            </label>
+            <label class="btn btn-default">
+            <input type="radio"> 3+
+            </label>
+        </div>
+        
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+        <div class="input-group ">
+
+            <span class="input-group-addon">Rent $</span>
+            <input type="text" class="form-control text-right" placeholder="US Dollar/month">
+            <span class="input-group-addon">.00</span>
+        </div>
+
+    </div>
+
+    <div class="col-lg-2 col-sm-6">
+        <button id="more_btn" type="button" class="btn btn-default ">More <span id="more_span" class="glyphicon glyphicon-chevron-down "></span></button>
+        <button type="button" class="btn btn-primary">Search </button>
+    </div>
+
+</div>
+
+<div class="row box more_section">
+    <img class="img-round" data-src="holder.js/1170x200" alt="Generic placeholder image">
+</div>    
+
+<div class="row box">
+
+   
+        <div id="map-canvas"></div>
+   
+</div>    
+
+<div class="row box">   
+            <img class="img-round" data-src="holder.js/1170x500" alt="Generic placeholder image">
+
+</div>
+
+ 
+    
+<script type="text/javascript">
+    $('#datepicker').datepicker();
+
+    $(document).ready(function () {  
+        
+
+        // handle more information section
+        $( "#more_btn" ).click(function() {
+            
+            if(!$('.more_section').is(':visible')){
+                $( ".more_section" ).fadeIn( "slow");
+                $('#more_span').removeClass("glyphicon-chevron-down");
+                $('#more_span').addClass("glyphicon-chevron-up");
+
+            } else {
+                $( ".more_section" ).fadeOut( "slow");
+                $('#more_span').removeClass("glyphicon-chevron-up");
+                $('#more_span').addClass("glyphicon-chevron-down");
+            }
+            
+            //$( ".more_section" ).fadeToggle(1000);
+
+        }); //more section
+
+        // handle calendar and rooms
+        $( ":checkbox" ).change(function() {
+
+            if (this.id == "category_1" || this.id == "category_2") {
+                
+                $('#category_3').prop('checked', false);  //remove checked
+                $('.category_3').removeClass('active');   //remove active class
+                $(".date_section").fadeOut();  //hide date
+                $(".room_section").fadeIn();   //show  room
+
+            } else if (this.id == "category_3") {
+                
+                $('#category_1').prop('checked', false);
+                $('#category_2').prop('checked', false);
+
+                $('.category_1').removeClass('active');
+                $('.category_2').removeClass('active');
+                
+                $(".room_section").fadeOut(); 
+                $(".date_section").fadeIn();       
+
+            }  
+            
+            
+        });  // handle calendar and rooms
+
+
+
+
+
+     }); // ready function 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <h1> All Properties </h1>
 
-	<%= will_paginate %>
-
-		
+	<%= will_paginate %>		
 			
-		
 
 		<table class="table table-striped">
     <thead>
