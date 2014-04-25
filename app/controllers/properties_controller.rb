@@ -25,6 +25,7 @@ class PropertiesController < ApplicationController
 					
 				end
 
+
 				flash[:success] = "You just posted successfully!"
 				redirect_to properties_url
 				
@@ -38,6 +39,7 @@ class PropertiesController < ApplicationController
 
 	def index
 		@properties = Property.paginate(page: params[:page])
+		
 
 	end	
 
@@ -82,7 +84,8 @@ class PropertiesController < ApplicationController
 		c.first.destroy
 		render :nothing => true
 
-	end	
+	end
+
 
 
 	private

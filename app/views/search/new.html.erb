@@ -47,20 +47,28 @@
 
 
 <% provide(:title, "All Properties ") %>
+
+
+<%= form_for Property.new, url: "/search" do |f| %>
+
 <div class="row box">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="btn-group check_box" data-toggle="buttons">
             <label class="btn btn-default category_1">
-            <input type="checkbox" name="category" id="category_1" value="Whole"> Whole
+
+           
+            <input id="category_1" name="property[category][]" type="checkbox" value="Whole" />
+            <%#= f.check_box :category, :id => "category_1" %> Whole
             </label>
             <label class="btn btn-default category_2">
-            <input type="checkbox" name="category" id="category_2" value="Shared Apt" > Shared Apt 
+            <input id="category_2" name="property[category][]" type="checkbox" value="Shared Apt " />
+             <%#= f.check_box :category, :id => "category_2"%> Shared Apt 
             </label>
             <label class="btn btn-default category_3">
-            <input type="checkbox" name="category" id="category_3" value="Sublease"> Sublease
+            <input id="category_3" name="property[category][]" type="checkbox" value="Sublease" />
+            <%#= f.check_box :category, :id => "category_3"%> Sublease
             </label>
         </div>
-        
     </div>
 
     <div class="col-lg-4 col-md-6 col-sm-6 date_section">
@@ -79,13 +87,14 @@
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-default btn-title ">Bed</label>
             <label class="btn btn-default">
-            <input type="radio"> 1
+            <%= radio_button :property, :radio_bed, "1" %> 1
             </label>
             <label class="btn btn-default">
-            <input type="radio"> 2
+            <%= radio_button :property, :radio_bed, "2" %> 2
+            
             </label>
             <label class="btn btn-default">
-            <input type="radio"> 3+
+            <%= radio_button :property, :radio_bed, "3" %> 3+
             </label>
         </div>
 
@@ -94,13 +103,16 @@
             <label class="btn btn-default btn-title">Bath</label>
 
             <label class="btn btn-default">
-            <input type="radio"> 1
+            <%= radio_button :property, :radio_bath, "0" %> 0    
+            
             </label>
             <label class="btn btn-default">
-            <input type="radio"> 2
+            <%= radio_button :property, :radio_bath, "1" %> 1
+            
             </label>
             <label class="btn btn-default">
-            <input type="radio"> 3+
+            <%= radio_button :property, :radio_bath, "2" %> 2+
+            
             </label>
         </div>
         
@@ -110,7 +122,7 @@
         <div class="input-group ">
 
             <span class="input-group-addon">Rent $</span>
-            <input type="text" class="form-control text-right" placeholder="US Dollar/month">
+            <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar/month" %>
             <span class="input-group-addon">.00</span>
         </div>
 
@@ -118,7 +130,9 @@
 
     <div class="col-lg-2 col-sm-6">
         <button id="more_btn" type="button" class="btn btn-default ">More <span id="more_span" class="glyphicon glyphicon-chevron-down "></span></button>
-        <button type="button" class="btn btn-primary">Search </button>
+
+        <!--<button type="button" class="btn btn-primary" id="search_btn">Search </button> -->
+        <%= f.submit("Search", :class => "btn btn-primary") %>
     </div>
 
 </div>
@@ -126,6 +140,9 @@
 <div class="row box more_section">
     <img class="img-round" data-src="holder.js/1170x200" alt="Generic placeholder image">
 </div>    
+
+<% end %> <!--end of form -->
+
 
 <div class="row box">
 
@@ -192,60 +209,8 @@
         });  // handle calendar and rooms
 
 
-
-
-
      }); // ready function 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1> All Properties </h1>
-
-	<%= will_paginate %>		
-			
-
-		<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>No.</th>
-            <th>Address</th>
-            <th>Type</th>
-            <th>Bed</th>
-            <th>Bath</th>
-            <th>Price</th>
-            <th>Broker Fee</th>
-            <th>Deposit</th>
-            <th>Description</th>
-            <th>Contact name</th>
-            <th>Contact email</th>
-            <th>Contact phone</th>
-            <th>Post By</th>
-            <th>Delete</th>
-            
-        </tr>
-    </thead>
-    	<tbody>
-   
-    		<%= render @properties %>
-    	</tbody>	
-       	
-    
-</table>
-
-	<%= will_paginate %>
 
 
 

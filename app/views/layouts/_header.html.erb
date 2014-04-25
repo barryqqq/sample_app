@@ -28,11 +28,15 @@
         <li class="active"> <%= link_to "Home", home_path %> </li>
         -->
         <li><%= link_to "About", about_path %></li>
-        <li><%= link_to "Properties", properties_path,  "data-no-turbolink" => true %></li>
+        <li><%= link_to "Search", new_search_path,  "data-no-turbolink" => true %></li>
 
         <% if signed_in? %>
           <li><%= link_to "Post", new_property_path %></li>
         <% end %>
+
+        <li><%= link_to "Properties", properties_path %></li>
+
+        
 
         <li><a href="#contact">Contact</a></li>
 
