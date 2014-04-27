@@ -85,8 +85,9 @@ SampleApp::Application.configure do
   config.action_mailer.smtp_settings = {
     #enable_starttls_auto: true, 
     :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
+    
+    :port => ENV["MAILGUN_SMTP_PORT"],
+    :address => ENV["MAILGUN_SMTP_SERVER"],
     :domain => "sandbox12ce8cf6f47945f9bd06af92d0d41478.mailgun.org",
     :user_name => ENV["MAILGUN_USERNAME"],
     :password => ENV["MAILGUN_PASSWORD"]
