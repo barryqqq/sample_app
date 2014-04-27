@@ -1,0 +1,76 @@
+
+<% provide(:title, "Search ") %>
+
+<style>
+	.form_section {
+		margin-top: 300px;
+	}
+
+	@media (min-width: 768px) {
+	.form-inline input {
+         border-radius: 0 6px 6px 0;
+     }
+    .form-inline select {
+        border-radius: 6px 0 0 6px;
+        border-left-width: 0;
+    }
+	}
+
+	input {
+  		margin-bottom: 0px !important;
+  		
+	}
+
+	
+
+	.center-block {
+		float:none;
+		width:80%;
+	}
+  
+</style>
+
+<script>
+$('.dropdown-menu li').click(function(e){
+  e.preventDefault();
+  var selected = $(this).text();
+  $('.category').val(selected);  
+});
+</script>
+
+
+<div class="row form_section">
+    <div class="center-block well">
+
+    	<form class="form-inline">
+	    	<div class="row">
+	    		<div class="col-lg-8 col-xs-8">
+				<div class="input-group ">
+
+					<div class="input-group-btn">
+
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> Select <span class="caret"></span> </button>
+						<ul class="dropdown-menu">
+							<li><a href="#"> 1 </a></li>
+							<li><a href="#"> 2 </a></li>
+							
+						</ul>
+						<input type="hidden" name="category" class="category">	
+					
+					</div> <!-- /input-group-btn -->
+					
+					<input type="text" class="form-control" id="input_search">
+					<!--<span class="help-block"> Search somthing you like </span> -->
+
+					
+				</div><!-- /input-group -->
+			</div>
+				<div class="col-lg-4 col-xs-4">
+
+	    			<button type="submit" class="col-lg-5 btn btn-success"> Search </button>
+	    		</div>
+	    	</div> <!--row -->
+    	</form>
+    	
+    </div>
+</div>
