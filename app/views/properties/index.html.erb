@@ -1,0 +1,38 @@
+
+<h1> All Properties </h1>
+
+	<%= will_paginate %>		
+			
+
+		<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Address</th>
+            <th>Type</th>
+            <th>Bed</th>
+            <th>Bath</th>
+            <th>Price</th>
+            <th>Broker Fee</th>
+            <th>Deposit</th>
+            <th>Description</th>
+            <th>Contact name</th>
+            <th>Contact email</th>
+            <th>Contact phone</th>
+            <th>Post By</th>
+            <th>Delete</th>
+            
+        </tr>
+    </thead>
+    	<tbody>
+   
+    		<%= render @properties %>
+    	</tbody>	
+       	
+    
+</table>
+
+	<%= will_paginate %>
+
+
+

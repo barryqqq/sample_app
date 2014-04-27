@@ -46,10 +46,10 @@
 
 
 
-<% provide(:title, "All Properties ") %>
+<% provide(:title, "Result ") %>
 
 
-<%= form_for Property.new, url: "/search" do |f| %>
+<%= form_for @property, url: { :action => "index"}, :method => :get do |f| %>
 
 <div class="row box">
     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -87,14 +87,14 @@
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-default btn-title ">Bed</label>
             <label class="btn btn-default">
-            <%= radio_button :property, :radio_bed, "1" %> 1
+            <%= radio_button :property, :bed, "1" %> 1
             </label>
             <label class="btn btn-default">
-            <%= radio_button :property, :radio_bed, "2" %> 2
+            <%= radio_button :property, :bed, "2" %> 2
             
             </label>
             <label class="btn btn-default">
-            <%= radio_button :property, :radio_bed, "3" %> 3+
+            <%= radio_button :property, :bed, "3" %> 3+
             </label>
         </div>
 
@@ -103,15 +103,15 @@
             <label class="btn btn-default btn-title">Bath</label>
 
             <label class="btn btn-default">
-            <%= radio_button :property, :radio_bath, "0" %> 0    
+            <%= radio_button :property, :bath, "0" %> 0    
             
             </label>
             <label class="btn btn-default">
-            <%= radio_button :property, :radio_bath, "1" %> 1
+            <%= radio_button :property, :bath, "1" %> 1
             
             </label>
             <label class="btn btn-default">
-            <%= radio_button :property, :radio_bath, "2" %> 2+
+            <%= radio_button :property, :bath, "2" %> 2+
             
             </label>
         </div>
@@ -152,7 +152,13 @@
 </div>    
 
 <div class="row box">   
-            <img class="img-round" data-src="holder.js/1170x500" alt="Generic placeholder image">
+        
+    <% if !@properties.nil? %>
+        <%= @property.address1 %>
+        <img class="img-round" data-src="holder.js/1170x500" alt="Generic placeholder image">
+    <% end %>
+
+            
 
 </div>
 
