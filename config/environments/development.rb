@@ -37,8 +37,8 @@ SampleApp::Application.configure do
     :address => "smtp.mailgun.org",
     :port => 587,
     :domain => "sandbox12ce8cf6f47945f9bd06af92d0d41478.mailgun.org",
-    :user_name => "postmaster@sandbox12ce8cf6f47945f9bd06af92d0d41478.mailgun.org",
-    :password => "rubyonrails4"
+    :user_name => ENV["MAILGUN_USERNAME"],
+    :password => ENV["MAILGUN_PASSWORD"]
   
   }
 

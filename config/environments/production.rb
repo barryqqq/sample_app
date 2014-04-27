@@ -78,6 +78,20 @@ SampleApp::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  #mailer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.smtp_settings = {
+    #enable_starttls_auto: true, 
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "sandbox12ce8cf6f47945f9bd06af92d0d41478.mailgun.org",
+    :user_name => ENV["MAILGUN_USERNAME"],
+    :password => ENV["MAILGUN_PASSWORD"]
+  
+  }
   
 
 
