@@ -10,7 +10,7 @@ SampleApp::Application.routes.draw do
     
   resources :photos 
   resources :reset_password, only: [:new, :create] 
-  resources :search
+  resources :searches
 
 
   root 'static_pages#home'

@@ -42,7 +42,10 @@ $('.dropdown-menu li').click(function(e){
 <div class="row form_section">
     <div class="center-block well">
 
-    	<form class="form-inline">
+    	
+    	<%= form_tag searches_path, :method => :get, :class => "form-inline" do %>	
+
+
 	    	<div class="row">
 	    		<div class="col-lg-8 col-xs-8">
 				<div class="input-group ">
@@ -59,18 +62,21 @@ $('.dropdown-menu li').click(function(e){
 					
 					</div> <!-- /input-group-btn -->
 					
-					<input type="text" class="form-control" id="input_search">
+					<%= text_field_tag :location, params[:location], :class => "form-control", :id => "input_search" %>
+					<!--<input type="text" class="form-control" id="input_search"> -->
 					<!--<span class="help-block"> Search somthing you like </span> -->
 
 					
 				</div><!-- /input-group -->
 			</div>
 				<div class="col-lg-4 col-xs-4">
-
-	    			<button type="submit" class="col-lg-5 btn btn-success"> Search </button>
+					<%= submit_tag "Search", :class => "col-lg-5 btn btn-success" %>
+	    			<!--<button type="submit" class="col-lg-5 btn btn-success"> Search </button> -->
 	    		</div>
 	    	</div> <!--row -->
-    	</form>
+    	
+    	<% end %>
+
     	
     </div>
 </div>

@@ -18,6 +18,8 @@ gem 'jquery-fileupload-rails'
 # ENV variable configuration
 gem 'figaro'
 
+#geocoder 4/27
+gem "geocoder"
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do

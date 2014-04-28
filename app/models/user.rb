@@ -39,6 +39,16 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum: 6 }
 
+
+
+
+	#geocoder
+	#geocoded_by :ip_address,
+	#:latitude => :latitude, :longitude => :longitude
+	after_validation :geocode	
+
+
+
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
 	end
