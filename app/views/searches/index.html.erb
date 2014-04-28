@@ -153,7 +153,7 @@
 
 <div class="row box">   
         
-    <% if !@properties.nil? %>
+    <% if @properties.present? %>
         <%= @properties.first.address1 %>
         <img class="img-round" data-src="holder.js/1170x500" alt="Generic placeholder image">
     <% end %>
