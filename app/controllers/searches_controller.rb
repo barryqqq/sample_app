@@ -18,7 +18,8 @@ class SearchesController < ApplicationController
       		@properties = Property.near(params[:location])
     	else
     		#request.ip
-    		@properties = Property.near(request.location)
+    		location_info = request.location
+    		@properties = Property.near([location_info.latitude, location_info.longitude])
       		#@properties = Property.all
     	end
 		@property = Property.new
