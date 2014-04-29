@@ -1,6 +1,6 @@
 #Amazon AWS Config
-development:
-  access_key_id: 
+development: 
+  access_key_id: 123
   secret_access_key: 
   bucket: 
 
