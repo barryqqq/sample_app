@@ -138,7 +138,7 @@
           <h2>Heading</h2>
           <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
 
-          <button id="collection_btn" class="btn btn-lg"><span id="span_heart" class="glyphicon glyphicon-heart <%if @c.exists? %> red  <% end %>"></span></button>
+          <button id="collection_btn" class="btn btn-lg"><span id="span_heart" class="glyphicon glyphicon-heart <%if @c.present? %> red  <% end %>"></span></button>
 
 
           <button id="email_btn" class="btn btn-lg"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button>
@@ -174,41 +174,43 @@
 
 	
 	$(document).on("click", "#collection_btn", function(){  
-     	var url;
+     	//chekc if login?
+     	if ( <%= signed_in? %>) {
+	     	var url;
+	     //if there's a heart then remove this property from list and change the color of the heart
+	     	if ($( "#span_heart" ).hasClass( "red" )) {
+	     		url = "<%= del_collection_property_path %>";
+	     	} else {
+	     		url = "<%= add_collection_property_path %>";
+	     	}
+			          
+	        $.ajax({
+	         
+	          url: url,
+	          //type: 'POST',
+	          cache: false,
+	          contentType: false,
+	          processData: false,
+	          //dataType: 'json', 
+	          
+	          success: function(){
+	          	//alert('added');
+	          	if ($( "#span_heart" ).hasClass( "red" )) {
+	     			$('#span_heart').removeClass("red");
+	     		} else {
+	     			$('#span_heart').addClass("red");
+	     		}
+	          },
+	          error: function(){
+	          	//alert('failure');
+	          }
+	        })
 
-     //if there's a heart then remove this property from list and change the color of the heart
-     	if ($( "#span_heart" ).hasClass( "red" )) {
-     		url = "<%= del_collection_property_path %>";
-
-     	} else {
-     		url = "<%= add_collection_property_path %>";
-
+        } else {   // not login
+     		
+     		alert("please signin first");
      	}
-		    
-		          
-        $.ajax({
-         
-          url: url,
-         
-          //type: 'POST',
-          cache: false,
-          contentType: false,
-          processData: false,
-          //dataType: 'json', 
-          
-          success: function(){
-          	//alert('added');
-          	
-          	if ($( "#span_heart" ).hasClass( "red" )) {
-     			$('#span_heart').removeClass("red");
-     		} else {
-     			$('#span_heart').addClass("red");
-     		}
-          },
-          error: function(){
-          	//alert('failure');
-          }
-        })
+
         return false;
     }); 
      

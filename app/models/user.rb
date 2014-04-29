@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 	#geocoder
 	#geocoded_by :ip_address,
 	#:latitude => :latitude, :longitude => :longitude
-	after_validation :geocode	
+	#after_validation :geocode	
 
 
 

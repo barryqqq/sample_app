@@ -18,4 +18,6 @@
 //= require bootstrap.min
 //= require bootstrap-datepicker
 //= require holder
+//= require underscore
+//= require gmaps/google
 //= require_tree .

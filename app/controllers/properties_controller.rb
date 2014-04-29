@@ -47,8 +47,10 @@ class PropertiesController < ApplicationController
 		@property = Property.find(params[:id])
 		@photos = Photo.where(property_id: params[:id])
 
-		@c = Collection.where(user_id: current_user.id, property_id: params[:id])
-		
+		#for collection
+		if signed_in?
+			@c = Collection.where(user_id: current_user.id, property_id: params[:id])
+		end
 
 	end
 		
