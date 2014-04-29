@@ -15,11 +15,13 @@
 /log/*.log
 /tmp
 
+# Ignore s3 credentials
+/config/s3.yml
+
 # Ignore application configuration
 /config/application.yml
 
-# Ignore s3 credentials
-/config/s3.yml
+
 
 
 
