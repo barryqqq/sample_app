@@ -30,12 +30,13 @@ class SearchesController < ApplicationController
 			marker.lat property.latitude
 			marker.lng property.longitude
 			marker.json({ :id => property.id })
-			#marker.infowindow render_to_string(:partial => "/users/my_template", :locals => { :object => user}).gsub(/\n/, '').gsub(/"/, '\"')
-			marker.picture({
-                  :url    => "http://www.blankdots.com/img/github-32x32.png",
-                  :width  => "32",
-                  :height => "32"
-                 })
+			#marker.infowindow "info"
+			marker.infowindow render_to_string(:partial => "/searches/info_window", :locals => { :property => property}).gsub(/\n/, '').gsub(/"/, '\"')
+			#marker.picture({
+            #      :url    => "https://around_you_and_me.s3.amazonaws.com/users/avatars/000/000/110/mini/1538815_1497519833804771_9000860252536223052_n.jpg",
+            #      :width  => "32",
+            #      :height => "32"
+            #})
   			marker.title   "i'm the title"
 		end
 			
