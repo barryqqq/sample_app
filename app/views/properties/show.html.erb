@@ -1,0 +1,212 @@
+<style type="text/css">
+
+	dl, dd {
+		font-size: 1.2em;		
+        margin: 0 0 18px 0;
+
+	}
+	
+	.btn-mail {
+		width: 120px;
+	}
+
+
+	
+
+</style>
+
+
+
+<% provide(:title, 'Property detail') %>
+	
+	<div class="row">
+  		<div class="col-md-3"></div>
+  		<div class="col-md-3"></div>
+  		<div class="col-md-3 col-md-offset-3">
+  			<button id="collection_btn" class="btn btn-lg disabled"><span id="span_heart" class="glyphicon glyphicon-heart <%if @c.present? %> red  <% end %>"></span></button>
+
+  			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon">t</span></button>
+
+  			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon">f</span></button>
+
+  			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon ">w</span></button>
+
+  			
+
+  		</div>
+	</div>
+
+
+    <div class="row">
+      	<!-- sliders for images -->
+        <div class="col-lg-6">
+		    <span><h3> Information </h3> </span>	
+		    
+	    	<dl class="dl-horizontal">
+    			<dt>Type</dt>
+
+    			<dd><%= @property.category %> Bed :<%= @property.bed %> Bath: <%= @property.bath %></dd>
+
+    			<dt>Price</dt>
+    			<dd> <%= @property.price %> </dd>
+
+    			<% if !@property.broker_fee.blank? %>
+    				<dt>Broker Fee</dt>
+    				<dd> <%= @property.broker_fee %> </dd>
+    			<% end %>
+
+    			<% if !@property.deposit.blank? %>
+    				<dt>Deposit</dt>
+    				<dd> <%= @property.deposit %> </dd>
+    			<% end %>
+
+    			<dt>Description</dt>
+    			<dd><%= @property.description %></dd>
+
+    			<%# if !@property.deposit.blank? %>
+    				<dt>Pet Friendly</dt>
+    				<dd> <%#= @property.deposit %> </dd>
+    			<%# end %>
+
+    			<%# if !@property.deposit.blank? %>
+    				<dt>Gender</dt>
+    				<dd> <%#= @property.deposit %> </dd>
+    			<%# end %>	
+
+
+    			        				
+			</dl>
+		   
+        </div><!-- /.col-lg-6 -->
+        
+        <div class="col-lg-6">
+        	<span><h3> Picture </h3> </span>
+
+        	<img data-src="holder.js/570x360" alt="Second slide">	
+        	<br>
+        		
+        	<div class="row">
+  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
+  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
+
+  				<!-- Add the extra clearfix for only the required viewport -->
+  				<div class="clearfix visible-xs"></div>
+
+  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
+  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
+			</div>
+
+
+        	<span><h3> Address </h3> </span>
+
+	        <address>
+	        	<h4> <%= @property.all_address %> </h4>       
+	        </address>  
+	         
+	        <span><h3> Contact </h3> </span>	
+	         <dl class="dl-horizontal">
+	        			
+	        	<dt>Name</dt>
+
+	        	<dd><%= @property.contact_name %></dd>
+
+	        	<dt>Phone</dt>
+
+	        	<dd><%= @property.contact_phone %></dd>
+
+	        	<dt>Email</dt>
+
+	        	<dd><button id="email_btn" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></dd>
+
+	        				
+	    	</dl>
+
+		    
+
+
+		    
+
+          	<!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+
+
+<script type="text/javascript">
+	$( "#email_btn" ).hover(function() {
+	
+		$( this ).fadeOut( 500 );
+		$( this ).fadeIn( 500 );
+	
+	});
+
+
+
+
+    /* for collection button */
+        				
+	$( "#collection_btn" ).hover(function() {
+		if (! $( "#span_heart" ).hasClass( "red" )) {
+			$( this ).fadeOut( 500 );
+			$( this ).fadeIn( 500 );
+		}	
+	});
+
+	
+	$(document).on("click", "#collection_btn", function(){  
+     	//chekc if login?
+     	if ( <%= signed_in? %>) {
+	     	var url;
+	     	var p_id = "<%= @property.id %>";
+	     	//alert(p_id);
+	     //if there's a heart then remove this property from list and change the color of the heart
+	     	if ($( "#span_heart" ).hasClass( "red" )) {
+                url = "/collections/" + p_id + "/del";
+            } else {
+                url = "/collections/" + p_id + "/add";
+            }
+			          
+	        $.ajax({
+	         
+	          url: url,
+	          //type: type,
+	          cache: false,
+	          contentType: false,
+	          processData: false,
+	          //dataType: 'json', 
+	          
+	          success: function(){
+	          	//alert('added');
+	          	if ($( "#span_heart" ).hasClass( "red" )) {
+	     			$('#span_heart').removeClass("red");
+	     		} else {
+	     			$('#span_heart').addClass("red");
+	     		}
+	          },
+	          error: function(){
+	          	//alert('failure');
+	          }
+	        })
+
+        } else {   // not login
+     		
+     		alert("please signin first");
+     	}
+
+        return false;
+    }); 
+     
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
