@@ -160,9 +160,10 @@
         <div id="map-canvas"></div>
     </div>
     <div class="col-lg-5 ">
+        
         <%= will_paginate @properties %>
-       
-            <%= render '/searches/property' %>
+        <%= render '/searches/property' %>
+        <%= will_paginate @properties %>        
         
     </div>
    
