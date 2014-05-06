@@ -38,7 +38,7 @@ class PropertiesController < ApplicationController
 	end
 
 	def index
-		@properties = Property.paginate(page: params[:page])
+		@properties = Property.paginate(page: params[:page], per_page: '10')
 		
 
 	end	
@@ -47,7 +47,7 @@ class PropertiesController < ApplicationController
 		@property = Property.find(params[:id])
 		@photos = Photo.where(property_id: params[:id])
 
-		#for collection
+		#for collections
 		if signed_in?
 			@c = Collection.where(user_id: current_user.id, property_id: params[:id])
 		end
@@ -82,11 +82,20 @@ class PropertiesController < ApplicationController
 
 	# remove a property from user's collections
 	def del_collection
+
 		c = Collection.where(user_id: current_user.id, property_id: params[:id])
 		c.first.destroy
 		render :nothing => true
 
 	end
+
+	# check if the property has been in user's collection
+	#def collect
+	#	@c = Collection.where(user_id: current_user.id, property_id: params[:id])
+	#	respond_to do |format|
+	#		format.json { render :json => @c.to_json()}
+	#	end	
+	#end	
 
 
 

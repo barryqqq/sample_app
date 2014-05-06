@@ -3,14 +3,26 @@ SampleApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  resources :properties do
-    get :add_collection, :on => :member
-    get :del_collection, :on => :member
-  end
-    
+  resources :properties 
+  #do
+  #  get :add_collection, :on => :member
+  #  get :del_collection, :on => :member
+  #  get :collect, :on => :member
+
+  #end
+
+  resources :collections  do
+    get :add, :on => :member 
+    get :del, :on => :member
+    get :collect, :on => :member 
+  end 
+  
   resources :photos 
   resources :reset_password, only: [:new, :create] 
-  resources :searches
+  resources :searches do
+    get :search, :on => :member
+  end
+
 
 
   root 'static_pages#home'

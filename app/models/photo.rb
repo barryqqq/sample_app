@@ -24,7 +24,7 @@ class Photo < ActiveRecord::Base
 	def image_url_medium
     image.url(:medium)
 	end
-
+    
   private
 
     def randomize_file_name

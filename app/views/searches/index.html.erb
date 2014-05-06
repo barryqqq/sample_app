@@ -9,12 +9,41 @@
 
     #map-canvas {
         width:100%;
-        height:440px ;
+        height:840px ;
         margin: 0px;
         padding: 0px;
+        margin-top: 120px;
       }
 
+    .img_size {
+        max-height: 200px;
+
+    }
+   
+    .nopadding {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .list-unstyled > li {
+        font-size: 1.3em;
+        margin: 0 0 8px 0;
+
+    }
+
+    a:hover > div {
+        background-color: #eee;
+    }
      
+    .small_photo {
+        width: 100px;
+        height: 90px;
+        overflow: auto;
+    }
+
+    .detail {
+        margin-top: 50px;
+    } 
 </style> 
 
 
@@ -25,116 +54,285 @@
 
 <%= form_for @property, url: { :action => "index"}, :method => :get do |f| %>
 
-<div class="row box">
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="btn-group check_box" data-toggle="buttons">
-            <label class="btn btn-default category_1">
-
-           
-            <input id="category_1" name="property[category][]" type="checkbox" value="Whole" />
-            <%#= f.check_box :category, :id => "category_1" %> Whole
-            </label>
-            <label class="btn btn-default category_2">
-            <input id="category_2" name="property[category][]" type="checkbox" value="Shared Apt " />
-             <%#= f.check_box :category, :id => "category_2"%> Shared Apt 
-            </label>
-            <label class="btn btn-default category_3">
-            <input id="category_3" name="property[category][]" type="checkbox" value="Sublease" />
-            <%#= f.check_box :category, :id => "category_3"%> Sublease
-            </label>
+    <div id="top" class="row box">
+        <div class="col-lg-3 col-md-6 col-xs-12">
+            <div class="btn-group check_box" data-toggle="buttons">
+                <label class="btn btn-default category_1">
+                <input id="category_1" name="property[category][]" type="checkbox" value="Whole" />
+                <%#= f.check_box :category, :id => "category_1" %> Whole
+                </label>
+                <label class="btn btn-default category_2">
+                <input id="category_2" name="property[category][]" type="checkbox" value="Shared Apt " />
+                 <%#= f.check_box :category, :id => "category_2"%> Shared Apt 
+                </label>
+                <label class="btn btn-default category_3">
+                <input id="category_3" name="property[category][]" type="checkbox" value="Sublease" />
+                <%#= f.check_box :category, :id => "category_3"%> Sublease
+                </label>
+            </div>
         </div>
+
+        <div class="col-lg-4 col-md-6 col-xs-6 date_section">
+             <div class="input-daterange datepicker input-group" id="datepicker">
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                <input type="text" class="form-control st" name="start_date" id="start_date"/>
+                <span class="input-group-addon"> to </span>                
+                <input type="text" class="form-control" name="end_date" id="end_date"/>             
+            </div>
+        </div>    
+
+
+         <div class="col-lg-4 col-md-6 col-xs-12 room_section">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default btn-title ">Bed</label>
+                <label class="btn btn-default">
+                <%= radio_button :property, :bed, "1" %> 1
+                </label>
+                <label class="btn btn-default">
+                <%= radio_button :property, :bed, "2" %> 2
+                
+                </label>
+                <label class="btn btn-default">
+                <%= radio_button :property, :bed, "3" %> 3+
+                </label>
+            </div>
+
+       
+             <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default btn-title">Bath</label>
+
+                <label class="btn btn-default">
+                <%= radio_button :property, :bath, "0" %> 0    
+                
+                </label>
+                <label class="btn btn-default">
+                <%= radio_button :property, :bath, "1" %> 1
+                
+                </label>
+                <label class="btn btn-default">
+                <%= radio_button :property, :bath, "2" %> 2+
+                
+                </label>
+            </div>
+            
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <div class="input-group ">
+
+                <span class="input-group-addon">Rent $</span>
+                <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar/month" %>
+                <span class="input-group-addon">.00</span>
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 col-xs-6">
+            <button id="more_btn" type="button" class="btn btn-default ">More <span id="more_span" class="glyphicon glyphicon-chevron-down "></span></button>
+
+            <!--<button type="button" class="btn btn-primary" id="search_btn">Search </button> -->
+            <%= f.submit("Search", :class => "btn btn-primary") %>
+        </div>
+
     </div>
 
-    <div class="col-lg-4 col-md-6 col-sm-6 date_section">
-         <div class="input-daterange datepicker input-group" id="datepicker">
-            <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-            <input type="text" class="form-control st" name="start_date" id="start_date"/>
-            <span class="input-group-addon"> to </span>                
-            <input type="text" class="form-control" name="end_date" id="end_date"/>             
-        </div>
+    <div class="row box more_section">
+        <img class="img-round" data-src="holder.js/1170x200" alt="Generic placeholder image">
     </div>    
-
-
-     <div class="col-lg-4 col-md-6 col-sm-6 room_section">
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default btn-title ">Bed</label>
-            <label class="btn btn-default">
-            <%= radio_button :property, :bed, "1" %> 1
-            </label>
-            <label class="btn btn-default">
-            <%= radio_button :property, :bed, "2" %> 2
-            
-            </label>
-            <label class="btn btn-default">
-            <%= radio_button :property, :bed, "3" %> 3+
-            </label>
-        </div>
-
-   
-         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default btn-title">Bath</label>
-
-            <label class="btn btn-default">
-            <%= radio_button :property, :bath, "0" %> 0    
-            
-            </label>
-            <label class="btn btn-default">
-            <%= radio_button :property, :bath, "1" %> 1
-            
-            </label>
-            <label class="btn btn-default">
-            <%= radio_button :property, :bath, "2" %> 2+
-            
-            </label>
-        </div>
-        
-    </div>
-
-    <div class="col-lg-3 col-sm-6">
-        <div class="input-group ">
-
-            <span class="input-group-addon">Rent $</span>
-            <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar/month" %>
-            <span class="input-group-addon">.00</span>
-        </div>
-
-    </div>
-
-    <div class="col-lg-2 col-sm-6">
-        <button id="more_btn" type="button" class="btn btn-default ">More <span id="more_span" class="glyphicon glyphicon-chevron-down "></span></button>
-
-        <!--<button type="button" class="btn btn-primary" id="search_btn">Search </button> -->
-        <%= f.submit("Search", :class => "btn btn-primary") %>
-    </div>
-
-</div>
-
-<div class="row box more_section">
-    <img class="img-round" data-src="holder.js/1170x200" alt="Generic placeholder image">
-</div>    
 
 <% end %> <!--end of form -->
 
+<!-- detail -->
+
+<div id="detail_section" class="detail_section hidden" >
+    <%#=  @properties.find(41).all_address %>
+    <%= render 'detail' %>
+</div>   
+
+
+<!-- /detail -->
+
 
 <div class="row box">
-
-   
+    <div class="col-lg-7 hidden-xs">
         <div id="map-canvas"></div>
+    </div>
+    <div class="col-lg-5 ">
+        <%= will_paginate @properties %>
+       
+            <%= render '/searches/property' %>
+        
+    </div>
+   
+        
    
 </div>    
 
-<div class="row box">   
+
+<script type="text/javascript">
+
+    // when select a property then show the detail panel
+    $( ".property_item" ).click(function() {
         
-    <% if @properties.present? %>
-        <%= @properties.first.address1 %>
-        <img class="img-round" data-src="holder.js/1170x500" alt="Generic placeholder image">
-    <% end %>
+        if(!$('.detail_section').is(':visible')){                  
+            $( ".detail_section" ).removeClass('hidden');
+            $( ".detail_section" ).addClass('visible');
+        }
+        //event.preventDefault();
+        //alert(this.id);
+        //return false;
+        var p_id = this.id;
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/searches/" + this.id,
+            processData: false,
+            success: function(data){
+                // set id to detail partial
+                $('.detail').attr('id', p_id);
+
+                //infomation
+                $('#p_type').html(data.category + "Bed:" + data.bed + "Bath:" + data.bath);
+                $('#p_price').html("$ " + data.price);
+                $('#p_broker_fee').html("$ " + data.broker_fee);
+                $('#p_deposit').html("$ " + data.deposit);
+
+                $('#p_description').html(data.description);
+                //$('#p_pet').html(data.description);
+                //$('#p_gender').html(data.description);
+
+                //contact
+                $('#p_address').html(data.all_address);
+                $('#p_contact_name').html(data.contact_name);
+                $('#p_contact_phone').html(data.contact_phone);
+
+                //photos
+                $.each( data.photos, function( key, value ) {
+                    //alert( this.id + ": " + value.image_url_medium );
+                    // for the first photo
+                    if (key == 0) {
+                        $('#p_photo_0').html(" <img src='" + value.image_url_medium +"' >");
+                    } else {
+                        $('#p_photo_' + key).html(" <img src='" + value.image_url_medium +"' width='100' height='80' >");
+                    }    
+                });
+
+                //alert(data.category);
+                //alert(data.photos[0].image_url_medium);                    
+
+            },
+            error: function() {
+
+                //alert("e");
+            
+            }
+
+        }); 
+        //return false;
+        //alert('end');
+
+        //chekc if login?
+        if ( <%= signed_in? %>) {
+            // asking if this one collected already
+            $.ajax({
+                type: "GET",
+                //dataType: "json",
+                url: "/collections/" + p_id + "/collect",
+                processData: false,
+                success: function(json){
+                    // empty json, not in user's collection
+                    if ( json.length == 0 ) {
+                        console.log("NO DATA!");
+                        $( "#span_heart" ).removeClass('red');
+                    } else {
+                        //add red class to the button
+                        $( "#span_heart" ).addClass('red');
+                    }
+
+                }, error: function () {
+                    //alert("err");
+                }
+            });
+        } else {
+            // can not add to the collection list unless signed in
+            $( "#collection_btn" ).addClass('disabled');
+        
+        }// end of signedin
+
+    });
+
+    //close detail section
+    $( "#btn_close" ).click(function() {
+       
+        if($('.detail_section').is(':visible')){                            
+            $( ".detail_section" ).removeClass('visible');
+            $( ".detail_section" ).addClass('hidden');
+        }
+
+    }); 
+
+    //replace photo
+    $( ".small_photo" ).click(function(event) {
+        // prevent link action
+        event.preventDefault();
+
+        //replace big photo's content 
+        $('#p_photo_0').html($(this).html());
+        //alert($('#p_photo_0').html());
+        $('div#p_photo_0 img').css({'width' : '550px' , 'height' : '360px'});
+        
+    }); 
+
+    //add this property to user's collection
+    $(document).on("click", "#collection_btn", function(){  
+        var p_id = $('.detail').attr('id');
+        //alert(p_id);   
+        var url;
+        //chekc if login?
+        if ( <%= signed_in? %>) {
+            
+         
+         //if there's a heart then remove this property from list and change the color of the heart
+            if ($( "#span_heart" ).hasClass( "red" )) {
+                url = "/collections/" + p_id + "/del";
+            } else {
+                url = "/collections/" + p_id + "/add";
+            }
+
+            $.ajax({
+                type: "GET",
+                //dataType: "json",
+                url: url,
+                processData: false,
+                success: function(json){
+                    // empty json, not in user's collection
+                    if ($( "#span_heart" ).hasClass( "red" )) {
+                        $( "#span_heart" ).removeClass('red');
+                    } else {
+                        //add red class to the button
+                        $( "#span_heart" ).addClass('red');
+                    }
+
+                }, error: function () {
+                    //alert("err");
+                }
+            });
+
+            
+        }// end of signed in
+    });          
+
+
+
+</script>
+    
 
             
 
-</div>
+
 
 <script type="text/javascript">
     buildMap(<%=raw @hash.to_json %>);  

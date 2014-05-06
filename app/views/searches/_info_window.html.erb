@@ -1,3 +1,24 @@
-<h3> hello </h3>
 
-<%= property.price %>
+<style>
+	li {
+        font-size: 1.3em;
+        margin: 0 0 8px 0;
+
+    }
+</style>
+
+
+
+
+    <ul class="list-unstyled">    
+        <li > <strong> <%= property.city.upcase %>, <%= property.state.upcase %> </strong></li>   
+        
+        <li> <code> $ <%= property.price %> </code> /month </li>
+      
+        <li> <kbd><%= property.category %> </kbd> </li>
+
+        <li> <%= pluralize(property.bed, "  Bed") %>/ <%= pluralize(property.bath, "  Bath") %></li>
+
+    </ul>
+          
+

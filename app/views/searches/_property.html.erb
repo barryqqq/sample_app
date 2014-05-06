@@ -1,0 +1,53 @@
+
+
+<% if @properties.present? %>
+     <% @properties.each do |p| %>
+    <a id="<%= p.id %>" href="#top" class="property_item">
+    <div class="row box list-group-item "> 
+
+        <div class="col-lg-6 nopadding">
+    
+            <% if p.photos.first.present? %> 
+            
+               <img src="<%= p.photos.first.image_url_medium %>" alt="no image" class=" img_size col-lg-12 img-rounded">
+          
+
+            <% else %>
+               <img class="col-lg-12 img-rounded" data-src="holder.js/250x100">
+            <% end %>
+        
+        </div>
+
+        <div class="col-lg-6 ">
+            <ul class="list-unstyled">  
+                <li> <%= p.id %> </li>  
+                <li > <strong> <%= p.city.upcase %>, <%= p.state.upcase %> </strong></li>   
+                
+                <li> <code> $ <%= p.price %> </code> /month </li>
+              
+                <li> <kbd><%= p.category %> </kbd> </li>
+
+                <li> <%= pluralize(p.bed, "  Bed") %>/ <%= pluralize(p.bath, "  Bath") %></li>
+
+            </ul>
+            <div class="pull-right">
+                <span class="timestamp"> Posted <%= time_ago_in_words(p.created_at) %> ago. </span>
+            </div>     
+
+        </div><!-- /col-->  
+
+
+    </div><!-- /row --> 
+    </a>
+
+    <!--<hr> -->
+    <% end %> <!-- /each -->
+<% end %> <!-- /if -->
+
+       
+            
+       
+        
+            
+        <!--<img class="img-round" data-src="holder.js/1170x500" alt="Generic placeholder image">-->
+       

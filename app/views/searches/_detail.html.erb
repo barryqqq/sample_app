@@ -1,0 +1,195 @@
+
+
+    <div id="_" class="row detail">
+        <div class="col-md-9">
+            <address>
+                <h1> <span id="p_address"></span> </h1>       
+            </address>  
+        </div>
+        <div class="col-md-3">
+            <button id="collection_btn" class="btn btn-lg"><span id="span_heart" class="glyphicon glyphicon-heart "></span></button>
+
+            <button id="" class="btn btn-lg "><span id="span_" class="glyphicon">t</span></button>
+
+            <button id="" class="btn btn-lg "><span id="span_" class="glyphicon">f</span></button>
+
+            <button id="btn_w" class="btn btn-lg "><span id="span_" class="glyphicon ">w</span></button>
+
+            <button id="btn_close" type="button" class="close" aria-hidden="true">x</button>
+
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-lg-6">
+            
+            <div id="p_photo_0"></div>
+            <!--<img data-src="holder.js/550x360" alt=""> -->
+
+            <div class="row">
+
+        <div class="col-lg-12">
+            <hr>        
+        </div>
+
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+            <div id="p_photo_1" class="small_photo"></div>
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <div id="p_photo_2" class="small_photo"></div>
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <div id="p_photo_3" class="small_photo"></div>
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <div id="p_photo_4" class="small_photo"></div>
+            </a>
+        </div>
+
+    </div>  
+           
+                
+           
+
+            <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+
+        </div><!-- /.col-lg-6 -->
+        <!-- sliders for images -->
+        <div class="col-lg-6">
+            
+            <span><h3> Description </h3> </span>  
+                <div id="p_description"></div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.
+
+
+            <span><h3> Information </h3> </span>    
+            
+            <dl class="dl-horizontal">
+                <dt>Type</dt>
+
+                <dd><span id="p_type"></span></dd>
+
+                <dt>Price</dt>
+                <dd><span id="p_price"></span></dd>
+
+                <dt>Broker Fee</dt>
+                <dd> <span id="p_broker_fee"></span> </dd>
+          
+                <dt>Deposit</dt>
+                <dd> <span id="p_deposit"></span> </dd>
+
+                <dt>Pet Friendly</dt>
+                <dd> <%#= @property.deposit %> </dd>
+          
+                <dt>Gender</dt>
+                <dd> only women<%#= @property.deposit %> </dd>
+                                                 
+            </dl>
+
+            <span><h3> Contact </h3> </span>    
+             <dl class="dl-horizontal">
+                        
+                <dt>Name</dt>
+
+                <dd><span id="p_contact_name"></span></dd>
+
+                <dt>Phone</dt>
+
+                <dd><span id="p_contact_phone"></span></dd>
+
+                <dt>Email</dt>
+
+                <dd><button id="email_btn" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></dd>
+
+                            
+            </dl>
+           
+        </div><!-- /.col-lg-6 -->
+        
+    </div><!-- /.row -->
+
+    
+
+
+ 
+
+<script type="text/javascript">
+    /*
+    $( "#email_btn" ).hover(function() {
+    
+        $( this ).fadeOut( 500 );
+        $( this ).fadeIn( 500 );
+    
+    });
+
+    */
+
+
+    /* for collection button */
+    /*                    
+    $( "#collection_btn" ).hover(function() {
+        
+        if (! $( "#span_heart" ).hasClass( "red" )) {
+            $( this ).fadeOut( 500 );
+            $( this ).fadeIn( 500 );
+        }   
+    });
+    */
+    
+    /*
+    $(document).on("click", "#collection_btn", function(){  
+        //chekc if login?
+        if ( <%= signed_in? %>) {
+            var url;
+         //if there's a heart then remove this property from list and change the color of the heart
+            if ($( "#span_heart" ).hasClass( "red" )) {
+                url = "<%#= del_collection_property_path %>";
+            } else {
+                url = "<%#= add_collection_property_path %>";
+            }
+                      
+            $.ajax({
+             
+              url: url,
+              //type: 'POST',
+              cache: false,
+              contentType: false,
+              processData: false,
+              //dataType: 'json', 
+              
+              success: function(){
+                //alert('added');
+                if ($( "#span_heart" ).hasClass( "red" )) {
+                    $('#span_heart').removeClass("red");
+                } else {
+                    $('#span_heart').addClass("red");
+                }
+              },
+              error: function(){
+                //alert('failure');
+              }
+            })
+
+        } else {   // not login
+            
+            alert("please signin first");
+        }
+
+        return false;
+    }); 
+     */
+
+</script>

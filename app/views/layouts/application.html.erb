@@ -16,10 +16,24 @@
   <%= csrf_meta_tags %>
 
   <%= render 'layouts/shim' %>
+
+
+  <style type="text/css">
+  /* homepage background */
+    .home_page {
+      background: url(http://wallpapers.wallpapersdepo.net/free-wallpapers/3257/write-your-life-story-1920x1080.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+
 </head>
 
 
-<body>
+
+<body class="<%= @home_page ? 'home_page' : '' %>">  
 
   <%= render 'layouts/header' %>
 

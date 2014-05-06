@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
 
 	def new
+
 		#@projects = Search.search(params[:search])
 	end	
 
@@ -9,22 +10,39 @@ class SearchesController < ApplicationController
 		#@property = (search_params)
 
 		#redirect_to "/properties"
+	end	
 
 
+	def show
+		@property = Property.find(params[:id])
+
+		if signed_in?
+      		@c = Collection.where(user_id: current_user.id, property_id: params[:id])
+    	end
+
+		# respond property object and photos url	
+		respond_to do |format|
+		#	format.html { redirect_to @c }	
+			#format.js { render :json => @c.to_json()}
+			format.json { render :json => @property.to_json(:methods => [:all_address ], :include => {:photos => {:only => :id, :methods => [:image_url_medium] } }) }
+			
+		end
 	end	
 
 	def index
 		if params[:location].present?
-      		@properties = Property.near(params[:location])
+      		#@properties = Property.near(params[:location])
+      		@properties = Property.near(params[:location]).paginate(page: params[:page], per_page: '8')
+      		
     	else
     		#request.ip
     		location_info = request.location
-    		@properties = Property.near([location_info.latitude, location_info.longitude])
+    		@properties = Property.near([location_info.latitude, location_info.longitude]).paginate(page: params[:page])
       		#@properties = Property.all
     	end
+		
 		@property = Property.new
-		#@properties = Search.search(params[:property])
-	
+		
 		#gmaps
 		@hash = Gmaps4rails.build_markers(@properties) do |property, marker|
 			marker.lat property.latitude
@@ -37,7 +55,7 @@ class SearchesController < ApplicationController
             #      :width  => "32",
             #      :height => "32"
             #})
-  			marker.title   "i'm the title"
+  			#marker.title   "i'm the title"
 		end
 			
 

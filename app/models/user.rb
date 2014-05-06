@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :microposts, dependent: :destroy
 	has_many :properties, dependent: :destroy
 
+	has_many :collections, dependent: :destroy
 	#has_many :properties, :through => :collections
 	
 	# This method associates the attribute ":avatar" with a file attachment
