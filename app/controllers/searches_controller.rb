@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+	helper_method :sort_column, :sort_direction
 
 	def new
 
@@ -32,16 +33,18 @@ class SearchesController < ApplicationController
 	def index
 		if params[:location].present?
       		#@properties = Property.near(params[:location])
-      		@properties = Property.near(params[:location]).paginate(page: params[:page], per_page: '8')
-      		
+      		@properties = Property.order(sort_column + ' ' + sort_direction).near(params[:location]).paginate(page: params[:page], per_page: '8')
+      		# return search query to page 
+      		@search_query = params[:location]
     	else
     		#request.ip
     		location_info = request.location
-    		@properties = Property.near([location_info.latitude, location_info.longitude]).paginate(page: params[:page])
+    		@properties = Property.order(sort_column + ' ' + sort_direction).near([location_info.latitude, location_info.longitude]).paginate(page: params[:page])
       		#@properties = Property.all
+      		
     	end
 		
-		@property = Property.new
+		#@property = Property.new
 		
 		#gmaps
 		@hash = Gmaps4rails.build_markers(@properties) do |property, marker|
@@ -70,5 +73,15 @@ class SearchesController < ApplicationController
 
 		end	
 
+		# default created_at DESC
+		def sort_column
+			#params[:sort] || 'created_at'
+			Property.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
+		end	
+
+		def sort_direction
+			params[:direction] || 'desc'
+			%w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
+		end
 
 end

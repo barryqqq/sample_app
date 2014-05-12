@@ -41,7 +41,19 @@ class PhotosController < ApplicationController
 	end	
 
 	
+	def destroy
+		@photo = Photo.find(params[:id])
+		respond_to do |format|
+			if @photo.destroy
+			end
+			format.json {
+					render :json => @photo
 
+				}	
+		
+		end		
+
+	end	
 
 
 	private

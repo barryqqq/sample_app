@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.cookie
 //= require jquery_ujs
-//= require all
 //= require jquery-fileupload/basic
 //= require turbolinks
 //= require bootstrap.min
@@ -20,4 +20,5 @@
 //= require holder
 //= require underscore
 //= require gmaps/google
+//= require bootstrap-slider
 //= require_tree .

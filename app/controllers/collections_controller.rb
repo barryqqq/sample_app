@@ -14,8 +14,8 @@ class CollectionsController < ApplicationController
 	def del
 
 		
-		c = Collection.where(user_id: current_user.id, property_id: params[:id])
-		c.first.destroy
+		c = Collection.find_by(user_id: current_user.id, property_id: params[:id])
+		c.destroy
 		render :nothing => true
 
 	end

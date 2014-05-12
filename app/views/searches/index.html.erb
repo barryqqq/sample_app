@@ -52,8 +52,9 @@
 <% provide(:title, "Result ") %>
 
 
-<%= form_for @property, url: { :action => "index"}, :method => :get do |f| %>
-
+<%#= form_tag, url: { :action => "index"}, :method => :get do |f| %>
+<%= form_tag searches_path, :method => :get do %>
+    <h1> You are looking for the properties near  <%= @search_query %> </h1>
     <div id="top" class="row box">
         <div class="col-lg-3 col-md-6 col-xs-12">
             <div class="btn-group check_box" data-toggle="buttons">
@@ -123,7 +124,7 @@
             <div class="input-group ">
 
                 <span class="input-group-addon">Rent $</span>
-                <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar/month" %>
+                <%#= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar/month" %>
                 <span class="input-group-addon">.00</span>
             </div>
 
@@ -133,13 +134,16 @@
             <button id="more_btn" type="button" class="btn btn-default ">More <span id="more_span" class="glyphicon glyphicon-chevron-down "></span></button>
 
             <!--<button type="button" class="btn btn-primary" id="search_btn">Search </button> -->
-            <%= f.submit("Search", :class => "btn btn-primary") %>
+            <%#= f.submit("Search", :class => "btn btn-primary") %>
+            <%= submit_tag "Search", :class => "btn-lg col-lg-5 btn btn-success" %>
         </div>
 
     </div>
 
     <div class="row box more_section">
-        <img class="img-round" data-src="holder.js/1170x200" alt="Generic placeholder image">
+        <%= text_field_tag :location, params[:location], :class => "form-control input-lg", :id => "input_search" %>
+
+        <!--<img class="img-round" data-src="holder.js/1170x200" alt="Generic placeholder image"> -->
     </div>    
 
 <% end %> <!--end of form -->
@@ -155,13 +159,19 @@
 <!-- /detail -->
 
 
-<div class="row box">
+<div class="row ">
     <div class="col-lg-7 hidden-xs">
         <div id="map-canvas"></div>
     </div>
     <div class="col-lg-5 ">
         
         <%= will_paginate @properties %>
+        <div class="row">
+            <div class="col-lg-12">
+               Sort by: <span><%= sortable 'created_at', 'Time', @search_query %></span> <span> <%= sortable 'price', 'Price', @search_query %> </span>
+            </div>
+        </div>        
+
         <%= render '/searches/property' %>
         <%= will_paginate @properties %>        
         
@@ -215,9 +225,9 @@
                     //alert( this.id + ": " + value.image_url_medium );
                     // for the first photo
                     if (key == 0) {
-                        $('#p_photo_0').html(" <img src='" + value.image_url_medium +"' >");
+                        $('#p_photo_0').html(" <img class='thumbnail' src='" + value.image_url_medium +"' >");
                     } else {
-                        $('#p_photo_' + key).html(" <img src='" + value.image_url_medium +"' width='100' height='80' >");
+                        $('#p_photo_' + key).html(" <img class='thumbnail' src='" + value.image_url_medium +"' width='100' height='80' >");
                     }    
                 });
 

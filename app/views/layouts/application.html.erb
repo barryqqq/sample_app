@@ -27,6 +27,16 @@
       -o-background-size: cover;
       background-size: cover;
     }
+
+    #wrap {
+      min-height: 100%;
+      height: auto;
+      /* Negative indent footer by its height */
+      margin: 0 auto -60px;
+      /* Pad bottom by footer height */
+      padding: 0 0 100px;
+    }
+    
   </style>
 
 </head>
@@ -34,8 +44,9 @@
 
 
 <body class="<%= @home_page ? 'home_page' : '' %>">  
-
+<div id="wrap">
   <%= render 'layouts/header' %>
+
 
   <div class="container">
     <% flash.each do |key, value| %>
@@ -44,13 +55,14 @@
 
     <%= yield %>
   
-    <%= debug(params) if Rails.env.development? %>
+    <%#= debug(params) if Rails.env.development? %>
 
   
   
-    <%= render 'layouts/footer' %>
-  </div>  
-
+    
+  </div>
+ </div>   
+  <%= render 'layouts/footer' %>
   
 
 

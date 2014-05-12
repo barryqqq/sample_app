@@ -10,7 +10,7 @@
 
 <h3> Location </h3>
             
-  <%= form_for(Property.new, :html => { :class => "form-horizontal" }) do |f|  %>
+  <%= form_for(@property, :html => { :class => "form-horizontal" }) do |f|  %>
   
     	<div class="row">
         	
@@ -50,7 +50,7 @@
                   <%= f.label :address1, "Address :", :class => "control-label col-lg-3" %>
 
                     <div class="col-lg-8 col-xs-12">
-                      <%= f.text_field :address1, :class => "form-control group1", :placeholder => "Address" %>
+                      <%= f.text_field :address1, :value => @property.address1, :class => "form-control group1", :placeholder => "Address" %>
                       
                       <!--  <input type="text" class="form-control group1" id="addr_1" placeholder="Address" />
                     -->
@@ -601,9 +601,9 @@
                 /*
                 $('#show_picture').append("<div class='col-xs-12 col-md-12 form-group'><img src=" + json.image_url_medium + "class='img-rounded' alt='Rounded Image'></div>"   );
                 */
-
                 
-                 $('#show_picture').append(" <div class='col-xs-12 col-md-12 col-lg-12 " + btn_name + "' ><div class='col-xs-10 col-md-10 col-lg-10 col_image' ><img src='" + json.image_url_medium + "'><input id='photo_image_id' name='photo[]' type='hidden' value='" + json.id + "'/></div><div class='col-xs-2 col-md-2 col-lg-2 col_image' ><button type='button' class='btn btn-warning' id='" + btn_name + "' ><span class='glyphicon glyphicon-remove'></span></button></div></div><script>$( '#" + btn_name + "' ).on( 'click', function() { $( '." + btn_name + "' ).remove();});</" + "script>" );
+                
+                $('#show_picture').append(" <div class='col-xs-12 col-md-12 col-lg-12 " + btn_name + "' ><div class='col-xs-10 col-md-10 col-lg-10 col_image' ><img src='" + json.image_url_medium + "'><input id='photo_image_id' name='photo[]' type='hidden' value='" + json.id + "'/></div><div class='col-xs-2 col-md-2 col-lg-2 col_image' ><button type='button' class='btn btn-warning' id='" + btn_name + "' ><span class='glyphicon glyphicon-remove'></span></button></div></div><script>$( '#" + btn_name + "' ).on( 'click', function() { $( '." + btn_name + "' ).remove();});</" + "script>" );
 
 
               }, 

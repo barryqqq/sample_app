@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427195719) do
+ActiveRecord::Schema.define(version: 20140512022829) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -54,14 +54,14 @@ ActiveRecord::Schema.define(version: 20140427195719) do
     t.string   "b_state"
     t.string   "b_zipcode"
     t.string   "category"
-    t.integer  "bed"
-    t.integer  "bath"
-    t.decimal  "price",                     precision: 7, scale: 2
+    t.float    "bed"
+    t.float    "bath"
+    t.decimal  "price",         precision: 7, scale: 2
     t.boolean  "hasBrokerFee"
     t.boolean  "hasDeposit"
-    t.decimal  "broker_fee",                precision: 7, scale: 2
+    t.decimal  "broker_fee",    precision: 7, scale: 2
     t.string   "deposit"
-    t.text     "description",   limit: 255
+    t.text     "description"
     t.string   "contact_email"
     t.string   "contact_phone"
     t.boolean  "archive"
@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 20140427195719) do
     t.string   "contact_name"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "isPublic"
+    t.string   "ip"
+    t.boolean  "hasContract"
+    t.string   "contract"
+    t.integer  "gender"
+    t.integer  "people"
+    t.integer  "pet"
+    t.integer  "count"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   create_table "searches", force: true do |t|
