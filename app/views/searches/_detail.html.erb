@@ -3,7 +3,7 @@
     <div id="_" class="row detail">
         <div class="col-md-9">
             <address>
-                <h1> <span id="p_address"></span> </h1>       
+                <h2> <span id="p_address"></span> </h2>       
             </address>  
         </div>
         <div class="col-md-3">
@@ -22,7 +22,7 @@
 
     
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" style="padding-left: 0px; padding-right: 0px;">
             
             <div id="p_photo_0"></div>
             <!--<img data-src="holder.js/550x360" alt=""> -->
@@ -60,25 +60,35 @@
 
             </div> 
 
-            <span><h3> Contact </h3> </span>    
-             <dl class="dl-horizontal">
+            <span><h3> Contact </h3> </span> 
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td><strong><span id="p_contact_name"></span></strong></td>
+                        </tr>
+
                         
-                <dt>Name</dt>
-
-                <dd><span id="p_contact_name"></span></dd>
-
-                <dt>Phone</dt>
-
-                <dd><span id="p_contact_phone"></span></dd>
-
-                <dt>Email</dt>
-
-                <dd><button id="email_btn" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></dd>
-
+                        <tr>
+                            <td>Phone</td>
+                            <td><span id="p_contact_phone"></span></strong></td>
+                        </tr>
+                  
+                        
+                        <tr>
+                            <td>Email</td>
+                            <!--
+                            <td><button id="email_btn" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></td>
+                            -->
+                            <td>
+                                <a id="send_mail" data-toggle="modal" data-target="#remoteModal" class="btn btn-default"><span id="span_email" class="glyphicon glyphicon-envelope"></span>  Send Mail</a>
+                            </td>
+                        </tr>
+                        
                             
-            </dl> 
-           
-                
+                    </tbody>    
+                </table>    
+
            
 
             <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
@@ -89,41 +99,102 @@
             
             <span><h3 class="top_h3"> Description </h3> </span>  
                 <div id="p_description"></div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.
+               
 
 
-            <span><h3> Information </h3> </span>    
-            
-            <dl class="dl-horizontal">
-                <dt>Type</dt>
+            <span><h3> Information </h3> </span> 
+            <div class="col-xs-12 col-md-6">
+                <table class="table table-hover" >
+                    <tbody>  
+                        <tr>  
+                            <td>Type</td>  
+                            <td><%#= render_type @property.category %><span id="p_type"></span> </td>  
+                        </tr> 
 
-                <dd><span id="p_type"></span></dd>
+                        <tr>  
+                            <td>Bed</td>  
+                            <td><strong><span id="p_bed"></span></strong></td>  
+                        </tr>
 
-                <dt>Price</dt>
-                <dd><span id="p_price"></span></dd>
+                        <tr>  
+                            <td>Bath</td>  
+                            <td><strong><span id="p_bath"></span></strong></td>  
+                        </tr>
 
-                <dt>Broker Fee</dt>
-                <dd> <span id="p_broker_fee"></span> </dd>
-          
-                <dt>Deposit</dt>
-                <dd> <span id="p_deposit"></span> </dd>
+                        <tr>  
+                            <td>Date</td>  
+                            <td><strong><span id="p_date"></span></strong></td>  
+                        </tr>
 
-                <dt>Pet Friendly</dt>
-                <dd> <%#= @property.deposit %> </dd>
-          
-                <dt>Gender</dt>
-                <dd> only women<%#= @property.deposit %> </dd>
-                                                 
-            </dl>
+                        <tr>  
+                            <td>People</td>  
+                            <td><strong><span id="p_people"></span></strong></td>  
+                        </tr>
 
-            
+                        <tr>  
+                            <td>Utitlity</td>  
+                            <td><strong><span id="p_utility"></span></strong></td>  
+                        </tr>
+
+
+                    </tbody>
+                </table>    
+                
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <table class="table table-hover" >
+                    <tbody>  
+                        <tr>  
+                            <td>Price</td>  
+                            <td><strong>$<span id="p_price"></span></strong></td>  
+                        </tr> 
+
+                        <tr>  
+                            <td>Deposit</td>  
+                            <td><strong><span id="p_deposit"></span> /Month</strong></td>  
+                        </tr>
+
+                        <tr>  
+                            <td>Contract</td>  
+                            <td><strong><span id="p_contract"></span> /Month</strong></td>  
+                        </tr>
+
+                        <tr>  
+                            <td>Broker Fee</td>  
+                            <td><strong>$ <span id="p_broker_fee"></span></strong></td>  
+                        </tr>
+
+                        <tr>  
+                            <td>Gender</td>  
+                            <td><strong><span id="p_gender"></span></strong></td>  
+                        </tr>
+
+                        <tr>  
+                            <td>Pet</td>  
+                            <td><strong><span id="p_pet"></span></strong></td>  
+                        </tr>
+
+
+                    </tbody>
+                </table>    
+
+            </div>                 
            
         </div><!-- /.col-lg-6 -->
         
     </div><!-- /.row -->
 
-    
+ 
+
+
+ <!-- Modal -->  
+<div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true">  
+    <div class="modal-dialog">  
+        <div class="modal-content">
+        </div>  
+    </div>  
+</div>  
+<!-- /.modal -->     
 
 
  

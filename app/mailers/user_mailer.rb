@@ -16,5 +16,15 @@ class UserMailer < ActionMailer::Base
 
   end
 
+  def contact_email(name, phone, email, message, property_id)
+      @sender_name = name
+      @sender_phone = phone
+      @sender_email = email
+      @message = message
+      @property = Property.find(property_id)
+      mail to: "iamcooc@gmail.com", subject: "someone want you"
+
+  end  
+
   	
 end

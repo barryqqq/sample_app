@@ -1,0 +1,82 @@
+
+		<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    		<h4 class="modal-title" id="myModalLabel">Send mail to owner</h4>
+ 		</div>
+ 		<div class="modal-body">
+			<div id="contacts">
+				<div class="row"><!-- Alignment -->
+					<div class="col-sm-offset-3 col-sm-6">
+					      <!-- Form itself -->
+						
+						<%= form_tag( contact_forms_path, :method => "post", :html => { :class => "form-horizontal" })  do  %>
+						
+						       <!-- Full Name -->
+							<div class="form-group">
+								<label for="name">* Your Name</label>
+								<div class="controls">
+									<%= text_field_tag 'name', nil, :class => "form-control", :placeholder => "Your Name", :required => "required" %>
+								    
+								 
+								</div>
+							</div>
+								<!-- Email -->
+							<div class="form-group">
+								<label for="email">* Your Email</label>
+								<div class="controls">
+									<%= text_field_tag 'email', nil, :class => "form-control", :placeholder => "Your email", :required => "required"%>
+									
+							
+								</div>
+							</div>
+
+								<!-- phone -->
+							<div class="form-group">
+								<label for="phone"> Your Phone</label>
+								<div class="controls">
+									<%= text_field_tag 'phone', nil, :class => "form-control", :placeholder => "Your contact phone" %>
+								   
+								 
+								</div>
+							</div>
+
+
+							<div class="row form-group">
+								<div class="col-xs-3">
+									<% if @photo.present? %> 
+					            
+						               <img src="<%= @photo.image_url_thumb %>" alt="no image" class="img-thumbnail">
+						            <% else %>
+						               <img class="col-lg-12 img-rounded" data-src="holder.js/250x100">
+						            <% end %>
+						        </div>
+						        <div class="col-xs-9 text-center">
+						        	<strong><%= @property.full_address %></strong>
+						       	</div>
+						            
+				        	</div>
+								<!-- message -->
+							<div class="form-group">
+								<label for="msg">* Leave message Here</label>
+								<div class="controls">
+
+								    <%= text_area_tag "message", nil, :class => "form-control", :rows => "8", :required => "required"%>
+								    <%#= f.text_area :msg, :class => "form-control", :placeholder => "xxx-xxx-xxxx", :rows =>"8" %>
+								 
+								</div>
+							</div>
+							        
+							
+							      
+							<div id="success"></div>
+							 <!-- For success/fail messages -->
+							 <button class="btn btn-primary pull-right" type="submit">Send</button>
+							 <%= hidden_field_tag(:property_id, @property.id) %>
+						
+						<% end %>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		

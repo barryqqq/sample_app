@@ -73,9 +73,17 @@ class PropertiesController < ApplicationController
 	def update
 		@property = Property.find(params[:id])
 	    if @property.update_attributes(property_params)
+
+	    	params[:photo].each do |photo_id|
+				@photo = Photo.find(photo_id)  #find photo by parameter	
+
+				@photo.update_attribute(:property_id, @property.id) #update property_id to the photo
+						
+					
+			end
 	    	# successful update
 	      	flash[:success] = "Profile Updated"
-	      	redirect_to @user
+	      	redirect_to @property
 	    else
 	    	flash[:warning] = "Oooops! Something wrong"	
 	      	render 'edit'
@@ -130,7 +138,7 @@ class PropertiesController < ApplicationController
 	private
 
 		def property_params
-			params.require(:property).permit( :end_date, :image, :price, :address1, :address2, :city, :state, :zipcode, :country, :radio_addr, :b_address1, :b_address2, :b_city, :b_state, :b_zipcode, :category, :bed, :bath, :price, :hasBrokerFee, :hasDeposit, :broker_fee, :deposit, :description, :contact_name, :contact_email, :contact_phone, :isPublic, :ip, :hasContract, :contract, :gender, :people, :pet, :count, :start_date )
+			params.require(:property).permit(:image, :address1, :address2, :city, :state, :zipcode, :country, :radio_addr, :b_address1, :b_address2, :b_city, :b_state, :b_zipcode, :category, :bed, :bath, :price, :hasBrokerFee, :hasDeposit, :broker_fee, :deposit, :description, :contact_name, :contact_email, :contact_phone, :isPublic, :ip, :hasContract, :hasElectricity, :hasHeat, :hasInternet, :contract, :gender, :people, :pet, :count, :start_date, :end_date )
 
 		end	
 
@@ -151,6 +159,7 @@ class PropertiesController < ApplicationController
 			property = Property.find(params[:id])
 			user = User.find(property.user_id)
 			if !current_user?(user) then
+				flash[:warning] = "You can not pass."
 				redirect_to root_url
 			end	
 		end

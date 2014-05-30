@@ -1,5 +1,7 @@
-	$('#datepicker').datepicker();
-
+	//$('#datepicker').datepicker();
+	//set datepicker
+  	$('#start_date').datepicker({ format: "yyyy-mm-dd"});
+  	$('#end_date').datepicker({ format: "yyyy-mm-dd"});
 	
 	
 	$(document).ready(function() {
@@ -78,7 +80,7 @@
 		          		//$('photo_' + i + '_img').attr('src', data.image_url_medium);
 
 
-		          		$(id_name + '_p3').removeClass('hide');
+		          		$(id_name + '_p3').removeClass('non-visibile');
 						
 						// set id hidden input in page 3 
 		          		$('#photo_' + i + '_input' ).val(data.id);
@@ -130,7 +132,7 @@
 	              dataType: 'json',
 	      
 	              success: function(data){
-	              	alert('y');
+	              	//alert('y');
 	              	
 
 	              	//add empty class to parent div
@@ -141,7 +143,7 @@
 
 					//for page3
 					$('#' + id_name + '_img').attr('src', '');
-		          	$('#' + id_name + '_p3').addClass('hide');
+		          	$('#' + id_name + '_p3').addClass('non-visibile');
 		          	$('#' + id_name + '_photo').val('');	
 
 		          	// remove cookie
@@ -153,7 +155,7 @@
 
 
 	              },error: function(){
-	              	alert('n');
+	              	//alert('n');
 	              }	
 	        })     
 			
@@ -202,6 +204,47 @@
 			}
 		});	
 
+
+
+
+		//utilities group
+		$('#hasElectricity').change(function() {
+			if ($('#hasElectricity').is(':checked')) {
+				$('#utilities_group').find('label').first().removeClass('active');
+				$('#utility_none').attr('checked', false	);
+			}	
+		});	
+
+		$('#hasHeat').change(function() {
+			if ($('#hasHeat').is(':checked')) {
+				$('#utilities_group').find('label').first().removeClass('active');
+				$('#utility_none').attr('checked', false	);
+			}	
+		});	
+
+		$('#hasInternet').change(function() {
+			if ($('#hasInternet').is(':checked')) {
+				$('#utilities_group').find('label').first().removeClass('active');
+				$('#utility_none').attr('checked', false	);
+			}	
+		});	
+
+
+		$('#utility_none').change(function() {
+			
+			//select none
+			if ($('#utility_none').is(':checked')) {
+				//remove checked on utilities
+	  			$('#hasElectricity').attr('checked', false);
+	  			$('#hasHeat').attr('checked', false);
+	  			$('#hasInternet').attr('checked', false);
+
+	  			$('#utilities_group').find('label').removeClass('active');
+
+			}
+			
+		});	
+
 		
 
 		$( "#sublease_label" ).on( "click", function() {
@@ -223,6 +266,17 @@
   			$( "#pets" ).addClass('hide');
 
   			$( "#price_span" ).html('.00 /Day');
+
+
+  			//remove checked on utilities
+  			$('#hasElectricity').attr('checked', false);
+  			$('#hasHeat').attr('checked', false);
+  			$('#hasInternet').attr('checked', false);
+
+  			$('#utilities_group').find('label').removeClass('active');
+  			$('#utilities_group').find('label').first().addClass('active');
+  			$('#utility_none').attr('checked', true);
+
 		
 		});
 
@@ -501,11 +555,11 @@
 			$('#city_input').closest('.form-group').removeClass('has-error');
 		}
 
-		if ($('#state_input').val().length == 0 ){
-			$('#state_input').closest('.form-group').addClass('has-error');
+		if ($('.state_input').val().length == 0 ){
+			$('.state_input').closest('.form-group').addClass('has-error');
 				return false;
 		} else {
-			$('#state_input').closest('.form-group').removeClass('has-error');
+			$('.state_input').closest('.form-group').removeClass('has-error');
 		}
 
 		if ($('#zipcode_input').val().length == 0 ){
@@ -645,11 +699,43 @@
 			}
 
 			//utility
-			var checked = $('input[name=utility]:radio:checked').val();
-			var utility_text = "#utility_" + checked;
-
-			$('#table1 tr:last').after("<tr class='extand_table'><td>Utility</td><td>" + $(utility_text).text() + " <input type='hidden' name='property[utility]' value='" + checked + "'> </td></tr>");
 			
+
+			if (! $('#utility_none').is(':checked')) {
+				
+				
+				var utility_text = "";
+
+				if( $('#hasElectricity').is(':checked')) {
+
+					utility_text += $('#utility_1').html() + ", ";
+				
+					$('#property_hasElectricity').val('t');
+
+				} else {
+					$('#property_hasElectricity').val('f');;
+				}
+
+				if( $('#hasHeat').is(':checked')) {
+					utility_text += $('#utility_2').html() + ", ";
+					$('#property_hasHeat').val('t');
+
+				}
+				 else {
+				 	$('#property_hasHeat').val('f');
+				}
+
+				if( $('#hasInternet').is(':checked')) {
+					utility_text += $('#utility_3').html();
+					$('#property_hasInternet').val('t');
+
+				} else {
+					$('#property_hasInternet').val('f');
+				}
+
+				$('#table1 tr:last').after("<tr class='extand_table'><td>Utility</td><td>" + utility_text + "</td></tr>");
+				
+			} 
 
 
 			//pet
@@ -692,10 +778,10 @@
 			$('#property_address1').val($('#address1_input').val());
 			$('#property_address2').val($('#address2_input').val());
 			$('#property_city').val($('#city_input').val());
-			$('#property_state').val($('#state_input').val());
+			$('#property_state').val($('.state_input').val());
 			$('#property_zipcode').val($('#zipcode_input').val());
 
-			$('#span_addr').html($('#address1_input').val() + " " + $('#address2_input').val() + " " + $('#city_input').val() + " " + $('#state_input').val() + " " + $('#zipcode_input').val() );
+			$('#span_addr').html($('#address1_input').val() + " " + $('#address2_input').val() + " " + $('#city_input').val() + " " + $('.state_input').val() + " " + $('#zipcode_input').val() );
 		}
 
 		// blur address
@@ -704,10 +790,10 @@
 			$('#property_b_address1').val($('#address1_input').val());
 			$('#property_b_address2').val($('#address2_input').val());
 			$('#property_b_city').val($('#city_input').val());
-			$('#property_b_state').val($('#state_input').val());
+			$('#property_b_state').val($('.state_input').val());
 			$('#property_b_zipcode').val($('#zipcode_input').val());
 
-			$('#span_addr').html("the intercetion between " + $('#address1_input').val() + " and " + $('#address2_input').val() + "  in  " + $('#city_input').val() + " " + $('#state_input').val() + " " + $('#zipcode_input').val() );
+			$('#span_addr').html("the intercetion between " + $('#address1_input').val() + " and " + $('#address2_input').val() + "  in  " + $('#city_input').val() + " " + $('.state_input').val() + " " + $('#zipcode_input').val() );
 
 
 		}

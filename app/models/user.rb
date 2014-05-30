@@ -8,14 +8,9 @@ class User < ActiveRecord::Base
 	
 	# This method associates the attribute ":avatar" with a file attachment
   	has_attached_file :avatar, 
-
-  	
   	#:default_url => "/images/normal/missing.png",
-
-  	
   	#:storage => :s3,
   	:bucket => 'around_you_and_me',
-  
   	#:s3_credentials => "#{Rails.root}/config/s3.yml",
   	styles: {
     	mini: '32X32>',

@@ -1,9 +1,14 @@
 SampleApp::Application.routes.draw do
  
+  get "contact_forms/new"
+  get "contact_forms/create"
+  get "contact_form/new"
+  get "contact_form/create"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :properties 
+
   #do
   #  get :add_collection, :on => :member
   #  get :del_collection, :on => :member
@@ -23,6 +28,7 @@ SampleApp::Application.routes.draw do
     get :search, :on => :member
   end
 
+  resources :contact_forms
 
 
   root 'static_pages#home'

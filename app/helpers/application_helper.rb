@@ -9,13 +9,70 @@ module ApplicationHelper
 		end
 	end	
 
+	# return name of type
+	def render_type(type)
+		if type.to_f == 0 then 
+			raw("<kbd>Rent</kbd>") 
+			#raw("<span class='label label-default'>Rent</span>") 
+		elsif type.to_f == 1
+			raw("<span class='label label-success'>Shared Apt.</span>") 
+		elsif type.to_f == 2
+			raw("<span class='label label-warning'>Sublease</span>") 
+		end						
+	end	
 	
-	def sortable(column, title = nil, location = nil)
-		title ||= column.titleize
+	def render_gender(gender)
+		if gender.to_f == 0 
+			"None"
+		elsif gender.to_f == 1
+			"Women Only"
+		else gender.to_f == 2
+			"Men Only"	
+		end	
+	end	
 
-		direction = (column == sort_column && sort_direction == 'asc') ? 'desc' : 'asc'
-		link_to title, :sort => column, :direction => direction, :location => location
+	def render_pet(pet)
+		if pet.to_f == 0 
+			"No"
+		elsif pet.to_f == 1
+			"Cat"
+		elsif pet.to_f == 2
+			"Dog"
+		else pet.to_f == 3
+			"All kinds"	
+		end	
+	end	
+
+	def price_on_type(price, category)
+
+		if category.to_f == 2  #Sublease
+			raw("<code> #{price} </code> /day")
+		else
+			raw("<code> #{price} </code> /month")
+		end	
 
 	end	
 
+	def render_utilities(electricity, heat, internet)
+		content = ""
+		if ( !electricity && !heat && !internet)
+			content = "Not included"
+		else
+			if (electricity)
+				content += "Electricity "
+			end	
+			
+			if (heat)
+				content += "Heat "
+			end	
+			
+			if (internet)
+				content += "Internet"
+			end	
+		end	
+						
+	end
+
+	
+	
 end

@@ -13,12 +13,16 @@
     <ul class="list-unstyled">    
         <li > <strong> <%= property.city.upcase %>, <%= property.state.upcase %> </strong></li>   
         
-        <li> <code> $ <%= property.price %> </code> /month </li>
+        <li> <%= price_on_type property.price, property.category %> </li>
       
-        <li> <kbd><%= property.category %> </kbd> </li>
+        <li> <%= render_type property.category %>  </li>
 
         <li> <%= pluralize(property.bed, "  Bed") %>/ <%= pluralize(property.bath, "  Bath") %></li>
 
     </ul>
-          
+
+    
+    <button id="<%= property.id %>" type="button" class="property_item"> Detail </button>
+
+   
 

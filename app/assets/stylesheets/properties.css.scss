@@ -47,13 +47,14 @@ th, td{
     .more_section, 
     .date_section {
         display: none;
+       
     }
 
     /* for infowindow on the map */
     .infobox {
-        border: 1px solid gray;
+        border: 1px; 
         margin-top: 8px;
-        background: #f0ad4e;
+        background: #DFF0D8;
         padding: 5px; 
         border-radius: 6px 6px 6px 6px;
 

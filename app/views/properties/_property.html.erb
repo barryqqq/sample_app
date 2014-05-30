@@ -18,6 +18,10 @@
             <td><%= property.contact_phone %></td>
             <td><%= property.user.name %></td>
             <td>
+                <%= link_to edit_property_path(property.id), "data-no-turbolink" => true do %> <div><span class='glyphicon glyphicon-pencil'></span></div>
+                <% end %>
+            </td>
+            <td>
                 <%= link_to property, method: :delete, data: {confirm: "Are you sure to delete this property ? "} do %> <div><span class='glyphicon glyphicon-trash'></span></div>
                 <% end %>
             </td>

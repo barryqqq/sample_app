@@ -14,6 +14,97 @@ class Property < ActiveRecord::Base
 
 	validate :end_after_start
 
+	
+	scope :category, -> (category) { where category: category }
+	scope :gender, -> (gender) { where gender: gender }
+	scope :pet, -> (pet) { where pet: pet }
+
+	#scope :bed, -> (bed) { where bed: bed }
+
+	def self.bed(bed)
+		if bed.to_f < 3
+			where bed: bed
+		elsif bed.to_f == 3
+			where ("bed >= 3") 
+		end					
+	end
+	#scope :bath, -> (bath) { where bath: bath }
+	def self.bath(bath)
+		if bath.to_f < 2
+			where bath: bath
+		elsif bath.to_f == 2
+			where ("bath >= 2") 
+		end					
+	end
+	
+	#scope :price, -> (price) { where("price <= ?", price) }
+
+	def self.price(price)
+		if price.to_f > 5 then
+			 where("price <= ?", price)
+		else
+			where(nil)
+		end	 
+
+	end	
+
+	def self.people(people)
+		if people.to_f > 0 then
+			 where("people <= ?", people)
+		else
+			where(nil)
+		end	 
+
+	end	
+
+	def self.noBrokerFee (noBrokerFee) 
+
+		if noBrokerFee then  # hasBrokerFee = 0 w/o broker fee
+			where( hasBrokerFee: false)
+		else
+			where(nil)	
+		end
+	end
+
+	def self.noDeposit (noDeposit) 
+
+		if noDeposit then  # w/o Deposit
+			where( hasDeposit: false)
+		else
+			where(nil)	
+		end
+	end	
+
+	def self.noContract (noContract) 
+
+		if noContract then  # w/o Contract
+			where( hasContract: false)
+		else
+			where(nil)	
+		end
+	end		
+
+	
+		
+
+	#scope :contract, -> (contract) { where contract: contract }
+	#scope :broker_fee, -> (broker_fee) { where broker_fee: broker_fee }
+	#scope :deposit, -> (deposit) { where deposit: deposit }
+
+
+
+	scope :start_date, -> (start_date) { where("start_date >= ?", start_date) }
+	#scope :utility, -> (utility) { where utility: utility }
+	
+	
+	def self.max_price(category)
+		if category == 2 then
+			
+		else
+		end	
+					
+	end	
+
 
 
 	 # the full_address method

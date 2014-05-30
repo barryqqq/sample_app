@@ -1,14 +1,28 @@
- <script type="text/javascript">
- 	/*
- 	 $(document).ready(function(){
-    $('[data-behaviour~=datepicker]').datepicker();
-  })
- */
- </script>
 
-<% provide(:title, 'Post new property') %>
 
-<h3> Location </h3>
+<% provide(:title, 'Update property') %>
+
+
+<style type="text/css">
+  /* default hide the sublease datepicker */
+  .sublease {
+    display: none !important;
+  }
+
+  .col_image {
+  
+    padding-top: 10px;
+  }
+  
+  .progressbar {
+    width: 400px;
+  }
+</style>
+
+
+
+<h3 > Location </h3>
+
             
   <%= form_for(@property, :html => { :class => "form-horizontal" }) do |f|  %>
   
@@ -16,7 +30,7 @@
         	
         	<div class="col-xs-6 col-md-6 form-group">
             	<label class="radio">
-                <%= radio_button :property, :radio_addr, "0", :checked => "checked", :class => "radio_addr_1" %> 
+                <%= radio_button :property, :radio_addr, "0", :class => "radio_addr_1" %> 
                 exactly address
 
              <!--  
@@ -61,7 +75,7 @@
                 <div class="form-group">
                   <%= f.label :address2, "Address :", :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
-                    	 <%= f.text_field :address2, :class => "form-control group1", :placeholder => "Address" %>
+                    	 <%= f.text_field :address2, :value => @property.address2, :class => "form-control group1", :placeholder => "Address" %>
                     </div>	
                 </div>
                 
@@ -69,7 +83,7 @@
                 	
                   <%= f.label :city, "City :", :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
-                        <%= f.text_field :city, :class => "form-control group1", :placeholder => "City" %>
+                        <%= f.text_field :city, :value => @property.city, :class => "form-control group1", :placeholder => "City" %>
                     </div>	
                 
                 </div>
@@ -77,8 +91,9 @@
                 <div class="form-group">
                   
                   <%= f.label :state, "State :", :class => "control-label col-lg-3" %>
-                    <div class="col-lg-8 col-xs-12">
-                        <%= f.text_field :state, :class => "form-control group1", :placeholder => "State" %>
+                    <div class="col-lg-8 col-xs-12 e_state">
+                        <%#= f.text_field :state, :value => @property.state, :class => "form-control group1", :placeholder => "State" %>
+                        <%= render 'layouts/state_picker' %>
                     </div>  
                 
                 </div>
@@ -87,21 +102,11 @@
                 	
                   <%= f.label :zipcode, "Zipcode :", :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
-                        <%= f.text_field :zipcode, :class => "form-control group1", :placeholder => "Zipcode" %>
+                        <%= f.text_field :zipcode, :value => @property.zipcode, :class => "form-control group1", :placeholder => "Zipcode" %>
                     </div>	
                 
                 </div>
-                
-                 
-                
-                <div class="form-group">
-                	<%= f.label :country, "Country :", :class => "control-label col-lg-3 text-muted" %>
-                    <div class="col-lg-8 col-xs-12">
-                        <%= f.text_field :country, :class => "form-control", :value => "United States", :disabled => "disabled" %>
-                    </div>	
-                
-                </div>
-                
+              
                 
             
            
@@ -116,17 +121,17 @@
                   <%= f.label :b_address1, "Address :", :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                         
-                      <%= f.text_field :b_address1, :class => "form-control group2", :placeholder => "Street 1", :disabled => "disabled" %>
+                      <%= f.text_field :b_address1, :value => @property.b_address1, :class => "form-control group2", :placeholder => "Street 1", :disabled => "disabled" %>
                     </div>	
                 
                 </div>
                 
                 <div class="form-group">
                 	
-                  <%= f.label :b_address2, "Address :", :class => "control-label col-lg-3" %>
+                  <%= f.label :b_address2, "Address :",:class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                     	
-                       <%= f.text_field :b_address2, :class => "form-control group2", :placeholder => "Street 2", :disabled => "disabled" %>
+                       <%= f.text_field :b_address2, :value => @property.b_address2, :class => "form-control group2", :placeholder => "Street 2", :disabled => "disabled" %>
                     </div>	
                 </div>
                 
@@ -136,7 +141,7 @@
 
                     <div class="col-lg-8 col-xs-12">
                        
-                        <%= f.text_field :b_city, :class => "form-control group2", :placeholder => "City", :disabled => "disabled" %>
+                        <%= f.text_field :b_city, :value => @property.b_city, :class => "form-control group2", :placeholder => "City", :disabled => "disabled" %>
                     </div>	
                 
                 </div>
@@ -145,9 +150,10 @@
                   
                   <%= f.label :b_state, "State :", :class => "control-label col-lg-3" %>
 
-                    <div class="col-lg-8 col-xs-12">
+                    <div class="col-lg-8 col-xs-12 b_state">
                        
-                        <%= f.text_field :b_state, :class => "form-control group2", :placeholder => "State", :disabled => "disabled" %>
+                        <%#= f.text_field :b_state, :value => @property.b_state, :class => "form-control group2", :placeholder => "State", :disabled => "disabled" %>
+                        <%= render 'layouts/state_picker' %>
                     </div>  
                 
                 </div>
@@ -156,325 +162,335 @@
                   <%= f.label :b_zipcode, "Zipcode :", :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                        
-                        <%= f.text_field :b_zipcode, :class => "form-control group2", :placeholder => "Zipcode", :disabled => "disabled" %>
+                        <%= f.text_field :b_zipcode, :value => @property.b_zipcode, :class => "form-control group2", :placeholder => "Zipcode", :disabled => "disabled" %>
+                        
                     </div>	
                 
                 </div>
         
           </div>
           
-          
-         	
         </div><!-- row -->
+
         
-         <h3> Type </h3>
-         	<div class="row">
-            <div class="col-lg-4 col-xs-12">
-              <label>Category</label>
-              <%= f.select :category, ['Whole', 'Share Apt', 'Sublease' ], {}, :class => "form-control" %>
-                	
-            </div>
+        <h3> Information </h3>
+
+       	<div class="row">
+          <div class="col-md-6 col-xs-12">
+
+            <div class="form-group">
+              <label class="control-label col-xs-3">* type</label>
+              <div class="col-xs-9">
                 
-            <div class="col-lg-1 col-xs-12">
-            	<label>Bed</label>
-            	
-              <%= f.text_field :bed, :class => "form-control " %>
-            </div>
-            
-            <div class="col-lg-1 col-xs-12">
-            	<label>Bath</label>
-            	
-              <%= f.text_field :bath, :class => "form-control " %>
-            </div>
-            <div class="col-lg-6">
-            	
-            </div>
-            
-            
-          </div><!-- row -->
+                <div id="type" class="btn-group" data-toggle="buttons">
+                  <label id="type_0_label" class="btn btn-default">
+                    <input name="property[category]" type="radio" value="0" id="type_0"/><span >Rent</span>
+                  </label>
 
-          <div id="sublease_section" class="row sublease">
-            <div class="col-lg-4 col-xs-12">
-                
-              <div class="input-daterange datepicker input-group" id="datepicker">
+                  <label id="type_1_label" class="btn btn-default">
+                    <input name="property[category]" type="radio" value="1" id="type_1"/><span >Shared Apt.</span>
+                  </label>
 
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                  <label id="type_2_label" class="btn btn-default ">
+                    <input name="property[category]" type="radio"value="2" id="type_2" /><span >Sublease</span>
+                  </label>
 
-    					<input type="text" class="form-control st" name="start_date" id="start_date"/>
-    					
-    					<span class="input-group-addon"> to </span>
-    					
-    					
-    					
-    					<input type="text" class="form-control" name="end_date" id="end_date"/>
-    					
-					  </div>
-				  </div>
-
-				    <div class="col-lg-6 col-xs-12">
-
-              <div class="input-group">
-               	<span class="input-group-addon"> Except </span>	
-                <input type="text" id="exception_dates" class="form-control" >
-              </div>	
-                
-
+                </div>
+              </div>
             </div> 
-          </div><!-- row --> 
 
-            <style type="text/css">
+            <div class="form-group">
+              <label class="control-label col-xs-3"> Date</label>
+              <div class="col-xs-9">
+                <div class="input-daterange datepicker input-group" id="">
 
-            	/* default hide the sublease datepicker */
-            	.sublease {
-    				    display: none !important;
-				      }
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
 
-            </style>
-
-
-         	<script type="text/javascript">
-
-         		$(document).ready(function () {  
-
-         			// exactly address radio
-         			$( ".radio_addr_1" ).on( "click", function() {
-
-  						  $('.group1').removeAttr("disabled"); 
-						    $('.group2').attr("disabled","disabled");
-						    $( '.radio_s_2' ).addClass( "text-muted");  
-						    $( '.radio_s_1' ).removeClass( "text-muted");
-
-					     });
-
-					    //blur address radio
-					    $( ".radio_addr_2" ).on( "click", function() {
-  						
-  						  $('.group2').removeAttr("disabled"); 
-						    $('.group1').attr("disabled","disabled");  
-  						  $( '.radio_s_1' ).addClass( "text-muted");  
-						    $( '.radio_s_2' ).removeClass( "text-muted");
-					    });
-
-
-  					  $('#datepicker').datepicker();
-
-					
-        			
-    					/*
-    					var start_date;
-    					var end_date;			
-
-    					$('#exception_dates').focus(function(){
-    						start_date = $('#start_date').val();
-    						end_date = $('#end_date').val();
-    						
-    						//alert(start_date);	
-    					});
-  					*/
-    					//alert(end_date);
-					    $('#exception_dates').datepicker({
-						
-						    multidate:true,
-                multidateSeparator:',',
-            		//startDate:start_date,
-            		//endDate:end_date
-
-            		//startDate: "03/19/2014",
-            		//endDate:"04/16/2014"
-            	});  	
-
-
-    					// if select the sublease option then shows datepicker
-
-    					$( "select" ).change(function() {
-      					var str = "Sublease";
-      					$( "select option:selected" ).each(function() {
-        						if (str == $( this ).text()){
-        							$("#sublease_section").removeClass('sublease');
-        						} else {
-        							$("#sublease_section").addClass('sublease');	
-        						}     					
-      					});
-      				
-    					});
-
-
-
-              //default set rent checkbox checked
-				      $("#rent_checkbox").prop("checked", "checked");
-
-              // set rent_checkbox always on
-              $('#rent_checkbox').change(function() {
-                $("#rent_checkbox").prop("checked", "checked"); 
-              }); 
-
-              
-              //broker fee
-              $('#property_hasBrokerFee').change(function() {
-                if ($('#property_hasBrokerFee').is (':checked')){
-                  $('#property_broker_fee').removeAttr("disabled");   
-
-                } else {
-                  $('#property_broker_fee').val('');
-                  $('#property_broker_fee').attr("disabled","disabled"); 
-                     
-                }
-              }); 
-
-               //deposit
-              $('#property_hasDeposit').change(function() {
-                if ($('#property_hasDeposit').is (':checked')){
-                  $('#property_deposit').removeAttr("disabled");   
-
-                } else {
-                  $('#property_deposit').val('');
-                  $('#property_deposit').attr("disabled","disabled"); 
-                     
-                }
-              });   
-
-          });// document ready function 
-           
-
-              
-               
-
-			</script>
-			
-         
-         <h3> Price </h3>
-             <div class="row">
-                <div class="col-lg-4">
-                    <div class="checkbox">
-                        <label> <input type="checkbox" id="rent_checkbox"> Rent (per month)</label>
-                    </div>
-
-                    <div class="input-group">
-
-                        <span class="input-group-addon">
-                        	<span class="glyphicon glyphicon-usd"></span>
-                        </span>
-                      
-                        <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar" %>
-                        <span class="input-group-addon">.00</span>
-
-                    </div>
-                </div> 
-                     
-
-                <div class="col-lg-4">
-                    <div class="checkbox">
-                        <label><%= f.check_box :hasBrokerFee %> Broker Fee </label>
-
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                        	<span class="glyphicon glyphicon-user"></span>
-                        </span>
-                        <%= f.text_field :broker_fee, :class => "form-control text-right", :placeholder => "US Dollar", :disabled => "disabled" %>
-                        
-                        <span class="input-group-addon">.00</span>
-                    </div>
-                </div>
+                    <input type="text" class="form-control" name="property[start_date]" id="start_date" placeholder="Start Date"/>
+                  
+                    <span id="to_span" class="input-group-addon non-visibile"> to </span>
+                  
+                    <input type="text" class="form-control non-visibile" name="property[end_date]" id="end_date" placeholder="End Date"/>
+                  
+                  </div>
                 
-                <div class="col-lg-4">
-                    <div class="checkbox">
-                        <label><%= f.check_box :hasDeposit %> Deposit </label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                        	<span class="glyphicon glyphicon-file"></span>
-                        </span>
-                        
-                        <%= f.text_field :deposit, :class => "form-control text-right", :placeholder => "Amount", :disabled => "disabled" %>
-                        <span class="input-group-addon">month(s)</span>
-                    </div>
-                </div>
-                
-            </div><!-- row -->
-         
-         <h3> Description </h3>
-         	
-         <%= f.text_area :description, :class => "form-control", :rows => "15", :placeholder => "!@#$%^&*()(*&^%$#@#$%^&" %>
-         
-<style type="text/css">
-  .col_image {
-  
-  padding-top: 10px;
-}
-  .progressbar {
-    width: 400px;
-}
-</style>
+              </div>
+            </div>
 
-         <h3> Media </h3>
+            <div class="form-group">
+              <label class="control-label col-xs-3">* Room</label>
+              <div class="col-xs-9">
+                <div class="input-group">
+              
+                  <span class="input-group-addon"> Bed </span>
+                  <%= f.text_field :bed, :value => @property.bed, :class => "form-control", :placeholder => "Number" %>
+                  
+
+                  <span class="input-group-addon"> Bath </span>
+                  <%= f.text_field :bath, :value => @property.bath, :class => "form-control", :placeholder => "Number" %>
+                  
+                     
+                </div>  
+            
+              </div>
+            </div>
+
+            <div id="people" class="form-group hide">
+              <label class="control-label col-xs-3"> People</label>
+              <div class="col-xs-9">
+                <input id="slider" name="property[people]" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="<%= @property.people %>" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show" >
+                
+              </div>
+              <span class="help-block"> how many ppl can in a room ........ </span>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-xs-3">* Price</label>
+              <div class="col-xs-9">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-usd"></span>
+                  </span>
+                  <%= f.text_field :price, :class => "form-control text-right", :placeholder => "US Dollar" %>
+                  
+                  <span id="price_span" class="input-group-addon"> .00 /Month</span>
+                </div>  
+              </div>
+            </div>
+
+        
+
+            <div id="deposit" class="form-group">
+              <label class="control-label col-xs-3">Deposit</label>
+              <div class="col-xs-9">
+
+                <div class="input-group">
+                  <span class="input-group-addon">
+                   
+                    <%= f.check_box :hasDeposit %>
+                  </span>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-file"></span>
+                  </span>
+                  <%= f.text_field :deposit, :value => @property.deposit, :class => "form-control text-right", :placeholder => "Amount", :disabled => "disabled" %>
+                 
+                  <span class="input-group-addon"> month(s)</span>                    
+                </div>  
+                
+              </div>
+            </div>
+          
+
+
+          </div><!-- col-md-6 -->
+
+
+
+
+          <div class="col-md-6 col-xs-12">
+
+            <div id="contract" class="form-group">
+              <label class="control-label col-xs-3">Contract</label>
+              <div class="col-xs-9">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    
+                  <%= f.check_box :hasContract %>
+                  </span>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-file"></span>
+                  </span>
+                  <%= f.text_field :contract, :value => @property.contract, :class => "form-control text-right", :placeholder => "Amount", :disabled => "disabled" %>
+                 
+                  <span class="input-group-addon"> month(s)</span>                    
+                </div>  
+                
+              </div>
+            </div>
+
+            <div id="broker_fee" class="form-group">
+              <label class="control-label col-xs-3">Broker Fee</label>
+              <div class="col-xs-9">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                   
+                    <%= f.check_box :hasBrokerFee %> 
+                  </span>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user "></span>
+                  </span>
+                  <%= f.text_field :broker_fee, :class => "form-control text-right", :placeholder => "US Dollar", :disabled => "disabled" %>
+                  
+                  <span class="input-group-addon"> .00</span>                     
+                </div>  
+            
+              </div>
+            </div>
+
+            <div id="utility" class="form-group">
+              <label class="control-label col-xs-3">Utilities</label>
+              <div class="col-xs-9">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-default" id="utility_0_label">
+                  <input name="property[utility]" type="radio" value="0" id="utility_0"/><span >None</span>
+                  </label>
+                  <label class="btn btn-default" id="utility_1_label">
+                  <input name="property[utility]" type="radio" value="1" id="utility_1" /><span >Electrocity</span>
+                  </label>
+
+                  <label class="btn btn-default" id="utility_2_label">
+                  <input name="property[utility]" type="radio" value="2" id="utility_2" /><span >Heat</span>
+                  </label>
+
+                  <label class="btn btn-default" id="utility_3_label">
+                  <input name="property[utility]" type="radio" value="3" id="utility_3" /><span >Internet</span>
+                  </label>
+
+                  <label class="btn btn-default" id="utility_4_label">
+                  <input  name="property[utility]" type="radio" value="4" id="utility_4"/><span >All</span>
+                  </label>
+
+                </div>
+                <span class="help-block"> including ........ </span>
+                  
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-xs-3">Gender required</label>
+              <div class="col-xs-9">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-default" id="gender_0_label">
+                  <input name="property[gender]" type="radio" value="0" id="gender_0"/><span id="gender_0">None</span>
+                  </label>
+                  <label class="btn btn-default" id="gender_1_label">
+                  <input id="" name="property[gender]" type="radio" value="1" id="gender_1"/><span >Woman only</span>
+                  </label>
+
+                  <label class="btn btn-default " id="gender_2_label">
+                  <input id="" name="property[gender]" type="radio" value="2" id="gender_2"/><span >Man only</span>
+                  </label>
+
+                </div>
+            
+              </div>
+            </div>
+
+            <div id="pets" class="form-group">
+              <label class="control-label col-xs-3">Pets allowed</label>
+              <div class="col-xs-9">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-default" id="pet_0_label">
+                  <input name="property[pet]" type="radio" value="0" id="pet_0" /><span >No</span>
+                  </label>
+                  <label class="btn btn-default" id="pet_1_label">
+                  <input name="property[pet]" type="radio" value="1" id="pet_1" /><span >Cat</span>
+                  </label>
+
+                  <label class="btn btn-default " id="pet_2_label">
+                  <input  name="property[pet]" type="radio" value="2" id="pet_2"/><span >Dog</span>
+                  </label>
+
+                  <label class="btn btn-default " id="pet_3_label">
+                  <input name="property[pet]" type="radio" value="3" id="pet_3"/><span >All kinds</span>
+                  </label>
+
+                </div>
+        
+              </div>
+            </div>
+
+
+          </div><!-- col-md-6 -->          
+        </div><!-- row -->
+      
+        <br>
+
+       
+
+        <h3> Description </h3>
+        <div id="description_section" class="form-group">	
+          <%= f.text_area :description, :value => @property.description, :class => "form-control", :rows => "15", :placeholder => "!@#$%^&*()(*&^%$#@#$%^&" %>
+        </div>
+
+
+         <!-- /////////////////////-->
+        <div class="row"> 
+        <div class="col-md-6 col-xs-12 ">
+          
+
           <div class="row">
-            <div class="col-lg-3 col-md-3 col-xs-12" >
-
-              <button type="button" class="btn btn-success btn-lg" id="trigger_select_btn">
-                <span class="glyphicon glyphicon-folder-open"></span><div>  Select file from ...</div> 
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-warning col-md-4 col-md-offset-4" id="trigger_select_btn">
+                <span class="glyphicon glyphicon-folder-open"></span><div>  Upload photo</div> 
               </button>
+            </div>
+            <hr>
+            <div class="col-xs-12">
+              <span id="file_name" class="help-block">* You need 1 photo can upload at most 4 photos </span>
 
-              
-              <button type="button" class="btn btn-info btn-lg" id="trigger_upload_btn" style="display: none;" >
-                <span class="glyphicon glyphicon-cloud-upload"></span><div id="upload_text"></div>
-              </button>
-             
+              <div class="progress progress-striped active hide">
+                <div id="progressBar" class="progress-bar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+              </div>
+            </div>
+          </div>  
+        </div> 
+
+        <div class="col-md-6 col-xs-12 ">
+
+          <div class="row">
+            <div class="col-xs-6 empty" id="photo_1">
+              <a id='photo_1_cancel' class='close hide photo-cancel'>&times;</a>
+              <img id='photo_1_image' height='160' width='245' class='thumbnail hide' src="<% unless @photos.first.blank? %><%= @photos.first.image_url_medium %><%end%>"> 
+              <input id='photo_1_input' name='photo[]' type='hidden' value="<% unless @photos.first.blank? %><%= @photos.first.id %><%end%>"/>
+
             </div>
 
-            <div class="col-xs-12 col-md-9 col-lg-9 col_image" >
- 
-              <%= fields_for (:photo) do |photo| %>
-              <div id="show_picture">
+            <div class="col-xs-6 empty" id="photo_2">
+              <a id='photo_2_cancel' class='close hide photo-cancel'>&times;</a> 
+              <img id='photo_2_image' height='160' width='245' class='thumbnail hide' src="<% unless @photos.second.blank? %><%= @photos.second.image_url_medium %><%end%>">
+              <input id='photo_2_input' name='photo[]' type='hidden' value="<% unless @photos.second.blank? %><%= @photos.second.id %><%end%>"/>   
+              
+              <!--
+              <img class="thumbnail" data-src="holder.js/245x160">
+              -->
+            </div>
+          </div>
 
-                <!--
-                <div class="col-xs-12 col-md-12 col-lg-12 image_1" >
-                  <div class="col-xs-10 col-md-10 col-lg-10 col_image" >                 
-                    <img class="img-round" data-src="holder.js/400x300" alt="Generic placeholder image">
-                    <%#= photo.hidden_field 'image_id[]', :value => '51' %>
-                    <input id='photo_image_id' name='photo[]' type='hidden' value='51'/>
-                  </div>
+          </br>
+          
+          <div class="row"> 
+            <div class="col-xs-6 empty" id="photo_3">
+              <a id='photo_3_cancel' class='close hide photo-cancel'>&times;</a> 
+              <img id='photo_3_image' height='160' width='245' class='thumbnail hide' src="<% unless @photos.third.blank? %><%= @photos.third.image_url_medium %><%end%>">
+              <input id='photo_3_input' name='photo[]' type='hidden' value="<% unless @photos.third.blank? %><%= @photos.third.id %><%end%>"/>   
+              
+              <!--
+              <img class="thumbnail" data-src="holder.js/245x160">
+              -->
+            </div>
 
-                  <div class="col-xs-2 col-md-2 col-lg-2 col_image" >                 
-                    <button type="button" class="btn btn-warning" id="image_1" >
-                      <span class="glyphicon glyphicon-remove"></span>
-                    </button> 
-                  </div>
-                </div>
-                -->
+            <div class="col-xs-6 empty" id="photo_4"> 
+              <a id='photo_4_cancel' class='close hide photo-cancel'>&times;</a>
+              <img id='photo_4_image' height='160' width='245' class='thumbnail hide' src="<% unless @photos.fourth.blank? %><%= @photos.fourth.image_url_medium %><%end%>">
 
-              </div> <!-- show_picture-->
-              <% end %>
-            </div> 
+              <input id='photo_4_input' name='photo[]' type='hidden' value="<% unless @photos.fourth.blank? %><%= @photos.fourth.id %><%end%>"/>
+              <!--
+              <img class="thumbnail" data-src="holder.js/245x160">
+              -->
+            </div>
 
+          </div>
 
-          </div>  <!--row -->  
-
-
-          <script type="text/javascript">
-          $(document).ready(function(){
-
-            var progress = setInterval(function() {
-              var $bar = $('.bar');
-
-
-              if ($bar.width()==400) {
-                clearInterval(progress);
-                $('.progress').removeClass('active');
-              } else {
-                $bar.width($bar.width()+40);
-              }
-              $bar.text($bar.width()/4 + "%");
-            }, 800);
-
-          });
-
-          </script>
-
-
-
+          
+        </div>  
+      </div>
+         <!-- /////////////////////-->
+       
+         
          <h3> Contact Infomation </h3>
          
              <div class="row">
@@ -482,7 +498,7 @@
                   <%= f.label :contact_name, "Name :", :class => "control-label col-md-2" %>
                        
                     <div class="col-lg-6">
-                        <%= f.text_field :contact_name, :class => "form-control", :value => current_user.name %>
+                        <%= f.text_field :contact_name, :class => "form-control", :value => @property.contact_name %>
                     </div>
                 </div>  
 
@@ -490,7 +506,7 @@
                   <%= f.label :contact_email, "Email :", :class => "control-label col-md-2" %>
                        
                     <div class="col-lg-6">
-                        <%= f.text_field :contact_email, :class => "form-control", :value => current_user.email %>
+                        <%= f.text_field :contact_email, :class => "form-control", :value => @property.contact_email %>
                     </div>
                 </div>	
                 
@@ -499,25 +515,34 @@
                      
                     <%= f.label :contact_phone, "Phone :", :class => "control-label col-md-2" %>
                     <div class="col-lg-6 ">
-                      <%= f.text_field :contact_phone, :class => "form-control", :placeholder => "xxx-xxx-xxxx" %>
+                      <%= f.text_field :contact_phone, :value => @property.contact_phone, :class => "form-control", :placeholder => "xxx-xxx-xxxx" %>
                        
                     </div>	
                 </div>       
              </div><!-- row -->
          
+
+
+          
+        <div class="pull-right">
+         	<%= link_to "Cancel", :back %>
+          <%#= f.submit "Update", class: "" %>
+          <button id="update_btn" type="button" class="btn btn-success btn-large">Update</button>
+        </div>
+
+        <!-- record user ip -->
+        <input id="property_ip"  type="hidden" value="" name="property[ip]">
         
-         <div class="pull-right">
-         	
-          <%= f.submit "Submit", class: "btn btn-primary btn-large" %>
-         </div>
-         
+        <!-- hidden field for state -->
+        <input id="property_state"  type="hidden" value="" name="property[state]">
+        <input id="property_b_state"  type="hidden" value="" name="property[b_state]">
          
           <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         
   <% end %>
 
   <%#= form_for(@photo, :html => { :class => "form-horizontal", :multipart => true  }) do |form| %>
-  <FORM action="/photos" class="form-horizontal" enctype="multipart/form-data" method="post">
+  <form action="/photos" enctype="multipart/form-data" method="post">
     
     <input id="upload_file" type="file" name="photo[image]" multiple="true" style="display: none;"> 
 
@@ -531,97 +556,715 @@
   </form>     
   
   <%# end %>
+<script>
+
+  //setting photo up
+  <% unless @photos.first.blank? %>
+    // show cancel $image
+    $('#photo_1_cancel').removeClass('hide');
+    $('#photo_1_image').removeClass('hide');
+  <%end%>
+
+  <% unless @photos.second.blank? %>
+    // show cancel $image
+    $('#photo_2_cancel').removeClass('hide');
+    $('#photo_2_image').removeClass('hide');
+  <%end%>
+
+  <% unless @photos.third.blank? %>
+    // show cancel $image
+    $('#photo_3_cancel').removeClass('hide');
+    $('#photo_3_image').removeClass('hide');
+  <%end%>
+
+  <% unless @photos.fourth.blank? %>
+    // show cancel $image
+    $('#photo_4_cancel').removeClass('hide');
+    $('#photo_4_image').removeClass('hide');
+  <%end%>
+
+
+  /////// counting photo number 
+  // check if is there  still empty room for uploading
+  // now is 4
+  $( "#trigger_select_btn" ).on( "click", function() {
+    var count = 0;
+    var id_name;
+    for ( i = 1; i <= 4; i++) {
+        id_name = '#photo_' + i + '_image';  //photo_1_image
+          if ($(id_name).hasClass('hide')) {
+            count++;
+          }    
+      }  
+      if (count ==  0) {
+        alert("full");
+      } else {
+        $("#upload_file").click();
+      }
+    
+  }); 
+
+
+  //upload photo
+
+  $("#upload_file").change(function(){
+      //$("#file_name").html('');
+      //var numFiles = $('#upload_file')[0].files.length;
+        //$("#file_name").html("You've choiced " + numFiles + "Photos");
+        //alert(numFiles);
+
+    var form_data = new FormData();
+    form_data.append('image', $('#upload_file').prop('files')[0]);
+    
+    $('.progress-striped').removeClass('hide');                
+    $('#trigger_select_btn').attr('disabled', true);
+
+    $.ajax({
+     
+      url: "<%= photos_path %>",
+      data: form_data,
+      type: 'POST',
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+
+      success: function(data){
+        alert('success');
+
+        // finding first empty class in photo
+        for ( i = 1; i <= 4; i++) {
+          var id_name = '#photo_' + i;
+
+          if ($(id_name + '_image').hasClass('hide')) {
+
+            $(id_name + '_image').attr('src', data.image_url_medium ); 
+          
+            // show cancel link
+            $(id_name + '_cancel').removeClass('hide');
+            $(id_name + '_image').removeClass('hide');
+
+            //set id to cookie
+            $.cookie(id_name + '_cancel', data.id);
+
+            //set value to input
+            $(id_name + '_input').val(data.id); 
+
+            break;
+
+          }
+        }
+
+        $('.progress-striped').addClass('hide');
+        $('#trigger_select_btn').removeAttr('disabled');
+          
+      
+
+      }, 
+      error: function(){
+        //alert('failure');
+        $('.progress-striped').addClass('hide');
+        $('#trigger_select_btn').removeAttr('disabled');
+      }
+
+    })
+    
+  });
+
+  // cancel photo
+  ///////////// cancel photo
+  $(".photo-cancel").on( "click", function() {
+    var id_name = $(this).parent().attr('id'); //id_name = photo_# 
+    var photo_id = $.cookie('#' + id_name + '_cancel'); 
+
+    //delete photo from s3
+    $.ajax({
+             
+      url: "/photos/" + photo_id ,
+      type: 'DELETE',
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: 'json',
+
+      success: function(data){
+        alert('y');
+                
+
+        //add hide class to $this 
+        $('#' + id_name + '_cancel').addClass('hide');
+
+        $('#' + id_name + '_image').attr('src', '');
+        $('#' + id_name + '_image').addClass('hide');
+        $('#' + id_name + '_input').val('');  
+
+      },error: function(){
+        alert('n');
+      } 
+    })     
+    
+  });
+
+
+
+  // check type
+   if (<%= @property.category %> == 2) {   // for sublease
+
+      $( "#to_span" ).removeClass('non-visibile');
+      $( "#end_date" ).removeClass('non-visibile');
+      $( "#people" ).removeClass('hide');
+
+      $( "#deposit" ).addClass('hide');
+      $( "#contract" ).addClass('hide');
+      $( "#broker_fee" ).addClass('hide');
+      $( "#utility" ).addClass('hide'); 
+      $( "#pets" ).addClass('hide');
+      $( "#price_span" ).html('.00 /Day');
+    
+    }
+
+    if (<%= @property.category %> == 1 || <%= @property.category %> == 0) {   // for rent or shared apt
+    
+      $( "#to_span" ).addClass('non-visibile');
+      $( "#end_date" ).addClass('non-visibile');
+
+      $( "#people" ).addClass('hide');
+
+      $( "#deposit" ).removeClass('hide');
+      $( "#contract" ).removeClass('hide');
+      $( "#broker_fee" ).removeClass('hide');
+      $( "#utility" ).removeClass('hide');  
+      $( "#pets" ).removeClass('hide');
+    
+      $( "#price_span" ).html('.00 /Month');
+      
+    
+    }
+
+
+  
+   
+
+  //set datepicker
+  $('#start_date').datepicker({ format: "yyyy-mm-dd"}); //
+  $('#end_date').datepicker({ format: "yyyy-mm-dd"});  //{ format: "yyyy-mm-dd"}
+
+  //alert(<%= @property.start_date %>);
+  <% if !(@property.start_date == nil) %>
+    $('#start_date').datepicker("setDate", new Date("<%= @property.start_date.year%>,<%= @property.start_date.month%>,<%= @property.start_date.day%>") );
+  <% end %>
+    
+  <% if !(@property.end_date == nil) %>
+    $('#end_date').datepicker("setDate", new Date("<%= @property.end_date.year%>,<%= @property.end_date.month%>,<%= @property.end_date.day%>") );
+  <% end %>
+
+  // set value to rent
+  var type_id = "#type_<%= @property.category %>";
+  //alert(type_id);
+  $(type_id).prop("checked",true);
+  $(type_id+"_label").addClass('active');
+
+
+  //set chkbox to deposit
+  if ($("#property_hasDeposit").prop("checked")){
+    $("#property_deposit").prop("checked",true);
+    $('#property_deposit').removeAttr('disabled');  
+
+  }
+    
+
+  //set chkbox to contract
+  if ($("#property_hasContract").prop("checked")) {
+    $("#property_contract").prop("checked",true);
+    $('#property_contract').removeAttr('disabled'); 
+
+  }
+    
+
+  //set chkbox to broker fee
+  if ($("#property_hasBrokerFee").prop("checked")) {
+    $("#property_broker_fee").prop("checked",true);
+    $('#property_broker_fee').removeAttr('disabled'); 
+
+  }
+    
+
+  //set value to utility
+  //var u_id = "#utility_<%#= @property.utility %>";
+  //$(u_id).prop("checked",true);
+  //$(u_id+"_label").addClass('active');
+
+  //set value to gender
+  var g_id = "#gender_<%= @property.gender %>";
+  $(g_id).prop("checked",true);
+  $(g_id+"_label").addClass('active');
+
+  //set value to pet
+  var p_id = "#pet_<%= @property.pet %>";
+  $(p_id).prop("checked",true);
+  $(p_id+"_label").addClass('active');
+
+    
+
+  // check if deoposit ckb is checked
+    $('#property_hasDeposit').change(function() {
+      if ($('#property_hasDeposit').is(':checked')) {
+        $('#property_deposit').removeAttr('disabled');     
+      } else {
+
+        $('#property_deposit').attr('disabled', true);
+        $('#property_deposit').val('');
+      }
+    });
+
+    // check if ckb is checked
+    $('#property_hasContract').change(function() {
+
+      if ($('#property_hasContract').is(':checked')) {
+        $('#property_contract').removeAttr('disabled');      
+      } else {
+
+        $('#property_contract').attr('disabled', true);
+        $('#property_contract').val('');
+      }
+    });
+
+    // check if ckb is checked
+    $('#property_hasBrokerFee').change(function() {
+      if ($('#property_hasBrokerFee').is(':checked')) {
+        $('#property_broker_fee').removeAttr('disabled');      
+      } else {
+
+        $('#property_broker_fee').attr('disabled', true);
+        $('#property_broker_fee').val('');
+      }
+    }); 
+
+    
+/////////type
+
+    $( "#type_2_label" ).on( "click", function() {   // for sublease
+      
+      $( "#to_span" ).removeClass('non-visibile');
+      $( "#end_date" ).removeClass('non-visibile');
+      $( "#people" ).removeClass('hide');
+
+      $( "#deposit" ).addClass('hide');
+      $( "#contract" ).addClass('hide');
+      $( "#broker_fee" ).addClass('hide');
+      $( "#utility" ).addClass('hide'); 
+      $( "#pets" ).addClass('hide');
+      $( "#price_span" ).html('.00 /Day');
+    
+    });
+
+
+    $( "#type_0_label" ).on( "click", function() {  // for rent
+      
+      $( "#to_span" ).addClass('non-visibile');
+      $( "#end_date" ).addClass('non-visibile');
+
+      $( "#people" ).addClass('hide');
+
+      $( "#deposit" ).removeClass('hide');
+      $( "#contract" ).removeClass('hide');
+      $( "#broker_fee" ).removeClass('hide');
+      $( "#utility" ).removeClass('hide');  
+      $( "#pets" ).removeClass('hide');
+    
+      $( "#price_span" ).html('.00 /Month');
+      
+    
+    });
+    
+
+    $( "#type_1_label" ).on( "click", function() {  // for shared apt
+      //alert('d');
+      $( "#to_span" ).addClass('non-visibile');
+      $( "#end_date" ).addClass('non-visibile');
+      
+      $( "#people" ).addClass('hide');
+
+      $( "#deposit" ).removeClass('hide');
+      $( "#contract" ).removeClass('hide');
+      $( "#broker_fee" ).removeClass('hide');
+      $( "#utility" ).removeClass('hide');  
+      $( "#pets" ).removeClass('hide');
+      
+      $( "#price_span" ).html('.00 /Month');
+    
+    }); 
+
+
+  
+
+
+</script>       
+
+ 
+
+<script type="text/javascript">
+
+  //set up slider 
+  $('#slider').slider()
+    .on('slide', function(ev){
+
+  });
+  
+  $(document).ready(function () { 
+
+
+////////// location 
+    //set default
+    $( ".b_state" ).children().addClass( "group2" );
+    $( ".e_state" ).children().addClass( "group1" );
+
+    if (<%= @property.radio_addr %> == 0 ) {  // exactly address
+      
+      $("#property_radio_addr_0").prop("checked", true);
+      $('.group1').removeAttr("disabled"); 
+      $('.group2').attr("disabled","disabled");
+      $( '.radio_s_2' ).addClass( "text-muted");  
+      $( '.radio_s_1' ).removeClass( "text-muted");
+
+      $( '.e_state' ).children().val("<%= @property.state %>");  //set value to state
+      $( '.b_state' ).children().val("");  //set empty value to state
+
+      $( '#property_state' ).val($( '.e_state' ).children().val());
+
+    } else {
+
+      $("#property_radio_addr_1").prop("checked", true);
+      $('.group2').removeAttr("disabled"); 
+      $('.group1').attr("disabled","disabled");  
+      $( '.radio_s_1' ).addClass( "text-muted");  
+      $( '.radio_s_2' ).removeClass( "text-muted");
+
+      $( '.b_state' ).children().val(<%= @property.state %>);  //set value to state
+      $( '.e_state' ).children().val("");  //set empty value to state
+
+      $( '#property_b_state' ).val($( '.b_state' ).children().val());
+     
+
+
+    }
+
+    // exactly address radio
+    $( ".radio_addr_1" ).on( "click", function() {
+
+      $('.group1').removeAttr("disabled"); 
+      $('.group2').attr("disabled","disabled");
+      $( '.radio_s_2' ).addClass( "text-muted");  
+      $( '.radio_s_1' ).removeClass( "text-muted");
+
+      //set value to hidden value
+      $( '#property_state' ).val($( '.e_state' ).children().val());
+      $( '#property_b_state' ).val('');
+
+     });
+
+    //blur address radio
+    $( ".radio_addr_2" ).on( "click", function() {
+    
+      $('.group2').removeAttr("disabled"); 
+      $('.group1').attr("disabled","disabled");  
+      $( '.radio_s_1' ).addClass( "text-muted");  
+      $( '.radio_s_2' ).removeClass( "text-muted");
+
+      //set value to hidden value
+      $( '#property_b_state' ).val($( '.b_state' ).children().val());
+      $( '#property_state' ).val('');
+    });
+
+
+     /// get ip address
+    $.getJSON("http://jsonip.com?callback=?", function (data) {
+      //alert("Your ip: " + data.ip);
+      $('#property_ip').val(data.ip);
+      
+    });
+
+
+    ///update form
+    $('#update_btn').on( "click", function() {
+
+      if (validation()) {
+        $( ".form-horizontal" ).submit();
+      }  
+    });  
+
+  });// document ready function
+
+
+
+
+ 
+
+  function validation() {
+
+    if ($('#property_bed').val().length == 0 ){
+       $('#property_bed').closest('.form-group').addClass('has-error');
+       goToByScroll("wrap");  
+       return false;
+    } else {
+      if ( $('#property_bed').val() >= 0 && $('#property_bed').val() < 36  ) {
+        $('#property_bed').closest('.form-group').removeClass('has-error');
+      } else {
+        $('#property_bed').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } 
        
+    }
 
-        <script type="text/javascript">
+
+    if ($('#property_bath').val().length == 0 ){
+       $('#property_bath').closest('.form-group').addClass('has-error');
+       goToByScroll("wrap");  
+       return false;
+    } else {
+
+      if ( $('#property_bath').val() >= 0 && $('#property_bath').val() < 36  ) {
+        $('#property_bath').closest('.form-group').removeClass('has-error');
+      } else {
+        $('#property_bath').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+
+      } 
+      
+    }
 
 
-          $( "#trigger_select_btn" ).on( "click", function() { 
-            
-            $("#upload_file").click();       // trigger to select file
-            
-            $(":file").change(function(){    // after file selected
-              $("#trigger_select_btn").hide();                 // hide select button
-              $("#trigger_upload_btn").show();                 // show  upload button and text  
-             
-              //truncate the file name
-              var file_name = $(":file").val();
+    if ($('#property_price').val().length == 0 ){
+      $('#property_price').closest('.form-group').addClass('has-error');
+      goToByScroll("wrap");  
+      return false;
+    } else {
 
-              var shortText = jQuery.trim(file_name).substring(0, 20);
+      if ( $('#property_price').val() >= 0 ) {
+        $('#property_price').closest('.form-group').removeClass('has-error');
+      } else {
+        $('#property_price').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } 
 
-              $( "#upload_text" ).text( shortText );
-               
-              
-            });
+
+    }
+
+    
+    if ($('#property_description').val().length == 0 ){
+      $('#property_description').closest('.form-group').addClass('has-error');
+      goToByScroll("description_section");  
+      return false;
+    } else {
+      $('#property_description').closest('.form-group').removeClass('has-error');
+    }
+
+
+    if ($('#property_contact_name').val().length == 0 ){
+      $('#property_contact_name').closest('.form-group').addClass('has-error');
+      return false;
+    } else {
+      $('#property_contact_name').closest('.form-group').removeClass('has-error');
+      
+    }
+
+    if ($('#property_contact_email').val().length == 0 ){
+      $('#property_contact_email').closest('.form-group').addClass('has-error');
+      return false;
+    } else {
+       
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if ( re.test($('#property_contact_email').val()) ) {
+          $('#property_contact_email').closest('.form-group').removeClass('has-error');
+        } else {
+          $('#property_contact_email').closest('.form-group').addClass('has-error');
+        return false;
+        }
+      
+    }
+
+    
+
+    // rent of share room
+    if ($("input[name='property[category]']:radio:checked").val() == 0 
+      || $("input[name='property[category]']:radio:checked").val() == 1) {
+      
+      if ($('#property_hasDeposit').is(':checked')) {
+
+        if ($('#property_deposit').val().length == 0 ){
+          $('#property_deposit').parent().closest('.form-group').addClass('has-error');
+          goToByScroll("wrap");  
+          return false;
+        } else {
+          
+          if ( $('#property_deposit').val() >= 0 && $('#property_deposit').val() < 36  ) {
+            $('#property_deposit').closest('.form-group').removeClass('has-error');
+          } else {
+            $('#property_deposit').closest('.form-group').addClass('has-error');
+            goToByScroll("wrap");  
             return false;
-          });
+          }
 
+        }
+      }
+      
 
-          $( "#trigger_upload_btn" ).on( "click", function() {
-            $("#upload_btn").click();          //trigger to upload file
+      if ($('#property_hasContract').is(':checked')) {
 
+        if ($('#property_contract').val().length == 0 ){
+          $('#property_contract').closest('.form-group').addClass('has-error');
+          goToByScroll("wrap");  
+          return false;
+        } else {
+          
+          if ( $('#property_contract').val() >= 0 && $('#property_contract').val() < 36  ) {
+            $('#property_contract').closest('.form-group').removeClass('has-error');
+          } else {
+            $('#property_contract').closest('.form-group').addClass('has-error');
+            goToByScroll("wrap");  
             return false;
-          });
+          } 
+        }
 
-          /*
-          $( "#image_1" ).on( "click", function() {
-            $( ".image_1" ).remove();  
-          });
-          */
-        
-          //photo upload
-          $(document).on("click", "#upload_btn", function(){  
-                    
-            var form_data = new FormData();
-            form_data.append('image', $('#upload_file').prop('files')[0]);
-            
-            $.ajax({
-             
-              url: "<%= photos_path %>",
-              data: form_data,
-              type: 'POST',
-              cache: false,
-              contentType: false,
-              processData: false,
-              dataType: 'json',
+      }
 
+      if ($('#property_hasBrokerFee').is(':checked')) {
 
-                
-              success: function(data){
-                alert('success');
-
-                $("#trigger_upload_btn").hide();                 // hide upload button
-                $("#trigger_select_btn").show();                 // show  select button and text  
-                $( "#upload_text" ).text(" ");
-                 //var json = $.parseJSON(data);
-                var json = data;
-                  
-                var btn_name = "image_" + json.id;   
-                  //$('#show_thumb').append('Id: ' + json.id + " "    );
-                /*
-                $('#show_picture').append("<div class='col-xs-12 col-md-12 form-group'><img src=" + json.image_url_medium + "class='img-rounded' alt='Rounded Image'></div>"   );
-                */
-                
-                
-                $('#show_picture').append(" <div class='col-xs-12 col-md-12 col-lg-12 " + btn_name + "' ><div class='col-xs-10 col-md-10 col-lg-10 col_image' ><img src='" + json.image_url_medium + "'><input id='photo_image_id' name='photo[]' type='hidden' value='" + json.id + "'/></div><div class='col-xs-2 col-md-2 col-lg-2 col_image' ><button type='button' class='btn btn-warning' id='" + btn_name + "' ><span class='glyphicon glyphicon-remove'></span></button></div></div><script>$( '#" + btn_name + "' ).on( 'click', function() { $( '." + btn_name + "' ).remove();});</" + "script>" );
-
-
-              }, 
-              error: function(){
-                alert('failure');
-                $("#trigger_upload_btn").hide();                 // hide upload button
-                $("#trigger_select_btn").show();                 // show  select button and text  
-                $( "#upload_text" ).text(" ");
-
-              }
-
-
-            })
-
+        if ($('#property_broker_fee').val().length == 0 ){
+          $('#property_broker_fee').closest('.form-group').addClass('has-error');
+          goToByScroll("wrap");  
+          return false;
+        } else {
+          
+          if ( $('#property_broker_fee').val() >= 0 ) {
+            $('#property_broker_fee').closest('.form-group').removeClass('has-error');
+          } else {
+            $('#property_broker_fee').closest('.form-group').addClass('has-error');
+            goToByScroll("wrap");  
             return false;
+          }
 
-          })
-        
-        </script>
+        }
 
+      }
+    }// endof rent of share room
+      
+    
+    var r_addr =  $("input[name='property[radio_addr]']:radio:checked").val();
+
+    // exactly address
+    if (r_addr == 0) {
+
+      if ($('#property_address1').val().length == 0 ){
+        $('#property_address1').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } else {
+        $('#property_address1').closest('.form-group').removeClass('has-error');
+      }
+
+
+      if ($('#property_city').val().length == 0 ){
+        $('#property_city').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } else {
+        $('#property_city').closest('.form-group').removeClass('has-error');
+      }
+
+    /*
+      if ($('.state_input').val().length == 0 ){
+        $('.state_input').closest('.form-group').addClass('has-error');
+          return false;
+      } else {
+        $('.state_input').closest('.form-group').removeClass('has-error');
+      }
+    */
+
+      if ($('#property_zipcode').val().length == 0 ){
+        $('#property_zipcode').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } else {
+        $('#property_zipcode').closest('.form-group').removeClass('has-error');
+      }
+
+    } // end of exactly address  
+
+    
+    
+    // blur address
+    if (r_addr == 1) {
+
+      if ($('#property_b_address1').val().length == 0 ){
+        $('#property_b_address1').closest('.form-group').addClass('has-error');
+       
+        goToByScroll("wrap");    
+        return false;
+      } else {
+        $('#property_b_address1').closest('.form-group').removeClass('has-error');
+      }
+
+
+      if ($('#property_b_city').val().length == 0 ){
+        $('#property_b_city').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } else {
+        $('#property_b_city').closest('.form-group').removeClass('has-error');
+      }
+
+      if ($('#property_b_address2').val().length == 0 ){
+        $('#property_b_address2').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } else {
+        $('#property_b_address2').closest('.form-group').removeClass('has-error');
+      }
+
+      if ($('#property_b_zipcode').val().length == 0 ){
+        $('#property_b_zipcode').closest('.form-group').addClass('has-error');
+        goToByScroll("wrap");  
+        return false;
+      } else {
+        $('#property_b_zipcode').closest('.form-group').removeClass('has-error');
+      }
+
+
+    }
+
+    // check photo number
+  /*
+    var count = 0;
+    var id_name;
+    for ( i = 1; i <= 4; i++) {
+        id_name = '#photo_' + i;
+        if ($(id_name).hasClass('empty')) {
+          count++;
+        }    
+    }  
+    if (count ==  4) {
+      alert("you need at least one photo");
+      return false;
+    } 
+    */
+
+    return true;
+
+  } 
+
+  function goToByScroll(id){
+      // Remove "link" from the ID
+    id = id.replace("link", "");
+      // Scroll
+    $('html,body').animate({
+        scrollTop: $("#"+id).offset().top},
+        'slow');
+  }
+
+  
+</script>
 

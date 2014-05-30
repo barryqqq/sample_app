@@ -31,11 +31,13 @@ class SearchesController < ApplicationController
 	end	
 
 	def index
+
+
 		if params[:location].present?
+				
       		#@properties = Property.near(params[:location])
       		@properties = Property.order(sort_column + ' ' + sort_direction).near(params[:location]).paginate(page: params[:page], per_page: '8')
-      		# return search query to page 
-      		@search_query = params[:location]
+      		
     	else
     		#request.ip
     		location_info = request.location
@@ -43,7 +45,15 @@ class SearchesController < ApplicationController
       		#@properties = Property.all
       		
     	end
-		
+
+    	filtering_params(params).each do |key, value|
+			@properties = @properties.public_send(key, value) if value.present?
+		end	
+
+  		# return search query to page 
+  		@search_query = params[:location]
+  		@count = @properties.count if @properties != nil
+	
 		#@property = Property.new
 		
 		#gmaps
@@ -69,7 +79,7 @@ class SearchesController < ApplicationController
 		
 
 		def search_params
-			params.require(:property).permit(:image, :price, :address1, :address2, :city, :state, :zipcode, :country, :radio_addr, :b_address1, :b_address2, :b_city, :b_state, :b_zipcode, :category, :bed, :bath, :price, :hasBrokerFee, :hasDeposit, :broker_fee, :deposit, :description, :contact_name, :contact_email, :contact_phone )
+			params.permit(:category, :bed, :bath, :price, :hasBrokerFee, :hasDeposit, :broker_fee, :deposit )
 
 		end	
 
@@ -84,4 +94,15 @@ class SearchesController < ApplicationController
 			%w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
 		end
 
+		def filtering_params(params)
+			# :utility,:broker_fee, :deposit, :contract,
+  			params.slice( :start_date, :people, :category, :bed, :bath, :price, :noBrokerFee, :noDeposit, :gender, :pet, :noContract)
+
+		end
+
+
+
 end
+
+
+

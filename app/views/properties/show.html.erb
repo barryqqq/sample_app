@@ -1,15 +1,16 @@
 <style type="text/css">
 
-	dl, dd {
-		font-size: 1.2em;		
-        margin: 0 0 18px 0;
-
-	}
+	
 	
 	.btn-mail {
 		width: 120px;
 	}
 
+	dl, dd {
+		font-size: 1.1em;		
+        margin: 0 0 18px 0;
+
+	}
 
 	
 
@@ -19,11 +20,16 @@
 
 <% provide(:title, 'Property detail') %>
 	
-	<div class="row">
-  		<div class="col-md-3"></div>
-  		<div class="col-md-3"></div>
-  		<div class="col-md-3 col-md-offset-3">
-  			<button id="collection_btn" class="btn btn-lg disabled"><span id="span_heart" class="glyphicon glyphicon-heart <%if @c.present? %> red  <% end %>"></span></button>
+	<div class="row " style="padding: 30px;">
+  		<div class="col-md-9">
+  			<%= link_to "Back", :back %>
+  			<address>
+                <h2> <span id="p_address"> <%= @property.all_address %> </span> </h2>       
+            </address>  
+  		</div>
+  		
+  		<div class="col-md-3">
+  			<button id="collection_btn" class="btn btn-lg"><span id="span_heart" class="glyphicon glyphicon-heart <%if @c.present? %> red  <% end %>"></span></button>
 
   			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon">t</span></button>
 
@@ -39,100 +45,239 @@
 
     <div class="row">
       	<!-- sliders for images -->
-        <div class="col-lg-6">
-		    <span><h3> Information </h3> </span>	
-		    
-	    	<dl class="dl-horizontal">
-    			<dt>Type</dt>
 
-    			<dd><%= @property.category %> Bed :<%= @property.bed %> Bath: <%= @property.bath %></dd>
-
-    			<dt>Price</dt>
-    			<dd> <%= @property.price %> </dd>
-
-    			<% if !@property.broker_fee.blank? %>
-    				<dt>Broker Fee</dt>
-    				<dd> <%= @property.broker_fee %> </dd>
-    			<% end %>
-
-    			<% if !@property.deposit.blank? %>
-    				<dt>Deposit</dt>
-    				<dd> <%= @property.deposit %> </dd>
-    			<% end %>
-
-    			<dt>Description</dt>
-    			<dd><%= @property.description %></dd>
-
-    			<%# if !@property.deposit.blank? %>
-    				<dt>Pet Friendly</dt>
-    				<dd> <%#= @property.deposit %> </dd>
-    			<%# end %>
-
-    			<%# if !@property.deposit.blank? %>
-    				<dt>Gender</dt>
-    				<dd> <%#= @property.deposit %> </dd>
-    			<%# end %>	
+        <div class="col-lg-6" >
+        	
+			<% if @photos.first.present? %>
+			<div id="p_photo_0"><img src="<%= @photos.first.image_url_medium %>" class="img-thumbnail" width='100%'></div>
+  				
+  			<% end %>
 
 
-    			        				
-			</dl>
-		   
-        </div><!-- /.col-lg-6 -->
-        
-        <div class="col-lg-6">
-        	<span><h3> Picture </h3> </span>
-
-        	<img data-src="holder.js/570x360" alt="Second slide">	
-        	<br>
+        	<hr>
         		
         	<div class="row">
-  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
-  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
+  				<div class="col-xs-6 col-sm-3">
+
+  					<% if @photos.first.present? %>
+	  					<a href="#">
+	                    	<div id="p_photo_1" class="small_photo"><img src="<%= @photos.first.image_url_medium %>" class="img-thumbnail" width='100%'></div>
+	                    </a>  						
+  					<% end %>	
+  				</div>
+  				<div class="col-xs-6 col-sm-3">
+  					<% if @photos.second.present? %>
+  						<a href="#">
+	                    	<div id="p_photo_2" class="small_photo"><img src="<%= @photos.second.image_url_medium %>" class="img-thumbnail" width='100%'></div>
+	                    </a>  	
+  						
+  					<% end %>	
+  				</div>
 
   				<!-- Add the extra clearfix for only the required viewport -->
   				<div class="clearfix visible-xs"></div>
 
-  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
-  				<div class="col-xs-6 col-sm-3"><img data-src="holder.js/130x100" alt="Second slide"></div>
+  				<div class="col-xs-6 col-sm-3">
+  					<% if @photos.third.present? %>
+  						<a href="#">
+	                    	<div id="p_photo_3" class="small_photo"><img src="<%= @photos.third.image_url_medium %>" class="img-thumbnail" width='100%'></div>
+	                    </a> 
+  						
+  					<% end %>	
+  				</div>
+  				<div class="col-xs-6 col-sm-3">
+  					<% if @photos.fourth.present? %>
+  						<a href="#">
+	                    	<div id="p_photo_4" class="small_photo"><img src="<%= @photos.fourth.image_url_medium %>" class="img-thumbnail" width='100%'></div>
+	                    </a> 
+  						
+  					<% end %>	
+  				</div>
 			</div>
 
 
-        	<span><h3> Address </h3> </span>
-
-	        <address>
-	        	<h4> <%= @property.all_address %> </h4>       
-	        </address>  
+        	
 	         
-	        <span><h3> Contact </h3> </span>	
-	         <dl class="dl-horizontal">
+	        <span><h3> Contact </h3> </span>
+
+	        <table class="table">
+	        	<tbody>
+	        		<tr>
+	        			<td>Name</td>
+	        			<td><strong><%= @property.contact_name %></strong></td>
+	        		</tr>
+
+	        		<% if  @property.contact_phone.present? %>
+		        		<tr>
+		        			<td>Phone</td>
+		        			<td><strong><%= @property.contact_phone %></strong></td>
+		        		</tr>
+		        	<% end %>	
+
+		        	
+	        		<tr>
+	        			<td>Email</td>
+	        			<!--<td><button id="email_btn" data-toggle="modal" href="" data-target="#myModal" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></td>-->
+	        			<td>
+	        				<a href="/contact_forms/new?id=<%= @property.id %>"  data-toggle="modal" data-target="#remoteModal" class="btn btn-default">Send Mail</a>
+	        			</td>
+	        				 
+	        		</tr>
+	        		
 	        			
-	        	<dt>Name</dt>
+	        	</tbody>	
+	        </table>	
 
-	        	<dd><%= @property.contact_name %></dd>
-
-	        	<dt>Phone</dt>
-
-	        	<dd><%= @property.contact_phone %></dd>
-
-	        	<dt>Email</dt>
-
-	        	<dd><button id="email_btn" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></dd>
-
-	        				
-	    	</dl>
-
-		    
-
-
+	         
 		    
 
           	<!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
 
         </div><!-- /.col-lg-6 -->
+
+
+        <div class="col-lg-6">
+        	 <span><h3 class="top_h3"> Description </h3> </span>  
+                <div id="p_description"><%= @property.description %></div>
+        	
+		    <span><h3> Information </h3> </span>
+		    <div class="col-xs-12 col-md-6">
+		    	<table class="table table-hover" >
+			    	<tbody>  
+	          			<tr>  
+			            	<td>Type</td>  
+			            	<td><%= render_type @property.category %> </td>  
+			          	</tr> 
+
+			          	<tr>  
+			            	<td>Bed</td>  
+			            	<td><strong><%= @property.bed %> </strong></td>  
+			          	</tr>
+
+			          	<tr>  
+			            	<td>Bath</td>  
+			            	<td><strong><%= @property.bath %></strong></td>  
+			          	</tr>
+
+			          	<% if @property.start_date.present? %>
+				          	<tr>  
+				            	<td>Date</td>  
+				            	<td><strong><%= @property.start_date %></strong></td>  
+				          	</tr>
+			          	<% end %>
+
+			          	<% if @property.people.present? && (@property.category == '2') %>
+				          	<tr>  
+				            	<td>People</td>  
+				            	<td><strong><%= @property.people %></strong></td>  
+				          	</tr>
+			          	<% end %>
+
+			          	
+			          	<% if !(@property.category == '2') %>
+				          	<tr>  
+				            	<td>Utitlity</td>  
+				            	<td><strong><%= render_utilities @property.hasElectricity, @property.hasHeat, @property.hasInternet %></strong></td>  
+				          	</tr>
+			          	<% end %>
+
+		          	</tbody>
+			    </table>	
+				
+		    </div>
+		    <div class="col-xs-12 col-md-6">
+		    	<table class="table table-hover" >
+			    	<tbody>  
+	          			<tr>  
+			            	<td>Price</td>  
+			            	<td><strong>$ <%= price_on_type @property.price, @property.category %></strong></td>  
+			          	</tr> 
+
+			          	<% if @property.deposit.present? && !(@property.category == '2') %>
+				          	<tr>  
+				            	<td>Deposit</td>  
+				            	<td><strong><%= @property.deposit %> /Month</strong></td>  
+				          	</tr>
+			          	<% end %>
+
+			          	
+			          	<% if @property.contract.present? && !(@property.category == '2') %>	
+				          	<tr>  
+				            	<td>Contract</td>  
+				            	<td><strong><%= @property.contract %> /Month</strong></td>  
+				          	</tr>
+			          	<% end %>
+
+			          	<% if @property.broker_fee.present? && !(@property.category == '2') %>
+				          	<tr>  
+				            	<td>Broker Fee</td>  
+				            	<td><strong>$ <%= @property.broker_fee %></strong></td>  
+				          	</tr>
+			          	<% end %>
+
+			          	<tr>  
+			            	<td>Gender</td>  
+			            	<td><strong><%= render_gender @property.gender %></strong></td>  
+			          	</tr>
+
+			          	<% if @property.pet.present? && !(@property.category == '2') %>
+				          	<tr>  
+				            	<td>Pet</td>  
+				            	<td><strong><%= render_pet @property.pet %> </strong></td>  
+				          	</tr>
+			          	<% end %>
+
+		          	</tbody>
+			    </table>	
+
+		    </div>		
+
+		   
+		   
+		   
+        </div><!-- /.col-lg-6 -->
+
+
+
     </div><!-- /.row -->
 
 
+
+
+
+
+<!-- Modal -->  
+<div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true">  
+    <div class="modal-dialog">  
+        <div class="modal-content">
+        </div>  
+    </div>  
+</div>  
+<!-- /.modal -->  
+
+
+
+
 <script type="text/javascript">
+	
+	//replace photo
+    $( ".small_photo" ).click(function(event) {
+        // prevent link action
+        event.preventDefault();
+
+        //replace big photo's content 
+        $('#p_photo_0').html($(this).html());
+        //alert($('#p_photo_0').html());
+        //$('div#p_photo_0 img').css({'width' : '550px' , 'height' : '360px'});
+        $('div #p_photo_0 img').css({'width' : '100%' });
+        
+    }); 
+
+
+
+
+
+
 	$( "#email_btn" ).hover(function() {
 	
 		$( this ).fadeOut( 500 );
@@ -143,7 +288,7 @@
 
 
 
-    /* for collection button */
+    /* for collection button
         				
 	$( "#collection_btn" ).hover(function() {
 		if (! $( "#span_heart" ).hasClass( "red" )) {
@@ -151,7 +296,7 @@
 			$( this ).fadeIn( 500 );
 		}	
 	});
-
+ 	*/
 	
 	$(document).on("click", "#collection_btn", function(){  
      	//chekc if login?

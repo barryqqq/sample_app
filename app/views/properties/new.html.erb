@@ -13,6 +13,7 @@
 
 	}
 
+/*
 	.dl-horizontal dt{
     	width: 40%;
    		
@@ -27,15 +28,18 @@
 		text-align: left;
 
 	}
-	
+
+	.non-resize {
+    	resize: none;
+	}
+	*/
+
 	.non-input {
 		border: none;
 		background-color: transparent;
 	} 
 
-	.non-resize {
-    	resize: none;
-	}
+	
 
 
 	 
@@ -226,25 +230,27 @@
 				<div id="utility" class="form-group">
 					<label class="control-label col-xs-3">Utilities</label>
 					<div class="col-xs-9">
-						<div class="btn-group" data-toggle="buttons">
-			                <label class="btn btn-default">
-			                <input name="utility" type="radio" value="0" /><span id="utility_0">None</span>
+						<div id="utilities_group" class="btn-group" data-toggle="buttons">
+			                <label class="btn btn-default active">
+			                <input id="utility_none" type="checkbox" checked  /><span id="utility_0">None</span>
 			                </label>
 			                <label class="btn btn-default">
-			                <input name="utility" type="radio" value="1" /><span id="utility_1">Electrocity</span>
+			                <input name="hasElectricity" id="hasElectricity" type="checkbox"  /><span id="utility_1">Electricity</span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input name="utility" type="radio" value="2" /><span id="utility_2">Heat</span>
+			                <input name="hasHeat" id="hasHeat" type="checkbox"  /><span id="utility_2">Heat</span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input name="utility" type="radio" value="3" /><span id="utility_3">Internet</span>
+			                <input name="hasInternet" id="hasInternet" type="checkbox"  /><span id="utility_3">Internet</span>
 			                </label>
 
-			                <label class="btn btn-default active ">
-			                <input  name="utility" type="radio" value="4" checked /><span id="utility_4">All</span>
+			                <!--
+			                <label class="btn btn-default ">
+			                <input id="utility_all" type="checkbox" /><span id="utility_4">All</span>
 			                </label>
+			            	-->
 
 		            	</div>
 		            	<span class="help-block"> including ........ </span>
@@ -260,11 +266,11 @@
 			                <input name="gender" type="radio" value="0" checked /><span id="gender_0">None</span>
 			                </label>
 			                <label class="btn btn-default">
-			                <input id="" name="gender" type="radio" value="1" /><span id="gender_1">Woman only</span>
+			                <input id="" name="gender" type="radio" value="1" /><span id="gender_1">Women only</span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input id="" name="gender" type="radio" value="2" /><span id="gender_2">Man only</span>
+			                <input id="" name="gender" type="radio" value="2" /><span id="gender_2">Men only</span>
 			                </label>
 
 		            	</div>
@@ -459,10 +465,7 @@
 
 				<div class="row">
 					<div class="col-xs-6 empty" id="photo_1">
-						<a id='photo_1_cancel' class='close hide photo-cancel'>&times;</a>	
-						
-				
-
+						<a id='photo_1_cancel' class='close hide photo-cancel'>&times;</a>				
 					</div>
 
 					<div class="col-xs-6 empty" id="photo_2">
@@ -473,7 +476,7 @@
 					 	-->
 					</div>
 				</div>
-			</br>
+				</br>
 				<div class="row">	
 					<div class="col-xs-6 empty" id="photo_3">
 						<a id='photo_3_cancel' class='close hide photo-cancel'>&times;</a>		
@@ -523,12 +526,12 @@
             <div class="row">
 
                 <div class="row">
-					<div class="col-xs-6 hide" id="photo_1_p3">	
+					<div class="col-xs-6 non-visibile" id="photo_1_p3">	
 
 					</div>
 					
 
-					<div class="col-xs-6 hide" id="photo_2_p3">
+					<div class="col-xs-6 non-visibile" id="photo_2_p3">
 						
 					</div>
 					<!--<input id='photo_2_input' name='photo[]' type='hidden' value=''/> -->
@@ -536,12 +539,12 @@
 				</div>
 			</br>
 				<div class="row">	
-					<div class="col-xs-6 hide" id="photo_3_p3">	
+					<div class="col-xs-6 non-visibile" id="photo_3_p3">	
 					 	
 					</div>
 					<!--<input id='photo_3_input' name='photo[]' type='hidden' value=''/>-->
 
-					<div class="col-xs-6 hide" id="photo_4_p3">
+					<div class="col-xs-6 non-visibile" id="photo_4_p3">
 							 	
 					</div>
 					<!--<input id='photo_4_input' name='photo[]' type='hidden' value=''/>-->
@@ -567,6 +570,10 @@
         	<%= f.hidden_field :b_city %>
         	<%= f.hidden_field :b_state %>
         	<%= f.hidden_field :b_zipcode %>
+
+        	<%= f.hidden_field :hasElectricity %>
+        	<%= f.hidden_field :hasHeat %>
+        	<%= f.hidden_field :hasInternet %>
 
 <input id="property_hasBrokerFee" type="hidden" value="0" name="property[hasBrokerFee]">
 <input id="property_hasDeposit"  type="hidden" value="0" name="property[hasDeposit]">
@@ -688,47 +695,6 @@
     
 </form>   
 
-
-<script type="text/javascript">
-
-
-
-
-/*
-	$(document).on("click", "#upload_btn", function(){  
-                
-        var form_data = new FormData();
-        form_data.append('image', $('#upload_file').prop('files')[0]);
-        
-        $.ajax({
-         
-          url: "<%= photos_path %>",
-          data: form_data,
-          type: 'POST',
-          cache: false,
-          contentType: false,
-          processData: false,
-          dataType: 'json',
-
-          success: function(data){
-            alert('success');
-
-            
-
-          }, 
-          error: function(){
-            alert('failure');
-         
-
-          }
-
-
-        })
-   
-
-    });        
-*/
-</script>
 
 <%= javascript_include_tag "/properties/new.js" %>
 

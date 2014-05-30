@@ -1,21 +1,22 @@
 <% if @properties.present? %>
-    <%= will_paginate @properties %>
+    <%#= will_paginate @properties %>
 <% end %>    
 
-    <div class="row">
-        <div class="col-lg-12">
-           Sort by &nbsp;&nbsp;  <span><%= sortable 'created_at', 'Time' %></span>&nbsp; |&nbsp; <span> <%= sortable 'price', 'Price' %> </span>
-        </div>
-    </div>     
-
+<!--
+<div class="row">
+    <div class="col-lg-12">
+       Sort by &nbsp;&nbsp;  <span><%#= sortable 'created_at', 'Time' %></span>&nbsp; |&nbsp; <span> <%#= sortable 'price', 'Price' %> </span>
+    </div>
+</div>     
+-->
 
 
 <% if @properties.present? %>
      <% @properties.each do |p| %>
 
-    <a id="<%= p.id %>" href="#msg" class="property_item">
-    
-    <div class="row box list-group-item "> 
+    <!-- <a id="<%= p.id %>" href="" class=""> -->
+    <%= link_to property_path(p) do %>    
+    <div class="row  list-group-item "> 
 
         <div class="col-lg-6 nopadding">
     
@@ -50,15 +51,14 @@
 
 
     </div><!-- /row --> 
-    </a>
+    <!--</a>-->
+    <% end %>
 
     <!--<hr> -->
     <% end %> <!-- /each -->
 <% end %> <!-- /if -->
 
-<% if @properties.present? %>
-    <%= will_paginate @properties %>
-<% end %>      
+
             
        
         
