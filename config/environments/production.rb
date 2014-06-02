@@ -79,6 +79,9 @@ SampleApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #mailer
+  
+  config.action_mailer.default_url_options = { :host => 'boiling-escarpment-8908.herokuapp.com' }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
@@ -102,6 +105,7 @@ SampleApp::Application.configure do
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-   
+  
+
 
 end
