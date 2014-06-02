@@ -1,0 +1,36 @@
+<style>
+  .fb-color {
+    background: linear-gradient(#5678BC, #314A7B) repeat;
+    color: white;
+  }
+
+</style>
+
+
+
+
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+
+  	<%- if provider.to_s == "facebook" %>
+
+  		<%= link_to omniauth_authorize_path(resource_name, provider) do  %>
+  			<button class="btn btn-sm fb-color" type="button">
+      			<i class="fa fa-facebook-square fa-2x"></i> 
+      			<%- if  controller_name == 'registrations' %>
+      				<span class="">&nbsp;&nbsp;SIGN UP WITH FACEBOOK</span>
+      			<%- else %>
+      				<span class="">&nbsp;&nbsp;LOG IN WITH FACEBOOK</span>
+      			<%- end%>	
+    		</button>
+  		<% end %>
+
+  		<br />
+
+  	<%- else %>
+  		<%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+  	<%- end %>
+
+  <% end -%>
+<% end -%>

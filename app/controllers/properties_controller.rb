@@ -1,5 +1,7 @@
 class PropertiesController < ApplicationController
-	before_action :signed_in_user, only: [:create, :destroy, :new]
+	before_filter :authenticate_user!, only: [:create, :destroy, :new]
+
+	#before_action :signed_in_user, only: [:create, :destroy, :new]
 	helper_method :sort_column, :sort_direction
 
 	

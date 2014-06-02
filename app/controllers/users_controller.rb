@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-
+=begin
   before_action :sign_in_user, only: [:edit, :update, :show, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :signed_in_user, only: [:edit, :update, :index]
@@ -31,6 +30,8 @@ class UsersController < ApplicationController
 
   end
 
+=end
+
   def index
     #@users = User.all
     @users = User.paginate(page: params[:page])
@@ -42,9 +43,9 @@ class UsersController < ApplicationController
     @properties = @user.properties.paginate(page: params[:property_page], :per_page => 8).order('created_at DESC')
     @collections = @user.properties.joins(:collections).paginate(page: params[:collection_page], :per_page => 2).order('created_at DESC')
 
-    if signed_in?
+    #if signed_in?
       #@post = current_user.microposts.build
-    end
+    #end
   end	
 
   def edit

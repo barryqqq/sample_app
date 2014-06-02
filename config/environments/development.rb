@@ -36,7 +36,7 @@ SampleApp::Application.configure do
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 587,
-    :domain => "sandbox12ce8cf6f47945f9bd06af92d0d41478.mailgun.org",
+    :domain => "sandbox12ce8cf6f47945f9bd06af92d0d41478.xxx.org",
     :user_name => ENV["MAILGUN_USERNAME"],
     :password => ENV["MAILGUN_PASSWORD"]
   
@@ -51,5 +51,6 @@ SampleApp::Application.configure do
     }
   }
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
 end

@@ -25,7 +25,13 @@ gem 'gmaps4rails'
 #jquery-cookie 5/10
 gem 'jquery-cookie-rails'
 
+#font-awesome 5/29
+gem 'font-awesome-rails'
 
+#omniauth 5/30
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 
 # Use sqlite3 as the database for Active Record

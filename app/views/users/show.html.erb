@@ -19,70 +19,128 @@
 
 <div class="row">
 	<div class="col-md-7">
-		<div>
-			<img src=<%= @user.avatar.url(:thumb) %> class="img-rounded" alt="Rounded Image">
-		</div>
-		<h3> <%= @user.name %> </h3>
-		<div class="col-lg-4">
-			<div class="panel panel-info">
-	          <div class="panel-heading">
-	            <div class="row">
-	              <div class="col-xs-6">
-	                <i class="fa fa-comments fa-5x"></i>
-	              </div>
-	              <div class="col-xs-6 text-right">
-	                <p class="announcement-heading">456</p>
-	                <p class="announcement-text">New Mentions!</p>
-	              </div>
+			
+		<div class="panel panel-info">
+	      <div class="panel-heading">
+	        <div class="row">
+	          <div class="col-xs-3">
+	            <img src=<%= render_image @user %> class="img-rounded" alt="Rounded Image">
+
+	          </div>
+          
+	          <div class="col-xs-9 text-left">
+	          	<div class="popover right in" style="display: block;">
+					<div class="arrow"></div>
+					<div class="popover-content">Vivamus sagittis lacus vel augue laoreet rutrum faucibus.</div>
+				</div>
+	            
+	          </div>
+	        </div>
+	      </div>
+	     
+	        <div class="panel-footer">
+	          <div class="row">
+	            <div class="col-xs-6">
+	              <span class="btn btn-default btn-xs"><i class="fa fa-camera"></i> Change Image</span>
+	            
+	            </div>
+	            <div class="col-xs-6 text-right">
+	              <span class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> Edit profile</span>
 	            </div>
 	          </div>
-	          <a href="#">
-	            <div class="panel-footer announcement-bottom">
-	              <div class="row">
-	                <div class="col-xs-6">
-	                  View Mentions
-	                </div>
-	                <div class="col-xs-6 text-right">
-	                  <i class="fa fa-arrow-circle-right"></i>
-	                </div>
-	              </div>
-	            </div>
-	          </a>
 	        </div>
-    	</div>
+	     
+	    </div>
+    	
+    	<div class="panel panel-info">
+	      <table class="table">
+	      	<tbody>
+	      		<tr>
+	      			<td>Name</td>
+	      			<td><%= @user.name %></td>
+	      			<td></td>
+	      		</tr>
+	      		<tr>
+	      			<td>Email</td>
+	      			<td><%= @user.email %></td>
+	      			<td></td>
+	      		</tr>	
+	      		<tr>
+	      			<td>Birthday</td>
+	      			<td>11/22/1980</td>
+	      			<td></td>
+	      		</tr>	
+	      		<tr>
+	      			<td>Gender</td>
+	      			<td>Man</td>
+	      			<td></td>
+	      		</tr>	
+	      		<tr>
+	      			<td>Language</td>
+	      			<td>English</td>
+	      			<td></td>
+	      		</tr>	
+	      		<tr>
+	      			<td>Education</td>
+	      			<td>High School</td>
+	      			<td></td>
+	      		</tr>
+	      		<tr>
+	      			<td>Work</td>
+	      			<td>NBA BBALL PLAYER</td>
+	      			<td></td>
+	      		</tr>
+	      		<tr>
+	      			<td>Locale</td>
+	      			<td>LA, US</td>
+	      			<td></td>
+	      		</tr>
+
+	      		
+	      		<tr>
+	      			<td>Facebook Account</td>
+	      			<td>Kobe</td>
+	      			<td></td>
+	      		</tr>
+
+	      		<tr>
+	      			<td>webo Account</td>
+	      			<td>Kobe</td>
+	      			<td></td>
+	      		</tr>
+
+	      	</tbody>	
+	      </table>	
+	     
+	    </div>
 
 			
 	</div>
 	<div class="col-md-5">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><span class="glyphicon glyphicon-heart red"></span>&nbsp; My Favorite List</div>
-		  	<div class="panel-body ">
-		    	<%= render '/users/collection' %>
-		     
-		  	</div>
-		  	<div class="panel-footer text-center" style="padding: 0px;">
-
-				<% if @collections.present? %>
-	    			<%= will_paginate @collections, :param_name => 'collection_page' %>
-				<% end %>
+		<% if @collections.present? %>	
+			<div class="panel panel-primary">
+				<div class="panel-heading"><span class="glyphicon glyphicon-heart red"></span>&nbsp; My Favorite List</div>
+			  	<div class="panel-body ">		
+			    	<%= render '/users/collection' %>
+			  	</div>
+			  	<div class="panel-footer text-center" style="padding: 0px;">					
+		    		<%= will_paginate @collections, :param_name => 'collection_page' %>				
+				</div>					
 			</div>	
-		</div>	
+		<% end %>
 
-		<div class="panel panel-warning">
-			<div class="panel-heading">My Post List</div>
-		  	<div class="panel-body">
+		<% if @properties.present? %>
+			<div class="panel panel-success">
+				<div class="panel-heading"><i class="fa fa-building-o"></i>&nbsp; My Post List</div>
+			  	<div class="panel-body">
+					<%= render '/users/property' %>    			
+			  	</div>
 
-				<%= render '/users/property' %>    			
-		  	</div>
-
-		  	<div class="panel-footer text-center" style="padding: 0px;">
-
-				<% if @properties.present? %>
-	    			<%= will_paginate @properties, :param_name => 'property_page' %>
-				<% end %>
-			</div>	
-		</div>
-		
+			  	<div class="panel-footer text-center" style="padding: 0px;">				
+		    		<%= will_paginate @properties, :param_name => 'property_page' %>				
+				</div>	
+			</div>
+		<% end %>
 		
 	</div>
 		

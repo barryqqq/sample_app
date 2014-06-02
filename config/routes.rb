@@ -1,11 +1,11 @@
 SampleApp::Application.routes.draw do
  
-  get "contact_forms/new"
-  get "contact_forms/create"
-  get "contact_form/new"
-  get "contact_form/create"
+  
+  devise_for :users, :path => '', :path_names => {:sign_in => 'signin', :sign_up => 'signup'},
+   :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  #resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :properties 
 
@@ -31,7 +31,7 @@ SampleApp::Application.routes.draw do
   resources :contact_forms
 
 
-  root 'static_pages#home'
+  root :to => 'static_pages#home'
   
   get "static_pages/help"
   #get '/test', :to => redirect('/test.html')
@@ -40,11 +40,12 @@ SampleApp::Application.routes.draw do
   
   match '/about', to: 'static_pages#about', via: 'get'
   match '/home', to: 'static_pages#home', via: 'get'
-  match '/signup', to: 'users#new', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
+  #match '/signup', to: 'users#new', via: 'get'
+  #match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   
+
   #match '/photos', to: 'photos/#create', via: 'post'
   #get '/test', to: 'photos/#show'
 

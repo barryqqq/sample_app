@@ -1,0 +1,31 @@
+
+
+ <%= devise_error_messages! %>
+
+<h2>Resend confirmation instructions</h2>
+<hr>
+
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :email, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.email_field :email, :type => :email, :class => "form-control", :placeholder => "Enter your email", autofocus: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type="submit" class="btn btn-primary">Resend confirmation instructions</button>
+    </div>
+  </div>
+
+
+<% end %>
+
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-4">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+

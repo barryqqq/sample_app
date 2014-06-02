@@ -69,10 +69,19 @@ module ApplicationHelper
 			if (internet)
 				content += "Internet"
 			end	
-		end	
-						
+		end							
 	end
 
+
+	def render_image(user)
+		if user_signed_in?
+			if user.avatar_file_name != nil
+				user.avatar.url(:thumb)
+			elsif user.fb_image != nil
+				user.fb_image
+			end	
+		end	
+	end	
 	
 	
 end

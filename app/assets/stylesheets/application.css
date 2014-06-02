@@ -12,6 +12,7 @@
  *= require bootstrap-theme
  *= require bootstrap-datepicker
  *= require slider
+ *= require font-awesome
  *= require_self
  *= require_tree .
  */
