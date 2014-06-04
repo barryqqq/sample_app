@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [ :edit, :update, :index, :show, :destroy]
+  before_filter :admin_user, only: [ :index, :destroy]
+  before_filter :correct_user, only: [ :show, :edit, :update]
+
 =begin
   before_action :sign_in_user, only: [:edit, :update, :show, :destroy]
   before_action :correct_user, only: [:edit, :update]
@@ -70,13 +74,48 @@ class UsersController < ApplicationController
 
   end  
 
+  def admin
+    @user = User.find(params[:id])
+    if current_user.admin?
+      if @user.admin?
+        @user.update_attribute :admin, 0
+      else
+         @user.update_attribute :admin, 1
+      end   
+    end  
+    redirect_to action: "index"
+
+  end 
+
+  def post
+    @user = User.find(params[:id])
+    if current_user.admin?
+      if @user.can_post?
+        @user.update_attribute :can_post, 0
+      else
+         @user.update_attribute :can_post, 1
+      end   
+    end  
+    redirect_to action: "index"
+
+  end 
+
+  def avatar
+    @user = User.find(params[:id])
+    @user.update_attributes(avatar_param)
+    redirect_to action: "show"
+  end  
    
  
   private
-  
+    # :password, :password_confirmation,:avatar
     def user_params
-      params.require(:user).permit(:avatar, :name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :first_name, :last_name, :email, :phone, :birthday, :gender, :language, :education, :work, :location)
     end 
+
+    def avatar_param
+      params.require(:user).permit(:avatar)    
+    end  
 
 
     def sign_in_user
@@ -89,15 +128,16 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to (root_url) unless current_user?(@user)
+      redirect_to (root_url) unless current_user == @user
 
     end
 
     def admin_user
       redirect_to (root_url) unless current_user.admin == 1
-        
-      
-    end  
+    end 
+
+   
+    
       
 
 

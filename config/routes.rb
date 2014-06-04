@@ -1,10 +1,15 @@
 SampleApp::Application.routes.draw do
  
   
-  devise_for :users, :path => '', :path_names => {:sign_in => 'signin', :sign_up => 'signup'},
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_up => 'signup'},
    :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   
-  resources :users
+  resources :users do
+    get :admin, :on => :member
+    get :post, :on => :member
+    post :avatar, :on => :member
+
+  end  
   #resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :properties 

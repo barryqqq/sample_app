@@ -1,10 +1,12 @@
 class PropertiesController < ApplicationController
 	before_filter :authenticate_user!, only: [:create, :destroy, :new]
 
-	#before_action :signed_in_user, only: [:create, :destroy, :new]
-	helper_method :sort_column, :sort_direction
+	before_filter :admin_user, only: [:index]
+	before_filter :post_user, only: [:new]
 
-	
+
+	#before_action :signed_in_user, only: [:create, :destroy, :new]
+	helper_method :sort_column, :sort_direction	
 	before_action :ensure_permission, only: [:edit, :update]
 
 
@@ -47,10 +49,10 @@ class PropertiesController < ApplicationController
 	def index
 
 		# only list the user's properties
-		@properties = current_user.properties.order(sort_column + ' ' + sort_direction).paginate(page: params[:page], per_page: '10')		
+		#@properties = current_user.properties.order(sort_column + ' ' + sort_direction).paginate(page: params[:page], per_page: '10')		
 
 		#for all properties
-		#@properties = Property.order(sort_column + ' ' + sort_direction).paginate(page: params[:page], per_page: '10')		
+		@properties = Property.order(sort_column + ' ' + sort_direction).paginate(page: params[:page], per_page: '10')		
 
 	end	
 
@@ -165,6 +167,21 @@ class PropertiesController < ApplicationController
 				redirect_to root_url
 			end	
 		end
+
+
+		def admin_user
+			if (!current_user.try(:admin?))
+				flash[:warning] = "You can not pass."
+				redirect_to root_url
+			end	
+		end	
+
+		def post_user
+			if (!current_user.can_post?)
+				flash[:warning] = "You can not pass."
+				redirect_to root_url
+			end	
+		end	
 			
 
 end

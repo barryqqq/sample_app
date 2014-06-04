@@ -15,6 +15,15 @@
 
 <% provide( :title, @user.name) %>
 
+<!-- edit profile -->
+<div class="row">
+
+</div>	
+<!-- edit profile -->
+
+
+
+
 
 
 <div class="row">
@@ -41,11 +50,13 @@
 	        <div class="panel-footer">
 	          <div class="row">
 	            <div class="col-xs-6">
-	              <span class="btn btn-default btn-xs"><i class="fa fa-camera"></i> Change Image</span>
+	              <button id="trigger_select_btn" class="btn btn-default btn-xs"><i class="fa fa-camera"></i> <%= add_or_change_avatar @user %></button>
 	            
 	            </div>
 	            <div class="col-xs-6 text-right">
-	              <span class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> Edit profile</span>
+	            	<a data-toggle="modal" data-target="#myModal-profile">	
+	              		<span class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> Edit profile</span>
+	              	</a>	
 	            </div>
 	          </div>
 	        </div>
@@ -57,55 +68,73 @@
 	      	<tbody>
 	      		<tr>
 	      			<td>Name</td>
-	      			<td><%= @user.name %></td>
+	      			<td><strong><%= @user.name %></strong></td>
+	      			<td></td>
+	      		</tr>
+
+	      		<tr>
+	      			<td>First Name</td>
+	      			<td><strong><%= @user.first_name %></strong></td>
+	      			<td></td>
+	      		</tr>
+
+	      		<tr>
+	      			<td>Last Name</td>
+	      			<td><strong><%= @user.last_name %></strong></td>
+	      			<td></td>
+	      		</tr>
+
+	      		<tr>
+	      			<td>Email</td>
+	      			<td><strong><%= @user.email %></strong></td>
 	      			<td></td>
 	      		</tr>
 	      		<tr>
-	      			<td>Email</td>
-	      			<td><%= @user.email %></td>
+	      			<td>Phone</td>
+	      			<td><strong><%= @user.phone %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
 	      			<td>Birthday</td>
-	      			<td>11/22/1980</td>
+	      			<td><strong><%= @user.birthday %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
 	      			<td>Gender</td>
-	      			<td>Man</td>
+	      			<td><strong><%= show_gender @user.gender %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
 	      			<td>Language</td>
-	      			<td>English</td>
+	      			<td><strong><%= show_language @user.language %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
 	      			<td>Education</td>
-	      			<td>High School</td>
+	      			<td><strong><%= show_education @user.education %></strong></td>
 	      			<td></td>
 	      		</tr>
 	      		<tr>
 	      			<td>Work</td>
-	      			<td>NBA BBALL PLAYER</td>
+	      			<td><strong><%= @user.work %></strong></td>
 	      			<td></td>
 	      		</tr>
 	      		<tr>
-	      			<td>Locale</td>
-	      			<td>LA, US</td>
+	      			<td>Location</td>
+	      			<td><strong><%= @user.location %></strong></td>
 	      			<td></td>
 	      		</tr>
 
 	      		
 	      		<tr>
 	      			<td>Facebook Account</td>
-	      			<td>Kobe</td>
+	      			<td></td>
 	      			<td></td>
 	      		</tr>
 
 	      		<tr>
-	      			<td>webo Account</td>
-	      			<td>Kobe</td>
+	      			<td>weibo Account</td>
+	      			<td></td>
 	      			<td></td>
 	      		</tr>
 
@@ -146,10 +175,41 @@
 		
 </div>	
 
+<!-- Modal-profile -->
+<div class="modal fade" id="myModal-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"> Update your Profile</h4>
+      </div>
+      <div class="modal-body">
+        <%= render '/users/edit' %>
+      </div>
+      
+    </div>
+  </div>
+</div>    
+<!-- /modal-profile --> 
+
+<!-- upload file form -->
+<form action="<%= avatar_user_path %>" enctype="multipart/form-data" method="post" >
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+    <input id="upload_file" type="file" name="user[avatar]" multiple style="display: none;"> 
+
+     <%#= f.file_field :image, :class => "upload_file", multiple: true, :name => "photo[image]" %>   
+
+    <button type="button" id="upload_btn" style="display: none;">
+    </button>
+    
+</form> 
 
 
 <script>
+	$( "#trigger_select_btn" ).on( "click", function() {
+		$("#upload_file").click();
+	});	
 
-   
+   	$("input[name='user[avatar]']").change(function() { this.form.submit(); });
 
 </script>

@@ -80,7 +80,8 @@ SampleApp::Application.configure do
 
   #mailer
   
-  config.action_mailer.default_url_options = { :host => 'boiling-escarpment-8908.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'around-u.org' }
+  #config.action_mailer.default_url_options = { :host => 'boiling-escarpment-8908.herokuapp.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

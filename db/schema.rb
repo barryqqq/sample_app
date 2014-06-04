@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602003825) do
+ActiveRecord::Schema.define(version: 20140604024441) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20140602003825) do
     t.float    "longitude"
     t.string   "about"
     t.date     "birthday"
-    t.integer  "education"
+    t.string   "education"
     t.integer  "gender"
     t.boolean  "verified"
     t.string   "last_name"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20140602003825) do
     t.string   "location"
     t.boolean  "can_post",               default: true
     t.string   "facebook_id"
-    t.string   "webo_id"
+    t.string   "weibo_id"
     t.string   "facebook_link"
     t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
@@ -127,10 +127,14 @@ ActiveRecord::Schema.define(version: 20140602003825) do
     t.string   "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
-    t.string   "fb_image"
-    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "fb_image"
+    t.string   "confirmation_token"
+    t.string   "language"
+    t.string   "phone"
+    t.string   "work"
+    t.boolean  "is_public"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

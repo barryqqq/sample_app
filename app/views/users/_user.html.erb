@@ -1,9 +1,41 @@
 
 
 
-<li>			
-	<%= link_to user.name, user %> < <%= link_to user.email, user %> >
-	<% if current_user.admin == 1 && !current_user?(user) %>
-		| <%= link_to "delete", user, method: :delete, data:{ confirm: "You sure ?"} %>
-	<% end %>	
-</li>
+<tr>
+	<td>			
+		<%= link_to user.name, user %> 
+	</td>
+
+	<td>
+		<%= link_to user.email, user %>
+	</td>
+	
+	<td>	
+		<% if current_user.try(:admin?) && !(current_user == user) %>
+			<%= link_to "Delete", user, method: :delete, data:{ confirm: "You sure ?"} %>
+		<% end %>
+	</td>
+	
+	<td>	
+		<% if current_user.try(:admin?) && !(current_user == user) && !user.try(:admin?)  %>
+
+			<%= link_to "Add?", admin_user_path(user), method: :get %>
+
+		<% elsif current_user.try(:admin?) && !(current_user == user) && user.try(:admin?)  %>	
+
+			<%= link_to " Remove?", admin_user_path(user), method: :get %>	
+
+		<% end %>
+	</td>	
+
+	<td>
+		<% if current_user.try(:admin?) && !(current_user == user) && user.can_post  %>	
+			 <%= link_to "Remove?", post_user_path(user), method: :get %>
+
+		<% elsif current_user.try(:admin?) && !(current_user == user) && !user.can_post  %>	
+			 <%= link_to "Add?", post_user_path(user), method: :get %>	 	
+
+		<% end %>
+	</td>	
+
+</tr>
