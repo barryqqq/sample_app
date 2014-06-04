@@ -10,6 +10,9 @@
         background-color: #eee;
 
     }
+
+    .datepicker { z-index: 1151 !important;  }
+
 </style>
 
 
@@ -211,5 +214,36 @@
 	});	
 
    	$("input[name='user[avatar]']").change(function() { this.form.submit(); });
+
+
+	$('.state_input option[value=<%= @user.location %>]').attr('selected','selected');
+
+	$('.language option[value=<%= @user.language %>]').attr('selected','selected');
+
+	$('.education option[value=<%= @user.education %>]').attr('selected','selected');
+
+	$('input:radio[name="gender"]').filter('[value="<%= @user.gender %>"]').attr('checked', true);
+
+
+	if (<%= @user.gender %> == 1) {
+		$('.gender_1').addClass('active');	
+
+	} else if (<%= @user.gender %> == 0) {
+		$('.gender_0').addClass('active');	
+	} 
+
+	
+	
+	$('.datepicker').datepicker({ 
+		format: "yyyy-mm-dd",
+		startView:2
+	});
+
+	$('.state_input').change(function() {
+		$('#user_location').val($(this).val());		
+	});	
+
+
+	//alert( $("#myModal-profile").css('zIndex') );
 
 </script>

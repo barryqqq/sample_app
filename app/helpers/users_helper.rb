@@ -3,7 +3,7 @@ module UsersHelper
 	
 	def add_or_change_avatar(user)
 		
-		if user.avatar_file_name != nil
+		if user.avatar_file_name != nil || user.fb_image != nil
 			"Change your avatar"
 		else
 			"Add your avatar"
