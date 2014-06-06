@@ -10,11 +10,16 @@
         background-color: #eee;
 
     }
-
-    .datepicker { z-index: 1151 !important;  }
-
+    
+    .datepicker { z-index: 1151 !important;  }    
 </style>
 
+<script>
+    $('.datepicker').datepicker({ 
+		format: "yyyy-mm-dd",
+		startView:2
+	});
+</script>
 
 <% provide( :title, @user.name) %>
 
@@ -225,7 +230,7 @@
 	$('input:radio[name="gender"]').filter('[value="<%= @user.gender %>"]').attr('checked', true);
 
 
-	if (<%= @user.gender %> == 1) {
+	if (	<%= @user.gender %> == 1) {
 		$('.gender_1').addClass('active');	
 
 	} else if (<%= @user.gender %> == 0) {
@@ -234,10 +239,7 @@
 
 	
 	
-	$('.datepicker').datepicker({ 
-		format: "yyyy-mm-dd",
-		startView:2
-	});
+	
 
 	$('.state_input').change(function() {
 		$('#user_location').val($(this).val());		
