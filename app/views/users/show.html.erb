@@ -203,11 +203,19 @@
 
 
 <script>
+
 	$( "#trigger_select_btn" ).on( "click", function() {
+		//alert('d');
+		$("#upload_file").trigger('click');
+		//$("#upload_file").click();
+	});
 
-		$("#upload_file").click();
-
-	});	
+/*
+	$( "button:first" ).click(function() {
+		alert('d');
+		//$("#upload_file").trigger('click');
+	)};
+*/
 
    	$("input[name='user[avatar]']").change(function() { this.form.submit(); });
 
