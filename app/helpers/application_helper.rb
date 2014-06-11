@@ -73,15 +73,18 @@ module ApplicationHelper
 	end
 
 
-	def render_image(user)
+	def render_image
 		if user_signed_in?
-			if user.avatar_file_name != nil
-				user.avatar.url(:thumb)
-			elsif user.fb_image != nil
-				user.fb_image
+			if current_user.avatar_file_name != nil
+				current_user.avatar.url(:thumb)
+			elsif current_user.fb_image != nil
+				current_user.fb_image
 			end	
 		end	
 	end	
+
+	
+
 	
 	
 end

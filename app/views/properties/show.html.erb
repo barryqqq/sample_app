@@ -18,11 +18,15 @@
 
 
 
+
 <% provide(:title, 'Property detail') %>
 	
 	<div class="row " style="padding: 30px;">
   		<div class="col-md-9">
   			<%= link_to "Back", :back %>
+
+  			<div class="fb-like" data-href="http://around-u.org/properties/<%= @property.id %>" data-show-faces="true" data-share="true"></div>
+  			
   			<address>
                 <h2> <span id="p_address"> <%= @property.all_address %> </span> </h2>       
             </address>  
@@ -31,13 +35,15 @@
   		<div class="col-md-3">
   			<button id="collection_btn" class="btn btn-lg"><span id="span_heart" class="glyphicon glyphicon-heart <%if @c.present? %> red  <% end %>"></span></button>
 
-  			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon">t</span></button>
+  			<!--<button id="" class="btn btn-lg"><i class="fa fa-facebook fa-lg"></i></button>-->
+  			
+  			<%= fb_share %>
 
-  			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon">f</span></button>
-
-  			<button id="" class="btn btn-lg "><span id="span_" class="glyphicon ">w</span></button>
+  			<button id="" class="btn btn-lg "><i class="fa fa-weibo fa-lg"></i></button>
 
   			
+  			
+
 
   		</div>
 	</div>
@@ -259,6 +265,7 @@
 
 
 <script type="text/javascript">
+	FB.XFBML.parse();
 	
 	//replace photo
     $( ".small_photo" ).click(function(event) {

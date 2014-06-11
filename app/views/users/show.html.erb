@@ -10,7 +10,7 @@
         background-color: #eee;
 
     }
-    
+
     .datepicker { z-index: 1151 !important;  }    
 </style>
 
@@ -23,16 +23,6 @@
 
 <% provide( :title, @user.name) %>
 
-<!-- edit profile -->
-<div class="row">
-
-</div>	
-<!-- edit profile -->
-
-
-
-
-
 
 <div class="row">
 	<div class="col-md-7">
@@ -40,9 +30,9 @@
 		<div class="panel panel-info">
 	      <div class="panel-heading">
 	        <div class="row">
-	          <div class="col-xs-3">
-	            <img src=<%= render_image @user %> class="img-rounded" alt="Rounded Image">
 
+	          <div class="col-xs-3">
+	            <img src=<%= render_image %> class="img-rounded" alt="Rounded Image">
 	          </div>
           
 	          <div class="col-xs-9 text-left">
@@ -61,6 +51,7 @@
 	              <button id="trigger_select_btn" class="btn btn-default btn-xs"><i class="fa fa-camera"></i> <%= add_or_change_avatar @user %></button>
 	            
 	            </div>
+	            
 	            <div class="col-xs-6 text-right">
 	            	<a data-toggle="modal" data-target="#myModal-profile">	
 	              		<span class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> Edit profile</span>
@@ -136,15 +127,13 @@
 	      		
 	      		<tr>
 	      			<td>Facebook Account</td>
-	      			<td></td>
+	      			<td>
+	      				<%= fb_id_or_connect @user %>	      				
+	      			</td>
 	      			<td></td>
 	      		</tr>
 
-	      		<tr>
-	      			<td>weibo Account</td>
-	      			<td></td>
-	      			<td></td>
-	      		</tr>
+	      		
 
 	      	</tbody>	
 	      </table>	
@@ -215,7 +204,9 @@
 
 <script>
 	$( "#trigger_select_btn" ).on( "click", function() {
+
 		$("#upload_file").click();
+
 	});	
 
    	$("input[name='user[avatar]']").change(function() { this.form.submit(); });
@@ -236,9 +227,6 @@
 	} else if (<%= @user.gender %> == 0) {
 		$('.gender_0').addClass('active');	
 	} 
-
-	
-	
 	
 
 	$('.state_input').change(function() {

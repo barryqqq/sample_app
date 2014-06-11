@@ -33,6 +33,9 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+#koala 6/6
+gem 'koala'
+#gem 'fb_graph'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do

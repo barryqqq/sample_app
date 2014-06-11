@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #include SessionsHelper
 
+  before_filter :set_locale
+  
+  def set_locale
+  # 可以將 ["en", "zh-TW"] 設定為 VALID_LANG 放到 config/environment.rb 中
+  if params[:locale] && I18n.available_locales.include?( params[:locale].to_sym )
+    session[:locale] = params[:locale]
+  end
+
+  I18n.locale = session[:locale] || I18n.default_locale
+end
 
   def render404
     render :file => File.join(Rails.root, 'public', '404.html'), :status => 404, :layout => false
@@ -18,5 +28,7 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :email, :password, :password_confirmation)
     end
   end
+
+  
 
 end

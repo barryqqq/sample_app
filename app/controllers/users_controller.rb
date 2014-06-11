@@ -106,7 +106,7 @@ class UsersController < ApplicationController
     redirect_to action: "show"
   end  
    
- 
+
   private
     # :password, :password_confirmation,:avatar
     def user_params
@@ -136,9 +136,8 @@ class UsersController < ApplicationController
       redirect_to (root_url) unless current_user.admin == 1
     end 
 
-   
     
-      
-
+   
+  
 
 end

@@ -139,6 +139,76 @@ class PropertiesController < ApplicationController
 
 
 
+	def facebook_share
+		if current_user.access_token == nil
+			flash[:warning] = "please connect to your facebook account first"
+			redirect_to user_path
+		else
+
+			@graph = Koala::Facebook::API.new(current_user.access_token)
+		    #profile = @graph.get_object("me")
+		    #friends = @graph.get_connections("me", "friends")
+		    #@graph.put_wall_post("hey, test test test!!")
+		    #@graph.put_connections("me", "feed", :message => "I am TESTINGNNGNGg on a page wall!")
+		    #@graph.put_like(734053186606656)
+
+		    #@graph.put_connections(534606226653467, "feed", :message => "I am TESTINGNNGNGg on a page wall!")
+		    
+		    #@graph.put_wall_post("I am TESTINGNNGNGg on a page wall!!", "534606226653467")
+		    property = Property.find(params[:id])
+		   
+
+		    # post on user's wall
+		    @graph.put_wall_post("#{property.description}".truncate(50), 
+		      { :name => "#{property.full_address}", 
+		        :link => "localhost:3000/properties/#{property.id}",
+		        :caption => "",
+		        :description => render_type(property.category),
+		        :picture   => "#{property.photos.first.image_url_medium}"
+		        #:picture => "http://#{a}.s3.amazonaws.com/photos/images/000/000/175/medium/1399872102.jpg?321321312321"
+		      },
+		       "me"
+		    )
+
+
+=begin
+		    # post on group
+		    @graph.put_connections("me", "feed", {
+		      :message   => property.description,
+		      #:caption => render_type(property.category),
+		      #:description => property.description, 
+		      :link => "localhost:3000/properties/#{property.id}",
+		      :picture   => property.photos.first.image_url_medium
+		      
+		     
+		    })
+=end	    
+
+
+=begin
+		    # post on group
+		    @graph.put_connections(250003681855910, "feed", {
+		      :message   => "#{property.description}".truncate(20),
+		      :picture   => "#{property.photos.first.image_url_medium}",
+		      :link => "localhost:3000/properties/#{property.id}"
+
+		      #:link      => "https://www.around-u.org/properties/#{property.id}"
+		    })
+=end
+		 
+		   
+
+			flash[:success] = " Shared this post on facebook successfully. " 
+		    redirect_to :back
+		end
+		
+	end	
+
+
+	    
+
+
+
 	private
 
 		def property_params
@@ -162,7 +232,7 @@ class PropertiesController < ApplicationController
 		def ensure_permission
 			property = Property.find(params[:id])
 			user = User.find(property.user_id)
-			if !current_user?(user) then
+			if current_user != user then
 				flash[:warning] = "You can not pass."
 				redirect_to root_url
 			end	
@@ -182,6 +252,17 @@ class PropertiesController < ApplicationController
 				redirect_to root_url
 			end	
 		end	
+
+		def render_type(type)
+			if type.to_f == 0 then 
+		      "Rent" 
+		      #raw("<span class='label label-default'>Rent</span>") 
+		    elsif type.to_f == 1
+		      "Shared Apt."
+		    elsif type.to_f == 2
+		      "Sublease" 
+		    end           
+		 end 
 			
 
 end

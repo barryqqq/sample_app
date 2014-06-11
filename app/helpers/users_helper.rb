@@ -39,7 +39,21 @@ module UsersHelper
 		elsif edu == "dd"
 			"Doctorate Degree"	
 		end			
-	end				
+	end
+
+	def fb_id_or_connect(user)
+		if user.uid != nil
+			raw("<strong><a href='#{user.facebook_link}' target='_blank'>#{user.first_name}.#{user.last_name}</a></strong>")
+
+		else
+			link_to omniauth_authorize_path("user", "facebook") do 
+			raw("<button class='btn btn-sm fb-color' type='button'><i class='fa fa-facebook-square fa-2x'></i> 
+				<span class=''>&nbsp;&nbsp;CONNECT WITH FACEBOOK</span></button>") 
+				  			
+			end 
+
+		end	
+	end 				
 
 
 end

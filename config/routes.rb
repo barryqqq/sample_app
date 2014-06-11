@@ -8,11 +8,14 @@ SampleApp::Application.routes.draw do
     get :admin, :on => :member
     get :post, :on => :member
     post :avatar, :on => :member
+   
 
   end  
   #resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-  resources :properties 
+  resources :properties do
+     get :facebook_share, :on => :member
+  end  
 
   #do
   #  get :add_collection, :on => :member

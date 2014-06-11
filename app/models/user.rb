@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   	has_attached_file :avatar, 
   	#:default_url => "/images/normal/missing.png",
   	#:storage => :s3,
-  	:bucket => 'around_you_and_me',
+  	:bucket => 'around-u',
   	#:s3_credentials => "#{Rails.root}/config/s3.yml",
   	styles: {
     	mini: '32X32>',
@@ -70,39 +70,69 @@ class User < ActiveRecord::Base
 
   	
 
-	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-  	user = User.where(:provider => auth.provider, :uid => auth.uid).first
-  	if user
-    		return user
-  	else
-    		registered_user = User.where(:email => auth.info.email).first
-    		if registered_user
-      		return registered_user
-    		else
+	def self.find_for_facebook_oauth(auth, signed_in_resource)
+    if signed_in_resource == nil 
+  	
+      user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    	if user
+      		return user
+    	else
+      		registered_user = User.where(:email => auth.info.email).first
+      		if registered_user
+        		return registered_user
+      		else
 
-          # for gender
-          if (auth.extra.raw_info.gender == 'male')
-            gender = 1
-          elsif (auth.extra.raw_info.gender == 'female')
-            gender = 0
-          else
-            gender = nil 
-          end    
+            # for gender
+            if (auth.extra.raw_info.gender == 'male')
+              gender = 1
+            elsif (auth.extra.raw_info.gender == 'female')
+              gender = 0
+            else
+              gender = nil 
+            end    
 
-      		user = User.create(name:auth.extra.raw_info.name,
-                          provider:auth.provider,
-                          uid:auth.uid,
-                          email:auth.info.email,
-                          password:Devise.friendly_token[0,20],
-                          first_name:auth.info.first_name,
-                          last_name:auth.info.last_name,
-                          facebook_link:auth.extra.raw_info.link,
-                          #location:auth.extra.raw_info.location,
-                          gender:gender,
-                          fb_image:auth.info.image
-                        )
-    		end   
-		end
+        		user = User.create(name:auth.extra.raw_info.name,
+                            provider:auth.provider,
+                            uid:auth.uid,
+                            email:auth.info.email,
+                            password:Devise.friendly_token[0,20],
+                            first_name:auth.info.first_name,
+                            last_name:auth.info.last_name,
+                            facebook_link:auth.extra.raw_info.link,
+                            #location:auth.extra.raw_info.location,
+                            gender:gender,
+                            fb_image:auth.info.image,
+                            access_token:auth.credentials.token,
+                            #facebook_id:auth.extra.raw_info.nickname 
+
+                          )
+            return user
+      		end
+
+  		end
+
+      if user.access_token != auth.credentials.token
+        user.update_attributes(access_token: auth.credentials.token)
+      end    
+
+    
+
+    else  # update user's facebook uid 
+      signed_in_resource.update_attributes( provider:auth.provider,
+                            uid:auth.uid,
+                            first_name:auth.info.first_name,
+                            last_name:auth.info.last_name,
+                            facebook_link:auth.extra.raw_info.link,
+                            #location:auth.extra.raw_info.location,
+                            #fb_image:auth.info.image,
+                            access_token:auth.credentials.token,
+                            #facebook_id:auth.extra.raw_info.username
+                            ) 
+
+      return signed_in_resource
+    end  
+    
+    
 
 	end
 

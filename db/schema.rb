@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604024441) do
+ActiveRecord::Schema.define(version: 20140607223152) do
 
   create_table "collections", force: true do |t|
     t.integer  "user_id"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20140604024441) do
     t.string   "phone"
     t.string   "work"
     t.boolean  "is_public"
+    t.string   "access_token"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

@@ -4,7 +4,7 @@ class Photo < ActiveRecord::Base
 
   	#:default_url => "/images/normal/missing.png",
   	:storage => :s3,
-  	:bucket => 'around_you_and_me',
+  	:bucket => 'around-u',
     #:s3_credentials => "#{Rails.root}/config/s3.yml",
   	styles: {
     	

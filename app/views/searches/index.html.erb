@@ -90,6 +90,7 @@
 
 
 
+
 <% provide(:title, "Result ") %>
 
 
@@ -405,10 +406,17 @@
             processData: false,
             success: function(data){
 
+                
+                //facebook share                
+                //var link = "http://around-u.org/properties/" + p_id
+                //$('#fb_share').html("");
 
+                $('.fb-like').attr('data-href', "http://around-u.org/properties/" + p_id); 
+                FB.XFBML.parse();
 
                 // set id to detail partial
                 $('.detail').attr('id', p_id);
+
 
                 //infomation
                 if (data.category == 0) {
