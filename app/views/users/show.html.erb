@@ -19,6 +19,7 @@
 		format: "yyyy-mm-dd",
 		startView:2
 	});
+
 </script>
 
 <% provide( :title, @user.name) %>
@@ -61,6 +62,9 @@
 	        </div>
 	     
 	    </div>
+
+
+
     	
     	<div class="panel panel-info">
 	      <table class="table">
@@ -172,6 +176,9 @@
 		
 </div>	
 
+
+    
+
 <!-- Modal-profile -->
 <div class="modal fade" id="myModal-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -189,6 +196,8 @@
 </div>    
 <!-- /modal-profile --> 
 
+
+
 <!-- upload file form -->
 <form action="<%= avatar_user_path %>" enctype="multipart/form-data" method="post" >
     <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
@@ -205,18 +214,11 @@
 <script>
 
 	$( "#trigger_select_btn" ).on( "click", function() {
-		//event.preventDefault();
-		//alert('d');
-		//$("#upload_file").trigger('click');
 		$("#upload_file").click();
 	});
+</script>
+<script>
 
-/*
-	$( "button:first" ).click(function() {
-		alert('d');
-		//$("#upload_file").trigger('click');
-	)};
-*/
 
    	$("input[name='user[avatar]']").change(function() { this.form.submit(); });
 
