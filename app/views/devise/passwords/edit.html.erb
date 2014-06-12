@@ -1,7 +1,7 @@
 
 
  <%= devise_error_messages! %>
-<h2>Change your password</h2>
+<h2><%= t("devise.passwords.edit.change_password") %></h2>
 
 <hr>
 
@@ -11,23 +11,23 @@
   <%= f.hidden_field :reset_password_token %>
 
   <div class="form-group">
-    <%= f.label :password, "New password", :class => "col-sm-2 control-label" %>
+    <%= f.label :password, t("devise.passwords.edit.new_password"), :class => "col-sm-2 control-label" %>
     <div class="col-sm-4">
-      <%= f.password_field :password, :class => "form-control", :placeholder => "Enter your new password" %>
+      <%= f.password_field :password, :class => "form-control", :placeholder => t("devise.passwords.edit.new_password_input") %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation, "Confirm new password", :class => "col-sm-2 control-label" %>
+    <%= f.label :password_confirmation, t("devise.passwords.edit.confirm_new_password"), :class => "col-sm-2 control-label" %>
     <div class="col-sm-4">
-      <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm new password" %>
+      <%= f.password_field :password_confirmation, :class => "form-control", :placeholder =>  t("devise.passwords.edit.confirm_new_password_input") %>
     </div>
   </div>
 
 
    <div class="form-group">
     <div class="col-sm-offset-2 col-sm-4">
-      <button type="submit" class="btn btn-primary">Change my password</button>
+      <button type="submit" class="btn btn-primary"><%= t("devise.passwords.edit.change_password") %></button>
     </div>
   </div>
 

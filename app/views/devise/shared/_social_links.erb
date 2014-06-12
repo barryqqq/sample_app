@@ -19,9 +19,9 @@
   			<button class="btn btn-sm fb-color" type="button">
       			<i class="fa fa-facebook-square fa-2x"></i> 
       			<%- if  controller_name == 'registrations' %>
-      				<span class="">&nbsp;&nbsp;SIGN UP WITH FACEBOOK</span>
+      				<span class="">&nbsp;&nbsp;<%= t("devise.shared.social_links.sign_up_w_fb") %></span>
       			<%- else %>
-      				<span class="">&nbsp;&nbsp;LOG IN WITH FACEBOOK</span>
+      				<span class="">&nbsp;&nbsp;<%= t("devise.shared.social_links.log_in_w_fb") %></span>
       			<%- end%>	
     		</button>
   		<% end %>

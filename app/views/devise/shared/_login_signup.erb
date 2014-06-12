@@ -1,7 +1,7 @@
 <%- if controller_name != 'sessions' %>
-	<span class="text-muted"> Have an account ? </span> <%= link_to "Log In", new_session_path(resource_name) %><br />
+	<span class="text-muted"> <%= t("devise.shared.login_signup.have_an_account") %> </span> <%= link_to t("devise.sessions.new.log_in"), new_session_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-	<span class="text-muted"> Don't have an account ?</span> <%= link_to "Sign Up", new_registration_path(resource_name) %><br />
+	<span class="text-muted"> <%= t("devise.shared.login_signup.dont_have_an_acc") %></span> <%= link_to  t("devise.registrations.new.sign_up"), new_registration_path(resource_name) %><br />
 <% end -%>

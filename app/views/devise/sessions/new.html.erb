@@ -2,7 +2,7 @@
 
 
 
-<h2>Log In</h2>  <%= render "devise/shared/login_signup" %>
+<h2><%= t("devise.sessions.new.log_in") %></h2>  <%= render "devise/shared/login_signup" %>
 <hr>
 
 <div class="row">
@@ -13,7 +13,7 @@
 
 <div class="row">
   <div class=" col-sm-offset-3 col-sm-4 ">
-    <h5> OR </h5>
+    <h5> <%= t("devise.registrations.new.or") %> </h5>
   </div>  
 </div>  
 
@@ -25,14 +25,14 @@
   <div class="form-group">
     <%= f.label :email, :class => "col-sm-2 control-label" %>
     <div class="col-sm-4">
-      <%= f.email_field :email, :type => :email, :class => "form-control", :placeholder => "Enter your email" %>
+      <%= f.email_field :email, :type => :email, :class => "form-control", :placeholder => t("form.email_input") %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :password, :class => "col-sm-2 control-label" %>
+    <%= f.label :password, t("form.password"), :class => "col-sm-2 control-label" %>
     <div class="col-sm-4">
-      <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+      <%= f.password_field :password, :class => "form-control", :placeholder => t("form.password_input") %>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
         <div class="checkbox">
           <%= f.label :remember_me do %>
             <%= f.check_box :remember_me %>
-            Remember me
+            <%= t("devise.sessions.new.remember_me") %>
           <% end -%>
         </div>
       </div>
@@ -51,7 +51,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-4">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary"><%= t("devise.sessions.new.log_in") %></button>
     </div>
   </div>
 

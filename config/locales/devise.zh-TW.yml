@@ -1,6 +1,9 @@
 zh-TW:
   devise:
     confirmations:
+      new:
+        resend_cnfrmtn_instru: "重寄驗證帳號的電子郵件"
+        
       confirmed: "您的帳號已通過驗證，現在您已成功登入。"
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有驗證帳號的步驟說明。"
       send_paranoid_instructions: "如果我們有您的信箱，您將會收到一封驗證您的帳號的電子郵件。"
@@ -25,6 +28,16 @@ zh-TW:
       failure: "無法從 %{kind} 驗證，因為 \"%{reason}\"。"
       success: "成功從 %{kind} 驗證。"
     passwords:
+      new:
+        send_instru_reset: "請將密碼重設信寄給我"
+      edit:
+        change_password: "重設密碼" 
+        new_password: "新密碼"
+        new_password_input: "輸入您的新密碼"  
+        confirm_new_password: "確認新密碼"
+        confirm_new_password_input: "再次輸入您的新密碼"
+       
+
       no_token: "這是密碼重設頁面，僅能透過密碼重設信件進入。如果您是透過重設信件進入的，請確認您的網址是完整的。"
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有重新設定密碼的步驟說明。"
       send_paranoid_instructions: "如果我們有您的信箱，您將會收到一封內含可重新設定密碼連結的電子郵件。"
@@ -33,11 +46,7 @@ zh-TW:
     registrations:
       new:
         sign_up: "註冊"
-        or: "或是"
-
-
-
-
+        or: "或是"  
       destroyed: "再會！您的帳號已被取消。有緣再會。"
       signed_up: "註冊成功，歡迎！"
       signed_up_but_inactive: "您已註冊成功。然而因為您的帳號尚未啓動，暫時無法登入，抱歉！"
@@ -46,12 +55,27 @@ zh-TW:
       update_needs_confirmation: "您已經成功的更新帳號資訊，但我們仍需確認您的電子信箱，請至新信箱收信並點擊連結以確認您的新電子郵件帳號。"
       updated: "您已經成功的更新帳號資訊。"
     sessions:
+      new:
+        log_in: "登入"
+        remember_me: "記住我"
+
       signed_in: "成功登入了。"
       signed_out: "成功登出了。"
     unlocks:
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
       send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"
       unlocked: "您的帳號已被解鎖，現在已經登入。"
+    shared:
+      links:
+        forget_password: "忘記您的密碼 ?"
+        didnt_rec_cnfrmtn_instru: "沒有收到帳號驗證信 ?"
+      login_signup:
+        have_an_account: "已經有帳號了 ?"
+        dont_have_an_acc: "還沒申請帳號 ?" 
+      social_links:
+        sign_up_w_fb: "使用 FACEBOOK 帳號註冊" 
+        log_in_w_fb: "使用 FACEBOOK 帳號登入"  
+
   errors:
     messages:
       already_confirmed: "已經驗證，請直接登入。"
@@ -62,3 +86,6 @@ zh-TW:
       not_saved:
         one: "有一個錯誤導致 %{resource} 不能被儲存："
         other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
+
+
+

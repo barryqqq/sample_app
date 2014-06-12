@@ -208,22 +208,12 @@
 
 <script>
 
-	$(document).ready(function() {
+	
 
-		$( "#trigger_select_btn" ).on( "click", function() {
-			//event.preventDefault();
-			//alert('d');
-			//$("#upload_file").trigger('click');
-			$("#upload_file").click();
-		});
+	$( "#trigger_select_btn" ).on( "click", function() {
+		$("#upload_file").click();
 	});
-
-/*
-	$( "button:first" ).click(function() {
-		alert('d');
-		//$("#upload_file").trigger('click');
-	)};
-*/
+	
 
    	$("input[name='user[avatar]']").change(function() { this.form.submit(); });
 

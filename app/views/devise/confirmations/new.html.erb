@@ -2,7 +2,7 @@
 
  <%= devise_error_messages! %>
 
-<h2>Resend confirmation instructions</h2>
+<h2><%= t("devise.confirmations.new.resend_cnfrmtn_instru") %></h2>
 <hr>
 
 <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
@@ -10,7 +10,7 @@
   <div class="form-group">
     <%= f.label :email, :class => "col-sm-2 control-label" %>
     <div class="col-sm-4">
-      <%= f.email_field :email, :type => :email, :class => "form-control", :placeholder => "Enter your email", autofocus: true %>
+      <%= f.email_field :email, :type => :email, :class => "form-control", :placeholder => t("form.email_input") , autofocus: true %>
     </div>
   </div>
 
