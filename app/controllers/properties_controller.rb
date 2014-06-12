@@ -36,7 +36,7 @@ class PropertiesController < ApplicationController
 
 
 				flash[:success] = "You just posted successfully!"
-				redirect_to properties_url
+				redirect_to property_path(@property)
 				
 			else 
 				render 'static_page/home'
