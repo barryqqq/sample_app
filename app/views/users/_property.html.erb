@@ -51,7 +51,7 @@
             <div class="col-lg-6 ">
                 <ul class="list-unstyled">  
                     <li> <%= p.id %> </li>  
-                    <li > <strong> <%= p.city.upcase %>, <%= p.state.upcase %> </strong></li>   
+                    <li > <strong> <%= render_city_state p %> </strong></li>   
                     
                     <li> <%= price_on_type p.price, p.category %> </li>
                   
