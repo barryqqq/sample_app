@@ -83,7 +83,13 @@ module ApplicationHelper
 		end	
 	end	
 
-	
+	def render_city_state(property)
+		if property.radio_addr == "0"
+			raw("#{property.city.upcase}, #{property.state.upcase}")
+		else
+			raw("#{property.b_city.upcase}, #{property.b_state.upcase}")
+		end	
+	end 
 
 	
 	
