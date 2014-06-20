@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
       @sender_email = email
       @message = message
       @property = Property.find(property_id)
-      mail to: "iamcooc@gmail.com", subject: "someone want you"
+      mail to: @property.contact_email, subject: "someone want you"
 
   end  
 

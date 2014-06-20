@@ -1,3 +1,22 @@
+	
+	// set studio bath and bed 
+	$( "#studio_label" ).on( "click", function() {
+		$( "#studio_label" ).addClass("active");
+		$( "#others_label" ).removeClass("active");
+		$( "#bed_bath" ).addClass("hide");
+		$( "#bed_input" ).val('0');
+		$( "#bath_input" ).val('1');
+	});
+
+	$( "#others_label" ).on( "click", function() {
+		$( "#studio_label" ).removeClass("active");
+		$( "#others_label" ).addClass("active");
+		$( "#bed_bath" ).removeClass("hide");
+		$( "#bed_input" ).val('');
+		$( "#bath_input" ).val('');
+	});		
+
+
 	//$('#datepicker').datepicker();
 	//set datepicker
   	$('#start_date').datepicker({ format: "yyyy-mm-dd"});
@@ -618,6 +637,20 @@
 		$('#property_bed').val($('#bed_input').val());
 
 		$('#property_bath').val($('#bath_input').val());
+
+		// studio
+		if ( $('#bed_input').val() == "0" && $('#bath_input').val() == "1" ) {
+			$('#tr_studio').removeClass('hide');
+			$('#tr_bed').addClass('hide');
+			$('#tr_bath').addClass('hide');
+
+		} else {
+			$('#tr_studio').addClass('hide');
+			$('#tr_bed').removeClass('hide');
+			$('#tr_bath').removeClass('hide');
+
+		}
+
 
 		$('#property_description').val($('#description_input').val());
 

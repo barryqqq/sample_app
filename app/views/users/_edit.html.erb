@@ -7,7 +7,7 @@
 				
 			<div class="form-group">
 					
-				<%= f.label :name, :class => "control-label col-lg-3" %>
+				<%= f.label :name, t("form.name"), :class => "control-label col-lg-3" %>
 
 				<div class="col-lg-6">
 					<%= f.text_field :name, :class => "form-control"%>
@@ -16,7 +16,7 @@
 			</div>
 
 			<div class="form-group">
-				<%= f.label :first_name, :class => "control-label col-lg-3" %>
+				<%= f.label :first_name, t("form.first_name"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<%= f.text_field :first_name, :class => "form-control" %>
@@ -24,7 +24,7 @@
 			</div>
 
 			<div class="form-group">
-				<%= f.label :last_name, :class => "control-label col-lg-3" %>
+				<%= f.label :last_name, t("form.last_name"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<%= f.text_field :last_name, :class => "form-control" %>
@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="form-group">
-				<%= f.label :phone, :class => "control-label col-lg-3" %>
+				<%= f.label :phone, t("form.phone"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<%= f.text_field :phone, :class => "form-control" %>
@@ -49,7 +49,7 @@
 			</div>	
 
 			<div class="form-group">
-				<%= f.label :birthday, :class => "control-label col-lg-3" %>
+				<%= f.label :birthday, t("form.birthday"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<!--<input type="text" name="user[birthday]" class="form-control datepicker"> -->
@@ -59,17 +59,17 @@
 
 
 			<div class="form-group">
-				<%= f.label :gender, :class => "control-label col-lg-3" %>
+				<%= f.label :gender, t("form.gender"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<div class="btn-group" data-toggle="buttons">
 					  
 					  <label class="btn btn-default gender_0">
-					    <%= f.radio_button :gender, 0 %> Female
+					    <%= f.radio_button :gender, 0 %> <%= t("form.female") %>
 					  </label>
 
 					  <label class="btn btn-default gender_1">
-					    <%= f.radio_button :gender, 1 %> &nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;
+					    <%= f.radio_button :gender, 1 %> &nbsp;<%= t("form.male") %>&nbsp;&nbsp;&nbsp;&nbsp;
 					  </label>
 					</div>		
 						
@@ -95,18 +95,18 @@
 				<div class="col-lg-6">
 
 					<select name="user[education]" class="form-control education">
-						<option value="hs">High School</option>
-						<option value="cc">College Credit</option>
-						<option value="bd">Bachelor's Degree</option>
-						<option value="md">Master's Degree</option>
-						<option value="dd">Doctorate Degree</option>
+						<option value="hs"><%= t("users.show.high_school") %></option>
+						<option value="cc"><%= t("users.show.college_credit") %></option>
+						<option value="bd"><%= t("users.show.bachelor_degree") %></option>
+						<option value="md"><%= t("users.show.master_degree") %></option>
+						<option value="dd"><%= t("users.show.doctorate_degree") %></option>
 			
 		  			</select>
 				</div>	
 			</div>
 
 			<div class="form-group">
-				<%= f.label :work, :class => "control-label col-lg-3" %>
+				<%= f.label :work, t("form.work"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<%= f.text_field :work, :class => "form-control" %>
@@ -114,7 +114,7 @@
 			</div>
 
 			<div class="form-group">
-				<%= f.label :location, :class => "control-label col-lg-3" %>
+				<%= f.label :location, t("form.location"), :class => "control-label col-lg-3" %>
 				
 				<div class="col-lg-6">
 					<%= render 'layouts/state_picker' %>
@@ -154,8 +154,8 @@
 	</div>	
 
 	<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t("form.cancel") %></button>
+        <button type="submit" class="btn btn-primary"><%= t("form.save_changes") %></button>
     </div>
 
 <% end %>    

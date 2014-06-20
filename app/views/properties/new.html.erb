@@ -61,11 +61,11 @@
 	
 	<ul class="nav nav-tabs nav-justified nav-pills">
 		
-  		<li class="active col-md-4 col-xs-12 step_1_tab"><a href="#">Step 1: Listing Information</a></li>
+  		<li class="active col-md-4 col-xs-12 step_1_tab"><a href="#"><%= t("properties.step1") %></a></li>
   		
-  		<li class="col-md-4 col-xs-12 step_2_tab"><a href="#">Step 2: Address & Uploading Photo</a></li>
+  		<li class="col-md-4 col-xs-12 step_2_tab"><a href="#"><%= t("properties.step2") %></a></li>
   		
-  		<li class="col-md-4 col-xs-12 step_3_tab"><a href="#">Step 3: Review</a></li>
+  		<li class="col-md-4 col-xs-12 step_3_tab"><a href="#"><%= t("properties.step3") %></a></li>
 
   		
   		
@@ -85,20 +85,22 @@
 					
 
 				<div class="form-group">
-					<label class="control-label col-xs-3">* type</label>
-					<div class="col-xs-9">
+
+					<label class="control-label col-sm-3">* <%= t("properties.type") %></label>
+
+					<div class="col-sm-9 col-xs-12">
 						
   						<div id="type" class="btn-group" data-toggle="buttons">
 			                <label id="rent_label" class="btn btn-default active">
-			                	<input name="type" type="radio" value="0" checked/><span id="type_0">Rent</span>
+			                	<input name="type" type="radio" value="0" checked/><span id="type_0"><%= t("properties.rent") %></span>
 			                </label>
 
 			                <label id="shared_label" class="btn btn-default">
-			                	<input name="type" type="radio" value="1"/><span id="type_1">Shared Apt.</span>
+			                	<input name="type" type="radio" value="1"/><span id="type_1"><%= t("properties.shared_apt") %></span>
 			                </label>
 
 			                <label id="sublease_label" class="btn btn-default ">
-			                	<input name="type" type="radio"value="2" /><span id="type_2">Sublease</span>
+			                	<input name="type" type="radio"value="2" /><span id="type_2"><%= t("properties.sublease") %></span>
 			                </label>
 
 		            	</div>
@@ -106,48 +108,62 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-xs-3"> Date</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"> <%= t("properties.date") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div class="input-daterange datepicker input-group" id="datepicker">
 
-                			<span class="input-group-addon">
-                  				<span class="glyphicon glyphicon-calendar"></span>
-                			</span>
+	                			<span class="input-group-addon">
+	                  				<span class="glyphicon glyphicon-calendar"></span>
+	                			</span>
 
-    						<input type="text" class="form-control" name="start_date" id="start_date" placeholder="Start Date"/>
-    					
-    						<span id="to_span" class="input-group-addon non-visibile"> to </span>
-    					
-    						<input type="text" class="form-control non-visibile" name="end_date" id="end_date" placeholder="End Date"/>
-    					
+	    						<input type="text" class="form-control" name="start_date" id="start_date" placeholder="<%= t("properties.start_date") %> "/>
+    						
+	    						<span id="to_span" class="input-group-addon non-visibile"> <%= t("properties.to") %> </span>
+	    					
+	    						<input type="text" class="form-control non-visibile" name="end_date" id="end_date" placeholder="<%= t("properties.end_date") %>"/>
+    						
 					  	</div>
 						
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-xs-3">* Room</label>
-					<div class="col-xs-9">
-						<div class="input-group">
-							
-	                    <span class="input-group-addon"> Bed </span>
-	                    <input id="bed_input" type="text" class="form-control " placeholder="Number">
-
-	                    <span class="input-group-addon"> Bath </span>
-	                    <input id="bath_input" type="text" class="form-control" placeholder="Number">
-	                       
-						</div>	
-
-
+					<label class="control-label col-sm-3">* <%= t("properties.room") %></label>
+					<div class="col-sm-9 col-xs-12">
 						
-						
-					</div>
+						<div class="btn-group" data-toggle="buttons">
+			                <label id="studio_label" class="btn btn-default ">
+			                	<input id="studio" type="radio" value="0" /><span id="type_0">studio</span>
+			                </label>
+
+			                <label id="others_label" class="btn btn-default active">
+			                	<input id="others" type="radio" value="1" checked/><span id="type_1">others	 </span>
+			                </label>
+
+		            	</div>
+			            	
+			        </div>
+			    </div>
+			    
+			    <div class="form-group" id="bed_bath">
+					
+					<div class="col-sm-3"></div>    
+
+					<div class="col-sm-9 col-xs-12">
+						<div class="input-group">			
+		                    <span class="input-group-addon"> <%= t("properties.bed") %> </span>
+		                    <input id="bed_input" type="text" class="form-control" placeholder="Number">
+													
+		                    <span class="input-group-addon"> <%= t("properties.bath") %> </span>
+		                    <input id="bath_input" type="text" class="form-control" placeholder="Number">
+			            </div>	  
+					</div>				          						
 				</div>
 					
 
 				<div id="people" class="form-group hide">
-					<label class="control-label col-xs-3"> People</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"> <%= t("properties.people") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<input id="slider" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="1" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show" >
 						
 					</div>
@@ -155,8 +171,8 @@
 				</div>
 					
 				<div class="form-group">
-					<label class="control-label col-xs-3">* Price</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3">* <%= t("properties.price") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div class="input-group">
 							<span class="input-group-addon">
 	                        	<span class="glyphicon glyphicon-usd"></span>
@@ -171,8 +187,8 @@
 				
 
 				<div id="deposit" class="form-group">
-					<label class="control-label col-xs-3">Deposit</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"><%= t("properties.deposit") %></label>
+					<div class="col-sm-9 col-xs-12">
 
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -190,8 +206,8 @@
 				</div>
 
 				<div id="contract" class="form-group">
-					<label class="control-label col-xs-3">Contract</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"><%= t("properties.contract") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div class="input-group">
 							<span class="input-group-addon">
         						<input type="checkbox" id="contract_ckb">
@@ -208,8 +224,8 @@
 				</div>
 
 				<div id="broker_fee" class="form-group">
-					<label class="control-label col-xs-3">Broker Fee</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"><%= t("properties.broker_fee") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div class="input-group">
 							<span class="input-group-addon">
         						<input type="checkbox" id="broker_fee_ckb">
@@ -228,22 +244,22 @@
 				
 
 				<div id="utility" class="form-group">
-					<label class="control-label col-xs-3">Utilities</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"><%= t("properties.utilities") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div id="utilities_group" class="btn-group" data-toggle="buttons">
 			                <label class="btn btn-default active">
-			                <input id="utility_none" type="checkbox" checked  /><span id="utility_0">None</span>
+			                <input id="utility_none" type="checkbox" checked  /><span id="utility_0"><%= t("properties.none") %></span>
 			                </label>
 			                <label class="btn btn-default">
-			                <input name="hasElectricity" id="hasElectricity" type="checkbox"  /><span id="utility_1">Electricity</span>
+			                <input name="hasElectricity" id="hasElectricity" type="checkbox"  /><span id="utility_1"><%= t("properties.electricity") %></span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input name="hasHeat" id="hasHeat" type="checkbox"  /><span id="utility_2">Heat</span>
+			                <input name="hasHeat" id="hasHeat" type="checkbox"  /><span id="utility_2"><%= t("properties.heat") %></span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input name="hasInternet" id="hasInternet" type="checkbox"  /><span id="utility_3">Internet</span>
+			                <input name="hasInternet" id="hasInternet" type="checkbox"  /><span id="utility_3"><%= t("properties.internet") %></span>
 			                </label>
 
 			                <!--
@@ -259,18 +275,18 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-xs-3">Gender required</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"><%= t("properties.gender_required") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div class="btn-group" data-toggle="buttons">
 			                <label class="btn btn-default active">
-			                <input name="gender" type="radio" value="0" checked /><span id="gender_0">None</span>
+			                <input name="gender" type="radio" value="0" checked /><span id="gender_0"><%= t("properties.none") %></span>
 			                </label>
 			                <label class="btn btn-default">
-			                <input id="" name="gender" type="radio" value="1" /><span id="gender_1">Women only</span>
+			                <input id="" name="gender" type="radio" value="1" /><span id="gender_1"><%= t("properties.women_only") %></span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input id="" name="gender" type="radio" value="2" /><span id="gender_2">Men only</span>
+			                <input id="" name="gender" type="radio" value="2" /><span id="gender_2"><%= t("properties.men_only") %></span>
 			                </label>
 
 		            	</div>
@@ -279,22 +295,22 @@
 				</div>
 
 				<div id="pets" class="form-group">
-					<label class="control-label col-xs-3">Pets allowed</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"><%= t("properties.pets_allowed") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<div class="btn-group" data-toggle="buttons">
 			                <label class="btn btn-default active">
-			                <input name="pet" type="radio" value="0"  checked/><span id="pet_0">No</span>
+			                <input name="pet" type="radio" value="0"  checked/><span id="pet_0"><%= t("properties.no_") %></span>
 			                </label>
 			                <label class="btn btn-default">
-			                <input name="pet" type="radio" value="1" /><span id="pet_1">Cat</span>
+			                <input name="pet" type="radio" value="1" /><span id="pet_1"><%= t("properties.cat") %></span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input  name="pet" type="radio" value="2" /><span id="pet_2">Dog</span>
+			                <input  name="pet" type="radio" value="2" /><span id="pet_2"><%= t("properties.dog") %></span>
 			                </label>
 
 			                <label class="btn btn-default ">
-			                <input name="pet" type="radio" value="3" /><span id="pet_3">All kinds</span>
+			                <input name="pet" type="radio" value="3" /><span id="pet_3"><%= t("properties.all_kinds") %></span>
 			                </label>
 
 		            	</div>
@@ -308,24 +324,24 @@
 			<div class="col-md-6 col-xs-12">
 
 				<div class="form-group">
-					<label class="control-label col-xs-3">* Description</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3">* <%= t("properties.description") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<textarea id="description_input" class="form-control" rows="16"></textarea>
 					</div>
 				</div>
 
 
 				<div class="form-group">
-					<label class="control-label col-xs-3">* Contact Name</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3">* <%= t("properties.contact_name") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<input id="contact_name_input" type="text" class="form-control" value="<%=  current_user.name%>">
 						
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-xs-3">* Contact Email</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3">* <%= t("properties.contact_email") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<input id="contact_email_input" type="text" class="form-control" value="<%=  current_user.email%>">
 						<span class="help-block"><input id="contact_email_ckb"type="checkbox" checked/> Public (Public option.... .)</span>
 					</div>
@@ -335,15 +351,15 @@
 					
 
 				<div class="form-group">
-					<label class="control-label col-xs-3"> Contact Phone</label>
-					<div class="col-xs-9">
+					<label class="control-label col-sm-3"> <%= t("properties.contact_phone") %></label>
+					<div class="col-sm-9 col-xs-12">
 						<input id="contact_phone_input" type="text" class="form-control">
 						
 					</div>
 				</div>
 
 				<div class="pull-right">
-					<button type="button" class="btn btn-primary" id="step_1_con"s>Continue</button>
+					<button type="button" class="btn btn-primary" id="step_1_con"s><%= t("properties.continue") %></button>
 				</div>	
 
 
@@ -373,7 +389,7 @@
 						<div class="radio">
 		  					<label>
 		    				<input  type="radio" name="radio_addr" id="radio_exactly_addr" value="0">
-		    				exactly address
+		    				<%= t("properties.exactly_addr") %>
 		  					</label>
 						</div>
 					</div>
@@ -383,7 +399,7 @@
 						<div class="radio">
 							<label>
 		    				<input type="radio" name="radio_addr" id="radio_blur_addr" value="1">
-		    				blur address
+		    				<%= t("properties.blur_addr") %>
 		  					</label>
 		  				</div>	
 		  			</div>	
@@ -403,39 +419,39 @@
 					</div>	
 
 					<div class="form-group">
-						<label class="control-label col-xs-3">* Address</label>
-						<div class="col-xs-9">
+						<label class="control-label col-sm-3">* <%= t("properties.address1") %></label>
+						<div class="col-sm-9 col-xs-12">
 							<input id="address1_input" type="text" class="form-control">
 							
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-xs-3"><span class="star hide">* </span>Address</label>
-						<div class="col-xs-9">
+						<label class="control-label col-sm-3"><span class="star hide">* </span><%= t("properties.address2") %></label>
+						<div class="col-sm-9 col-xs-12">
 							<input id="address2_input" type="text" class="form-control">
 							
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-xs-3">* City</label>
-						<div class="col-xs-9">
+						<label class="control-label col-sm-3">* <%= t("properties.city") %></label>
+						<div class="col-sm-9 col-xs-12">
 							<input id="city_input" type="text" class="form-control">
 							
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="control-label col-xs-3">* State</label>
-						<div class="col-xs-9">
+						<label class="control-label col-sm-3">* <%= t("properties.state") %></label>
+						<div class="col-sm-9 col-xs-12">
 						<%= render 'layouts/state_picker' %>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-xs-3">* Zipcode</label>
-						<div class="col-xs-9">
+						<label class="control-label col-sm-3">* <%= t("properties.zipcode") %></label>
+						<div class="col-sm-9 col-xs-12">
 							<input id="zipcode_input" type="text" class="form-control">
 							
 						</div>
@@ -454,7 +470,7 @@
 
 
               	<button type="button" class="btn btn-warning col-md-4 col-md-offset-4" id="trigger_select_btn">
-                <span class="glyphicon glyphicon-folder-open"></span><div>  Upload photo</div> 
+                <span class="glyphicon glyphicon-folder-open"></span><div>  <%= t("properties.upload_photo") %></div> 
               	</button>
 
               	
@@ -503,8 +519,8 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="pull-right">
-					<button type="button" class="btn btn-link" id="step_2_pre">Previous</button>
-					<button type="button" class="btn btn-primary" id="step_2_con">Continue</button>
+					<button type="button" class="btn btn-link" id="step_2_pre"><%= t("properties.previous") %></button>
+					<button type="button" class="btn btn-primary" id="step_2_con"><%= t("properties.continue") %></button>
 				</div>	
 
 			</div>	
@@ -585,15 +601,15 @@
             <table class="table table-bordered table-striped">
             			<tbody>
             				<tr>
-            					<td>Contact Name</td>
+            					<td><%= t("properties.contact_name") %></td>
             					<td> <%= f.text_field :contact_name, :class => "non-input", :readonly => "readonly" %></td>
             				</tr>
             				<tr>
-            					<td>Contact Email</td>
+            					<td><%= t("properties.contact_phone") %></td>
             					<td> <%= f.text_field :contact_phone, :class => "non-input", :readonly => "readonly" %></td>
             				</tr>
             				<tr>
-            					<td>Contact Phone</td>
+            					<td><%= t("properties.email") %></td>
             					<td> <%= f.text_field :contact_email, :class => "non-input", :readonly => "readonly" %></td>
             				</tr>
         
@@ -610,13 +626,13 @@
         <!-- sliders for images -->
         <div class="col-lg-6">
 
-            <span><h3 class="top_h3"> Description </h3> </span>  
+            <span><h3 class="top_h3"> <%= t("properties.description") %> </h3> </span>  
                 <div id="p_description"></div>
          
 
                 <%= f.text_area :description, :cols => "80",:rows => "10", :class => "non-input", :readonly => "readonly"%>
 
-            <span><h3> Information </h3> </span> 
+            <span><h3> <%= t("properties.information") %> </h3> </span> 
             
          
             <div class="row">
@@ -625,17 +641,24 @@
             		<table id="table1" class="table table-bordered table-striped">
             			
             				<tr>
-            					<td>Type</td>
+            					<td><%= t("properties.type") %></td>
             					<td><div id="property_category"></div> 
             					</td>
             				</tr>
-            				<tr>
-            					<td>Bed</td>
+            				
+
+            				<tr class="hide" id="tr_studio">
+            					<td><%= t("properties.room") %></td>
+            					<td>Studio</td>
+            				</tr>	
+
+            				<tr id="tr_bed">
+            					<td><%= t("properties.bed") %></td>
             					<td> <%= f.text_field :bed, :class => "non-input", :readonly => "readonly" %>
             					</td>
             				</tr>
-            				<tr>
-            					<td>Bath</td>
+            				<tr id="tr_bath">
+            					<td><%= t("properties.bath") %></td>
             					<td><%= f.text_field :bath, :class => "non-input", :readonly => "readonly" %>
             					</td>
             				</tr>
@@ -648,7 +671,7 @@
             	<div class="col-lg-6">
             		<table id="table2"  class="table table-bordered table-striped">
             				<tr>
-            					<td>Price</td>
+            					<td><%= t("properties.price") %></td>
             					<td>$ <%= f.text_field :price, :class => "non-input", :readonly => "readonly" %> 
             					</td>
             				</tr>
@@ -668,8 +691,8 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="pull-right">
-					<button type="button" class="btn btn-link" id="step_3_pre">Previous</button>
-					<button type="submit" class=" btn btn-success btn-lg" id="step_3_pub">Looks good ! Publish</button>
+					<button type="button" class="btn btn-link" id="step_3_pre"><%= t("properties.previous") %></button>
+					<button type="submit" class=" btn btn-success btn-lg" id="step_3_pub"><%= t("properties.publish") %></button>
 				</div>	
 
 			</div>	

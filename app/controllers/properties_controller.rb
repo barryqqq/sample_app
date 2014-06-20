@@ -104,7 +104,8 @@ class PropertiesController < ApplicationController
 	    	flash[:danger] = "Property cant be deleted !!"	
 	    end
 	    	
-    	redirect_to properties_url
+    	#redirect_to properties_url
+    	redirect_to(:back)
 	end 
 
 

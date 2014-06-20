@@ -21,7 +21,7 @@
 
 
 
-<h3 > Location </h3>
+<h3 > <%= t('properties.location')%> </h3>
 
             
   <%= form_for(@property, :html => { :class => "form-horizontal" }) do |f|  %>
@@ -31,7 +31,7 @@
         	<div class="col-xs-6 col-md-6 form-group">
             	<label class="radio">
                 <%= radio_button :property, :radio_addr, "0", :class => "radio_addr_1" %> 
-                exactly address
+                <%= t('properties.exactly_addr')%>
 
              <!--  
   					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>exactly address
@@ -42,7 +42,7 @@
             <div class="col-xs-6 col-md-6 form-group">
             	<label class="radio">
                 <%= radio_button :property, :radio_addr, "1", :class => "radio_addr_2" %> 
-                blur address
+                <%= t('properties.blur_addr')%>
             <!--    
   					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
   						blur address
@@ -61,7 +61,7 @@
                   <!--
                 	<label class="control-label col-xs-3" for="addr_1">Address : </label>
                 -->
-                  <%= f.label :address1, "Address :", :class => "control-label col-lg-3" %>
+                  <%= f.label :address1,t('properties.address1'), :class => "control-label col-lg-3" %>
 
                     <div class="col-lg-8 col-xs-12">
                       <%= f.text_field :address1, :value => @property.address1, :class => "form-control group1", :placeholder => "Address" %>
@@ -73,7 +73,7 @@
                 </div>
                 
                 <div class="form-group">
-                  <%= f.label :address2, "Address :", :class => "control-label col-lg-3" %>
+                  <%= f.label :address2, t('properties.address2'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                     	 <%= f.text_field :address2, :value => @property.address2, :class => "form-control group1", :placeholder => "Address" %>
                     </div>	
@@ -81,7 +81,7 @@
                 
                 <div class="form-group">
                 	
-                  <%= f.label :city, "City :", :class => "control-label col-lg-3" %>
+                  <%= f.label :city, t('properties.city'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                         <%= f.text_field :city, :value => @property.city, :class => "form-control group1", :placeholder => "City" %>
                     </div>	
@@ -90,7 +90,7 @@
 
                 <div class="form-group">
                   
-                  <%= f.label :state, "State :", :class => "control-label col-lg-3" %>
+                  <%= f.label :state, t('properties.state'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12 e_state">
                         <%#= f.text_field :state, :value => @property.state, :class => "form-control group1", :placeholder => "State" %>
                         <%= render 'layouts/state_picker' %>
@@ -100,7 +100,7 @@
                 
                 <div class="form-group">
                 	
-                  <%= f.label :zipcode, "Zipcode :", :class => "control-label col-lg-3" %>
+                  <%= f.label :zipcode, t('properties.zipcode'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                         <%= f.text_field :zipcode, :value => @property.zipcode, :class => "form-control group1", :placeholder => "Zipcode" %>
                     </div>	
@@ -118,7 +118,7 @@
           
           		<div class="form-group">
                 	
-                  <%= f.label :b_address1, "Address :", :class => "control-label col-lg-3" %>
+                  <%= f.label :b_address1, t('properties.street1'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                         
                       <%= f.text_field :b_address1, :value => @property.b_address1, :class => "form-control group2", :placeholder => "Street 1", :disabled => "disabled" %>
@@ -128,7 +128,7 @@
                 
                 <div class="form-group">
                 	
-                  <%= f.label :b_address2, "Address :",:class => "control-label col-lg-3" %>
+                  <%= f.label :b_address2, t('properties.street2'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                     	
                        <%= f.text_field :b_address2, :value => @property.b_address2, :class => "form-control group2", :placeholder => "Street 2", :disabled => "disabled" %>
@@ -137,7 +137,7 @@
                 
                 <div class="form-group">
                 	
-                  <%= f.label :b_city, "City :", :class => "control-label col-lg-3" %>
+                  <%= f.label :b_city, t('properties.city'), :class => "control-label col-lg-3" %>
 
                     <div class="col-lg-8 col-xs-12">
                        
@@ -148,7 +148,7 @@
 
                 <div class="form-group">
                   
-                  <%= f.label :b_state, "State :", :class => "control-label col-lg-3" %>
+                  <%= f.label :b_state, t('properties.state'), :class => "control-label col-lg-3" %>
 
                     <div class="col-lg-8 col-xs-12 b_state">
                        
@@ -159,7 +159,7 @@
                 </div>
                 
                 <div class="form-group">
-                  <%= f.label :b_zipcode, "Zipcode :", :class => "control-label col-lg-3" %>
+                  <%= f.label :b_zipcode, t('properties.zipcode'), :class => "control-label col-lg-3" %>
                     <div class="col-lg-8 col-xs-12">
                        
                         <%= f.text_field :b_zipcode, :value => @property.b_zipcode, :class => "form-control group2", :placeholder => "Zipcode", :disabled => "disabled" %>
@@ -173,26 +173,26 @@
         </div><!-- row -->
 
         
-        <h3> Information </h3>
+        <h3> <%= t('properties.information') %> </h3>
 
        	<div class="row">
           <div class="col-md-6 col-xs-12">
 
             <div class="form-group">
-              <label class="control-label col-xs-3">* type</label>
+              <label class="control-label col-xs-3">* <%= t('properties.type') %></label>
               <div class="col-xs-9">
                 
                 <div id="type" class="btn-group" data-toggle="buttons">
                   <label id="type_0_label" class="btn btn-default">
-                    <input name="property[category]" type="radio" value="0" id="type_0"/><span >Rent</span>
+                    <input name="property[category]" type="radio" value="0" id="type_0"/><span ><%= t('properties.rent') %></span>
                   </label>
 
                   <label id="type_1_label" class="btn btn-default">
-                    <input name="property[category]" type="radio" value="1" id="type_1"/><span >Shared Apt.</span>
+                    <input name="property[category]" type="radio" value="1" id="type_1"/><span ><%= t('properties.shared_apt') %></span>
                   </label>
 
                   <label id="type_2_label" class="btn btn-default ">
-                    <input name="property[category]" type="radio"value="2" id="type_2" /><span >Sublease</span>
+                    <input name="property[category]" type="radio"value="2" id="type_2" /><span ><%= t('properties.sublease') %></span>
                   </label>
 
                 </div>
@@ -200,7 +200,7 @@
             </div> 
 
             <div class="form-group">
-              <label class="control-label col-xs-3"> Date</label>
+              <label class="control-label col-xs-3"> <%= t('properties.date') %></label>
               <div class="col-xs-9">
                 <div class="input-daterange datepicker input-group" id="">
 
@@ -208,11 +208,11 @@
                               <span class="glyphicon glyphicon-calendar"></span>
                           </span>
 
-                    <input type="text" class="form-control" name="property[start_date]" id="start_date" placeholder="Start Date"/>
+                    <input type="text" class="form-control" name="property[start_date]" id="start_date" placeholder="<%= t('properties.start_date') %>"/>
                   
                     <span id="to_span" class="input-group-addon non-visibile"> to </span>
                   
-                    <input type="text" class="form-control non-visibile" name="property[end_date]" id="end_date" placeholder="End Date"/>
+                    <input type="text" class="form-control non-visibile" name="property[end_date]" id="end_date" placeholder="<%= t('properties.end_date') %>"/>
                   
                   </div>
                 
@@ -220,15 +220,15 @@
             </div>
 
             <div class="form-group">
-              <label class="control-label col-xs-3">* Room</label>
+              <label class="control-label col-xs-3">* <%= t('properties.room') %></label>
               <div class="col-xs-9">
                 <div class="input-group">
               
-                  <span class="input-group-addon"> Bed </span>
+                  <span class="input-group-addon"> <%= t('properties.bed') %> </span>
                   <%= f.text_field :bed, :value => @property.bed, :class => "form-control", :placeholder => "Number" %>
                   
 
-                  <span class="input-group-addon"> Bath </span>
+                  <span class="input-group-addon"> <%= t('properties.bath') %> </span>
                   <%= f.text_field :bath, :value => @property.bath, :class => "form-control", :placeholder => "Number" %>
                   
                      
@@ -238,7 +238,7 @@
             </div>
 
             <div id="people" class="form-group hide">
-              <label class="control-label col-xs-3"> People</label>
+              <label class="control-label col-xs-3"> <%= t('properties.people') %></label>
               <div class="col-xs-9">
                 <input id="slider" name="property[people]" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="<%= @property.people %>" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show" >
                 
@@ -247,7 +247,7 @@
             </div>
 
             <div class="form-group">
-              <label class="control-label col-xs-3">* Price</label>
+              <label class="control-label col-xs-3">* <%= t('properties.price') %></label>
               <div class="col-xs-9">
                 <div class="input-group">
                   <span class="input-group-addon">
@@ -263,7 +263,7 @@
         
 
             <div id="deposit" class="form-group">
-              <label class="control-label col-xs-3">Deposit</label>
+              <label class="control-label col-xs-3"><%= t('properties.deposit') %></label>
               <div class="col-xs-9">
 
                 <div class="input-group">
@@ -292,7 +292,7 @@
           <div class="col-md-6 col-xs-12">
 
             <div id="contract" class="form-group">
-              <label class="control-label col-xs-3">Contract</label>
+              <label class="control-label col-xs-3"><%= t('properties.contract') %></label>
               <div class="col-xs-9">
                 <div class="input-group">
                   <span class="input-group-addon">
@@ -311,7 +311,7 @@
             </div>
 
             <div id="broker_fee" class="form-group">
-              <label class="control-label col-xs-3">Broker Fee</label>
+              <label class="control-label col-xs-3"><%= t('properties.broker_fee') %></label>
               <div class="col-xs-9">
                 <div class="input-group">
                   <span class="input-group-addon">
@@ -330,27 +330,29 @@
             </div>
 
             <div id="utility" class="form-group">
-              <label class="control-label col-xs-3">Utilities</label>
+              <label class="control-label col-xs-3"><%= t('properties.utilities') %></label>
               <div class="col-xs-9">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-default" id="utility_0_label">
-                  <input name="property[utility]" type="radio" value="0" id="utility_0"/><span >None</span>
+                  <input name="property[utility]" type="radio" value="0" id="utility_0"/><span ><%= t('properties.none') %></span>
                   </label>
                   <label class="btn btn-default" id="utility_1_label">
-                  <input name="property[utility]" type="radio" value="1" id="utility_1" /><span >Electrocity</span>
+                  <input name="property[utility]" type="radio" value="1" id="utility_1" /><span ><%= t('properties.electricity') %></span>
                   </label>
 
                   <label class="btn btn-default" id="utility_2_label">
-                  <input name="property[utility]" type="radio" value="2" id="utility_2" /><span >Heat</span>
+                  <input name="property[utility]" type="radio" value="2" id="utility_2" /><span ><%= t('properties.heat') %></span>
                   </label>
 
                   <label class="btn btn-default" id="utility_3_label">
-                  <input name="property[utility]" type="radio" value="3" id="utility_3" /><span >Internet</span>
+                  <input name="property[utility]" type="radio" value="3" id="utility_3" /><span ><%= t('properties.internet') %></span>
                   </label>
 
+                  <!--
                   <label class="btn btn-default" id="utility_4_label">
                   <input  name="property[utility]" type="radio" value="4" id="utility_4"/><span >All</span>
                   </label>
+                  -->
 
                 </div>
                 <span class="help-block"> including ........ </span>
@@ -360,18 +362,18 @@
 
 
             <div class="form-group">
-              <label class="control-label col-xs-3">Gender required</label>
+              <label class="control-label col-xs-3"><%= t('properties.gender_required') %></label>
               <div class="col-xs-9">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-default" id="gender_0_label">
-                  <input name="property[gender]" type="radio" value="0" id="gender_0"/><span id="gender_0">None</span>
+                  <input name="property[gender]" type="radio" value="0" id="gender_0"/><span id="gender_0"><%= t('properties.none') %></span>
                   </label>
                   <label class="btn btn-default" id="gender_1_label">
-                  <input id="" name="property[gender]" type="radio" value="1" id="gender_1"/><span >Woman only</span>
+                  <input id="" name="property[gender]" type="radio" value="1" id="gender_1"/><span ><%= t('properties.women_only') %></span>
                   </label>
 
                   <label class="btn btn-default " id="gender_2_label">
-                  <input id="" name="property[gender]" type="radio" value="2" id="gender_2"/><span >Man only</span>
+                  <input id="" name="property[gender]" type="radio" value="2" id="gender_2"/><span ><%= t('properties.men_only') %></span>
                   </label>
 
                 </div>
@@ -380,22 +382,23 @@
             </div>
 
             <div id="pets" class="form-group">
-              <label class="control-label col-xs-3">Pets allowed</label>
+              <label class="control-label col-xs-3"><%= t('properties.pets_allowed') %></label>
               <div class="col-xs-9">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-default" id="pet_0_label">
-                  <input name="property[pet]" type="radio" value="0" id="pet_0" /><span >No</span>
+                  <input name="property[pet]" type="radio" value="0" id="pet_0" /><span >
+                  <%= t('properties.no_') %></span>
                   </label>
                   <label class="btn btn-default" id="pet_1_label">
-                  <input name="property[pet]" type="radio" value="1" id="pet_1" /><span >Cat</span>
+                  <input name="property[pet]" type="radio" value="1" id="pet_1" /><span ><%= t('properties.cat') %></span>
                   </label>
 
                   <label class="btn btn-default " id="pet_2_label">
-                  <input  name="property[pet]" type="radio" value="2" id="pet_2"/><span >Dog</span>
+                  <input  name="property[pet]" type="radio" value="2" id="pet_2"/><span ><%= t('properties.dog') %></span>
                   </label>
 
                   <label class="btn btn-default " id="pet_3_label">
-                  <input name="property[pet]" type="radio" value="3" id="pet_3"/><span >All kinds</span>
+                  <input name="property[pet]" type="radio" value="3" id="pet_3"/><span ><%= t('properties.all_kinds') %></span>
                   </label>
 
                 </div>
@@ -411,7 +414,7 @@
 
        
 
-        <h3> Description </h3>
+        <h3> <%= t('properties.description') %> </h3>
         <div id="description_section" class="form-group">	
           <%= f.text_area :description, :value => @property.description, :class => "form-control", :rows => "15", :placeholder => "!@#$%^&*()(*&^%$#@#$%^&" %>
         </div>
@@ -425,7 +428,7 @@
           <div class="row">
             <div class="col-xs-12">
               <button type="button" class="btn btn-warning col-md-4 col-md-offset-4" id="trigger_select_btn">
-                <span class="glyphicon glyphicon-folder-open"></span><div>  Upload photo</div> 
+                <span class="glyphicon glyphicon-folder-open"></span><div>  <%= t('properties.upload_photo') %></div> 
               </button>
             </div>
             <hr>
@@ -491,11 +494,11 @@
          <!-- /////////////////////-->
        
          
-         <h3> Contact Infomation </h3>
+         <h3> <%= t('properties.contact_information') %> </h3>
          
              <div class="row">
                 <div class="col-xs-12 col-md-12 form-group" >
-                  <%= f.label :contact_name, "Name :", :class => "control-label col-md-2" %>
+                  <%= f.label :contact_name, t('properties.contact_name'), :class => "control-label col-md-2" %>
                        
                     <div class="col-lg-6">
                         <%= f.text_field :contact_name, :class => "form-control", :value => @property.contact_name %>
@@ -503,7 +506,7 @@
                 </div>  
 
                 <div class="col-xs-12 col-md-12 form-group" >
-                  <%= f.label :contact_email, "Email :", :class => "control-label col-md-2" %>
+                  <%= f.label :contact_email, t('properties.contact_email'), :class => "control-label col-md-2" %>
                        
                     <div class="col-lg-6">
                         <%= f.text_field :contact_email, :class => "form-control", :value => @property.contact_email %>
@@ -513,7 +516,7 @@
                 <div class="col-xs-12 col-md-12 form-group" >
                 
                      
-                    <%= f.label :contact_phone, "Phone :", :class => "control-label col-md-2" %>
+                    <%= f.label :contact_phone, t('properties.contact_phone'), :class => "control-label col-md-2" %>
                     <div class="col-lg-6 ">
                       <%= f.text_field :contact_phone, :value => @property.contact_phone, :class => "form-control", :placeholder => "xxx-xxx-xxxx" %>
                        
@@ -525,9 +528,9 @@
 
           
         <div class="pull-right">
-         	<%= link_to "Cancel", :back %>
+         	<%= link_to t('form.cancel'), :back %>
           <%#= f.submit "Update", class: "" %>
-          <button id="update_btn" type="button" class="btn btn-success btn-large">Update</button>
+          <button id="update_btn" type="button" class="btn btn-success btn-large"><%= t('properties.update')%></button>
         </div>
 
         <!-- record user ip -->

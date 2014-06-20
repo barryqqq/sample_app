@@ -4,18 +4,18 @@ module UsersHelper
 	def add_or_change_avatar(user)
 		
 		if user.avatar_file_name != nil || user.fb_image != nil
-			"Change your avatar"
+			t("users.show.change_avatar")
 		else
-			"Add your avatar"
+			t('users.show.add_avatar')
 		end	
 		
 	end	
 
 	def show_gender(gender)
 		if gender == 1
-			"Male"
+			t('form.male')
 		elsif gender == 0
-			"Female"
+			t('form.female')
 		end		
 	end	
 
@@ -29,15 +29,15 @@ module UsersHelper
 		
 	def show_education(edu)
 		if edu == "hs"
-			"High School"
+			t('users.show.high_school')
 		elsif edu == "cc"
-			"College Credit"
+			t('users.show.college_credit')
 		elsif edu == "bd"
-			"Bachelor's Degree"
+			t('users.show.bachelor_degree')
 		elsif edu == "md"
-			"Master's Degree"
+			t('users.show.master_degree')
 		elsif edu == "dd"
-			"Doctorate Degree"	
+			t('users.show.doctorate_degree')
 		end			
 	end
 
@@ -48,7 +48,7 @@ module UsersHelper
 		else
 			link_to omniauth_authorize_path("user", "facebook") do 
 			raw("<button class='btn btn-sm fb-color' type='button'><i class='fa fa-facebook-square fa-2x'></i> 
-				<span class=''>&nbsp;&nbsp;CONNECT WITH FACEBOOK</span></button>") 
+				<span class=''>&nbsp;&nbsp; #{ t('users.show.connect_w_fb') } </span></button>") 
 				  			
 			end 
 

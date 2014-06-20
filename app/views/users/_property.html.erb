@@ -16,11 +16,11 @@
     <div class="row">
     <div class="pull-right">
         <div class="dropdown">
-            <a data-toggle="dropdown" href="#" class="btn btn-default btn-xs">Options <span class="caret"></span></a>
+            <a data-toggle="dropdown" href="#" class="btn btn-default btn-xs"><%= t("users.show.options")%> <span class="caret"></span></a>
             <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
-                <li><a href="<%= edit_property_path(p) %>"><i class="fa fa-pencil"></i>&nbsp;Edit</a></li>
+                <li><a href="<%= edit_property_path(p) %>"><i class="fa fa-pencil"></i>&nbsp;<%= t("form.edit")%></a></li>
                 <li>
-                    <%= link_to p, method: :delete, data: {confirm: "Are you sure to delete this property ? "} do %> <span class="text-danger"><i class="fa fa-trash-o"></i>&nbsp;Delete</span>
+                    <%= link_to p, method: :delete, data: {confirm: "#{t('form.delete_confirm')}" } do %> <span class="text-danger"><i class="fa fa-trash-o"></i>&nbsp;<%= t("form.delete")%></span>
                     <% end %>
                 </li>
 

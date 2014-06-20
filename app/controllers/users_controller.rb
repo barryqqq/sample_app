@@ -44,8 +44,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     #@microposts = @user.microposts.paginate(page: params[:page])
+
+    #my posts
     @properties = @user.properties.paginate(page: params[:property_page], :per_page => 8).order('created_at DESC')
-    @collections = @user.properties.joins(:collections).paginate(page: params[:collection_page], :per_page => 2).order('created_at DESC')
+    
+    # my favorite list
+    @collections = Property.joins(:collections).where(collections: {user_id: @user.id}).paginate(page: params[:collection_page], :per_page => 4).order('created_at DESC')
+    
 
     #if signed_in?
       #@post = current_user.microposts.build

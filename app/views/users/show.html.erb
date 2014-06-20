@@ -56,7 +56,7 @@
 	            
 	            <div class="col-xs-6 text-right">
 	            	<a data-toggle="modal" data-target="#myModal-profile">	
-	              		<span class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> Edit profile</span>
+	              		<span class="btn btn-default btn-xs"><i class="fa fa-pencil"></i> <%= t("users.show.edit_profile") %></span>
 	              	</a>	
 	            </div>
 	          </div>
@@ -68,19 +68,19 @@
 	      <table class="table">
 	      	<tbody>
 	      		<tr>
-	      			<td>Name</td>
+	      			<td><%= t("form.name") %></td>
 	      			<td><strong><%= @user.name %></strong></td>
 	      			<td></td>
 	      		</tr>
 
 	      		<tr>
-	      			<td>First Name</td>
+	      			<td><%= t("form.first_name") %></td>
 	      			<td><strong><%= @user.first_name %></strong></td>
 	      			<td></td>
 	      		</tr>
 
 	      		<tr>
-	      			<td>Last Name</td>
+	      			<td><%= t("form.last_name") %></td>
 	      			<td><strong><%= @user.last_name %></strong></td>
 	      			<td></td>
 	      		</tr>
@@ -91,44 +91,44 @@
 	      			<td></td>
 	      		</tr>
 	      		<tr>
-	      			<td>Phone</td>
+	      			<td><%= t("form.phone") %></td>
 	      			<td><strong><%= @user.phone %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
-	      			<td>Birthday</td>
+	      			<td><%= t("form.birthday") %></td>
 	      			<td><strong><%= @user.birthday %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
-	      			<td>Gender</td>
+	      			<td><%= t("form.gender") %></td>
 	      			<td><strong><%= show_gender @user.gender %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
-	      			<td>Language</td>
+	      			<td><%= t("form.language") %></td>
 	      			<td><strong><%= show_language @user.language %></strong></td>
 	      			<td></td>
 	      		</tr>	
 	      		<tr>
-	      			<td>Education</td>
+	      			<td><%= t("form.education") %></td>
 	      			<td><strong><%= show_education @user.education %></strong></td>
 	      			<td></td>
 	      		</tr>
 	      		<tr>
-	      			<td>Work</td>
+	      			<td><%= t("form.work") %></td>
 	      			<td><strong><%= @user.work %></strong></td>
 	      			<td></td>
 	      		</tr>
 	      		<tr>
-	      			<td>Location</td>
+	      			<td><%= t("form.location") %></td>
 	      			<td><strong><%= @user.location %></strong></td>
 	      			<td></td>
 	      		</tr>
 
 	      		
 	      		<tr>
-	      			<td>Facebook Account</td>
+	      			<td><%= t("form.fb_account") %></td>
 	      			<td>
 	      				<%= fb_id_or_connect @user %>	      				
 	      			</td>
@@ -147,7 +147,7 @@
 	<div class="col-md-5">
 		<% if @collections.present? %>	
 			<div class="panel panel-primary">
-				<div class="panel-heading"><span class="glyphicon glyphicon-heart red"></span>&nbsp; My Favorite List</div>
+				<div class="panel-heading"><span class="glyphicon glyphicon-heart red"></span>&nbsp;<%= t("users.show.my_fav_list")%></div>
 			  	<div class="panel-body ">		
 			    	<%= render '/users/collection' %>
 			  	</div>
@@ -159,7 +159,7 @@
 
 		<% if @properties.present? %>
 			<div class="panel panel-success">
-				<div class="panel-heading"><i class="fa fa-building-o"></i>&nbsp; My Post List</div>
+				<div class="panel-heading"><i class="fa fa-building-o"></i>&nbsp;<%= t("users.show.my_posts_list")%></div>
 			  	<div class="panel-body">
 					<%= render '/users/property' %>    			
 			  	</div>
@@ -180,7 +180,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"> Update your Profile</h4>
+        <h4 class="modal-title" id="myModalLabel"> <%= t("users.show.edit_profile") %></h4>
       </div>
       <div class="modal-body">
         <%= render '/users/edit' %>
