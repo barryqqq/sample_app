@@ -110,21 +110,21 @@ class Property < ActiveRecord::Base
 	 # the full_address method
 	def full_address
 
-  	#{}"#{address1}, #{city}, #{state}, #{zipcode}, #{country}"
+  	# "#{address1}, #{city}, #{state}, #{zipcode}, #{country}"
   	if radio_addr == '0' then
 			"#{address1}, #{city}, #{state}, #{zipcode}"
 		elsif radio_addr == '1' then
-			"#{b_address1}, #{b_address2}, #{b_city}, #{b_state}, #{b_zipcode}"
+			"#{b_address1} and #{b_address2}, #{b_city}, #{b_state}, #{b_zipcode}"
 		end	
 	end
 
 	def all_address
-    "#{address1}, #{address2}, #{city}, #{state}, #{zipcode}"
+    # "#{address1}, #{address2}, #{city}, #{state}, #{zipcode}"
 		if radio_addr == '0' then
 			"#{address1}, #{address2}, #{city}, #{state}, #{zipcode}"
 		elsif radio_addr == '1' then
-		#	"#{b_address1}, #{b_address2}, #{b_city}, #{b_state}, #{b_zipcode}"
-			"#{b_address1}, #{b_address2}, #{b_state}"
+			"#{b_address1} and #{b_address2}, #{b_city}, #{b_state}, #{b_zipcode}"
+		#	"#{b_address1}, #{b_address2}, #{b_state}"
 		end	
 	end
 

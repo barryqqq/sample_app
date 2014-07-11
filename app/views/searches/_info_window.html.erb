@@ -11,7 +11,7 @@
 
 
     <ul class='list-unstyled'>    
-        <li > <strong> <%= property.city.upcase %>, <%= property.state.upcase %> </strong></li>   
+        <li > <strong> <%= render_city_state property %> </strong></li>   
         
         <li> <%= price_on_type property.price, property.category %> </li>
       
