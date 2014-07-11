@@ -233,7 +233,7 @@ class PropertiesController < ApplicationController
 		def ensure_permission
 			property = Property.find(params[:id])
 			user = User.find(property.user_id)
-			if current_user != user then
+			if current_user != user && !current_user.try(:admin?) then
 				flash[:warning] = "You can not pass."
 				redirect_to root_url
 			end	

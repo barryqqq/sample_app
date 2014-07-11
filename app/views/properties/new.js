@@ -273,10 +273,15 @@
 			$( "#people" ).removeClass('hide');
 
 			//set up slider	
-			$('#slider').slider()
-  				.on('slide', function(ev){
+			//$('#slider').slider()
+  			//	.on('slide', function(ev){
     
-  			});
+  			//			});
+  			$("#slider").slider({
+				//tooltip: 'always'
+			});
+	
+
 
   			$( "#deposit" ).addClass('hide');
   			$( "#contract" ).addClass('hide');

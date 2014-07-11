@@ -10,7 +10,7 @@
 
 
 
-    <ul class="list-unstyled">    
+    <ul class='list-unstyled'>    
         <li > <strong> <%= property.city.upcase %>, <%= property.state.upcase %> </strong></li>   
         
         <li> <%= price_on_type property.price, property.category %> </li>
@@ -20,9 +20,9 @@
         <li> <%= pluralize(property.bed, "  Bed") %>/ <%= pluralize(property.bath, "  Bath") %></li>
 
     </ul>
-
+    <a href='/properties/<%= property.id %>'>Details</a>
+   
     
-    <button id="<%= property.id %>" type="button" class="property_item"> Detail </button>
 
    
 

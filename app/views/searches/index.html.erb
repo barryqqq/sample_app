@@ -9,10 +9,10 @@
 
     #map-canvas {
         width:100%;
-        height:600px ;
+        height:800px ;
         margin: 0px;
         padding: 0px;
-        margin-top: 138px;
+        
       }
 
     .img_size {
@@ -319,14 +319,14 @@
 
 
 
- <!-- response area --> 
+<!-- response area 
     <div class="well-small ">
 
         <div id="msg" style="margin-left: 15px;"><h4> You are looking for the properties near  <%= @search_query %></h4>We found : <%= pluralize(@count, "record") %>  
         </div>
     </div>
 
-<!-- /response area -->
+/response area -->
 
 <!-- detail -->
 
@@ -346,8 +346,17 @@
     </div>
 
     <div class="col-lg-5 ">
+        <!-- response area --> 
+            <div class="well-small ">
+
+                <div id="msg" style="margin-left: 15px;"><h4> You are looking for the properties near  <%= @search_query %></h4>We found : <%= pluralize(@count, "record") %>  
+                </div>
+            </div>
+
+        <!-- /response area -->
         
         <div id="items"><%= render '/searches/property' %></div>
+       
     </div>
    
 </div>    

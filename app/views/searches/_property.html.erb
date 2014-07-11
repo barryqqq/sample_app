@@ -1,6 +1,6 @@
-<% if @properties.present? %>
-    <%= will_paginate @properties %>
-<% end %>    
+<%# if @properties.present? %>
+    <%#= will_paginate @properties %>
+<%# end %>    
 
     <div class="row">
         <div class="col-lg-12">
@@ -9,11 +9,15 @@
     </div>     
 
 
+<div class="panel-group" id="accordion">
 
 <% if @properties.present? %>
      <% @properties.each do |p| %>
+    <div class="panel"> 
+    <div class="panel-heading"> 
+    <!-- <a id="<%= p.id %>" href="#msg" class="property_item" > -->
+    <a data-toggle="collapse" data-parent="#accordion" href="#<%= p.id %>">
 
-    <a id="<%= p.id %>" href="#msg" class="property_item">
     
     <div class="row box list-group-item "> 
 
@@ -51,10 +55,89 @@
 
     </div><!-- /row --> 
     </a>
+    </div>
+
+    <div id="<%= p.id %>" class="panel-collapse collapse">
+        <div class="panel-body">
+            <h4> Information </h4>
+            <table class="table table-hover" >
+                    <tbody>  
+
+                        <% if p.start_date.present? %>
+                            <tr>  
+                                <td>Date</td>  
+                                <td><strong><%= p.start_date %></strong></td>  
+                            </tr>
+                        <% end %>
+
+                        <% if p.people.present? && (p.category == '2') %>
+                            <tr>  
+                                <td>People</td>  
+                                <td><strong><%= p.people %></strong></td>  
+                            </tr>
+                        <% end %>
+
+                        
+                        <% if !(p.category == '2') %>
+                            <tr>  
+                                <td>Utitlity</td>  
+                                <td><strong><%= render_utilities p.hasElectricity, p.hasHeat, p.hasInternet %></strong></td>  
+                            </tr>
+                        <% end %>
+
+                        <% if p.deposit.present? && !(p.category == '2') %>
+                            <tr>  
+                                <td>Deposit</td>  
+                                <td><strong><%= p.deposit %> /Month</strong></td>  
+                            </tr>
+                        <% end %>
+
+                        
+                        <% if p.contract.present? && !(p.category == '2') %>    
+                            <tr>  
+                                <td>Contract</td>  
+                                <td><strong><%= p.contract %> /Month</strong></td>  
+                            </tr>
+                        <% end %>
+
+                        <% if p.broker_fee.present? && !(p.category == '2') %>
+                            <tr>  
+                                <td>Broker Fee</td>  
+                                <td><strong>$ <%= p.broker_fee %></strong></td>  
+                            </tr>
+                        <% end %>
+
+                        <tr>  
+                            <td>Gender</td>  
+                            <td><strong><%= render_gender p.gender %></strong></td>  
+                        </tr>
+
+                        <% if p.pet.present? && !(p.category == '2') %>
+                            <tr>  
+                                <td>Pet</td>  
+                                <td><strong><%= render_pet p.pet %> </strong></td>  
+                            </tr>
+                        <% end %>
+
+                    </tbody>
+                </table>
+
+                <h4> Description </h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(p.description, length: 500) %>
+                </br>
+                <div class="pull-right">
+                    <%= link_to "Detail", property_path(p.id), :class => "btn btn-info", :method => :get %>
+                   
+                </div>
+        </div>
+    </div>
+
+    </div>
 
     <!--<hr> -->
     <% end %> <!-- /each -->
 <% end %> <!-- /if -->
+</div>
 
 <% if @properties.present? %>
     <%= will_paginate @properties %>
