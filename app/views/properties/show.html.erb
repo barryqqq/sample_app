@@ -16,7 +16,34 @@
 
 </style>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclwbSN5TG86Q-k3pWEBOlu2KY6Llc23A&sensor=true"></script>
+<script>
+	function initialize() {
+	  var latitude = <%= @property.latitude %>;
+	  var longitude = <%= @property.longitude %>; 			
+	  var location = new google.maps.LatLng(latitude, longitude);
 
+	  var mapOptions = {
+	    center: location,
+	    zoom: 16
+	  };
+	  var map = new google.maps.Map(
+	      document.getElementById('map-canvas'), mapOptions);
+
+	  var panoramaOptions = {
+	    position: location,
+	    pov: {
+	      heading: 180,
+	      pitch: 10
+	    }
+	  };
+	  var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+	  map.setStreetView(panorama);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
 
 
 <% provide(:title, 'Property detail') %>
@@ -247,6 +274,12 @@
 
     </div><!-- /.row -->
 
+    <div class="row">
+    	
+    	<div id="map-canvas" style=" height: 450px" class="col-md-6"></div>
+    	<div id="pano" style=" height: 450px" class="col-md-6"></div>
+    	
+    </div>	
 
 
 

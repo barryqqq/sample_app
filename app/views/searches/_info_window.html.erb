@@ -5,13 +5,17 @@
         margin: 0 0 8px 0;
 
     }
+
+    .col-centered{
+        float: none;
+        margin: 0 auto;
+    }
 </style>
 
-
-
+ 
 
     <ul class='list-unstyled'>    
-        <li > <strong> <%= render_city_state property %> </strong></li>   
+        <li > <strong><%= render_city_state property %> </strong></li>   
         
         <li> <%= price_on_type property.price, property.category %> </li>
       
@@ -20,8 +24,7 @@
         <li> <%= pluralize(property.bed, "  Bed") %>/ <%= pluralize(property.bath, "  Bath") %></li>
 
     </ul>
-    <a href='/properties/<%= property.id %>'>Details</a>
-   
+    <div class="pull-right"><a href='/properties/<%= property.id %>'>Details</a></div>
     
 
    
