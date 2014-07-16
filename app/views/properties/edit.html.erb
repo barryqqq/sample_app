@@ -677,8 +677,12 @@
   // cancel photo
   ///////////// cancel photo
   $(".photo-cancel").on( "click", function() {
+    
+    
     var id_name = $(this).parent().attr('id'); //id_name = photo_# 
-    var photo_id = $.cookie('#' + id_name + '_cancel'); 
+    var photo_id = $('#' + id_name + '_input').val(); 
+    //var photo_id = $.cookie('#' + id_name + '_cancel'); 
+    //alert(photo_id);
 
     //delete photo from s3
     $.ajax({
@@ -705,7 +709,7 @@
         alert('n');
       } 
     })     
-    
+ 
   });
 
 

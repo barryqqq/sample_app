@@ -79,10 +79,11 @@ class PropertiesController < ApplicationController
 	    if @property.update_attributes(property_params)
 
 	    	params[:photo].each do |photo_id|
-				@photo = Photo.find(photo_id)  #find photo by parameter	
+	    		if photo_id.length >= 1  then	
+					@photo = Photo.find(photo_id)  #find photo by parameter	
 
-				@photo.update_attribute(:property_id, @property.id) #update property_id to the photo
-						
+					@photo.update_attribute(:property_id, @property.id) #update property_id to the photo
+				end		
 					
 			end
 	    	# successful update
