@@ -4,35 +4,26 @@
 <style>
 	
 
-	@media (min-width: 768px) {
-		.form_section {
-			margin-top: 300px;
-		}
-		.form-control input {
-	         border-radius: 0 6px 6px 0;
-	         
-	     }
-	    .form-inline select {
-	        border-radius: 6px 0 0 6px;
-	        border-left-width: 0;
-	    }
-	}
-
-	input {
-  		margin-bottom: 0px !important;
-  		font-weight: bold;
-	}
-
-	.well {
-		
-	}
-
+	
 	.center-block {
 		float:none;
 		width:80%;
 		opacity: .9;
 	}
 
+    .main {
+   
+    width: 100%;  
+    height: 1080px; padding-top: 100px;
+      background: url(<%= asset_path 'index/bg.png' %>) no-repeat center center; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+   
+    }
+    
+    
 	
   
 </style>
@@ -45,45 +36,43 @@ $('.dropdown-menu li').click(function(e){
 });
 </script>
 
-
-<div class="row form_section">
-    <div class="center-block">
-
-    	
-    	<%= form_tag searches_path, :method => :get, :class => "form-inline" do %>	
-
-
-	    	<div class="row">
-	    		<div class="col-lg-8 col-xs-8">
-				<div class="input-group ">
-
-					<div class="input-group-btn">
-
-						<button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown"> Select <span class="caret"></span> </button>
-						<ul class="dropdown-menu">
-							<li><a href="#"> 1 </a></li>
-							<li><a href="#"> 2 </a></li>
-							
-						</ul>
-						<input type="hidden" name="category" class="category">	
-					
-					</div> <!-- /input-group-btn -->
-					
-					<%= text_field_tag :location, params[:location], :class => "form-control input-lg", :id => "input_search" %>
-					<!--<input type="text" class="form-control" id="input_search"> -->
-					<!--<span class="help-block"> Search somthing you like </span> -->
-
-					
-				</div><!-- /input-group -->
-			</div>
-				<div class="col-lg-4 col-xs-4">
-					<%= submit_tag "Search", :class => "btn-lg col-lg-5 btn btn-success" %>
-	    			<!--<button type="submit" class="col-lg-5 btn btn-success"> Search </button> -->
-	    		</div>
-	    	</div> <!--row -->
-    	
-    	<% end %>
-
-    	
+<div class="main">
+    <div class="vert-text">
+    		<span class="title"> Find Your Home </span><br>
+        	<span class="sec-title gray"> Start to search apt around you...</span>
     </div>
-</div>
+
+    <div class="row form_section">
+    	
+        <div class="center-block">
+        	
+        	<%= form_tag searches_path, :method => :get, :class => "" do %>	
+        		<div class="row">
+        		<div class="form-group col-xs-12 col-md-6">
+        			
+        			<%= text_field_tag :location, params[:location], :class => "form-control input-lg", :id => "input_search", :style => "width:100%;", :placeholder => "Search by neighborhood city, zipcode or address" %>
+        		</div>	
+
+        		<div class="form-group col-md-3">
+        			<%= submit_tag "Search", :class => "btn-lg btn btn-danger" %>
+        			
+        			<strong style="margin-left: 80px; font-size:1.3em;">or detect by </strong>
+        			
+        		</div>	
+    	    	
+    	    	
+    	    	
+    	    	<div class="form-group col-md-2">
+        			<%= submit_tag "Your location", :class => "btn-lg btn btn-danger" %>
+        		</div>	
+    	    	</div>
+    	    	
+    	    	
+        	
+        	<% end %>
+
+        	
+        </div>
+    </div>
+ </div>
+

@@ -21,23 +21,22 @@
 
 
   <style type="text/css">
-  /* homepage background */
+  /* homepage background 
     .home_page {
-      background: url(http://wallpapers.wallpapersdepo.net/free-wallpapers/3257/write-your-life-story-1920x1080.jpg) no-repeat center center fixed; 
+      background: url(<%= asset_path 'index/background.jpg' %>) no-repeat center center; 
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
     }
-
+*/
     #wrap {
       min-height: 100%;
       height: auto;
       /* Negative indent footer by its height */
-      margin: 0 auto -60px;
+      margin: 0 auto 60px;
       /* Pad bottom by footer height */
-      padding: 0 0 100px;
-       
+      padding: 0 0 160px; 
     }
 
 
@@ -62,11 +61,11 @@
 
 
 
-<div id="wrap">
+<div id=""><!--wrap -->
   <%= render 'layouts/header' %>
 
 
-  <div class="container">
+  <div class=""><!--container -->
 
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %> </div>
@@ -80,8 +79,9 @@
   
     
   </div>
- </div>   
-  <%#= render 'layouts/footer' %>
+ </div><!--/wrap -->
+   
+  <%= render 'layouts/footer' %>
   
 
 

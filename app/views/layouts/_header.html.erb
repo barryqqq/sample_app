@@ -1,10 +1,11 @@
 <style type="text/css">
 .mini-img {
-  padding-top: 15px;
+  margin-top: -20px; 
+  padding-top: 0px;
 }
 </style>
 
-<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<nav class="navbar navbar-fixed-top navbar-custom" role="navigation">
   <div class="container">
 
     <div class="navbar-header">
@@ -17,8 +18,11 @@
         
         
       </button>
-      <%= link_to "Around-U",root_path , class: "navbar-brand",  "data-no-turbolink" => true %>
+      <%= link_to root_path , class: "navbar-brand",  "data-no-turbolink" => true do %>
+        <%= image_tag 'index/logo.jpg' %>
+      <% end %>
       
+                  
     </div>
     
     <div class="collapse navbar-collapse">
@@ -45,27 +49,18 @@
 
         <% end %>
 
-        
-      
 
       </ul>
       
-      <div class=" pull-right">
+      <div class="nav-right">
         
         <ul class="nav navbar-nav">
-          <li>
-          <%= link_to "中文版", :controller => controller.controller_name, 
-             :action => controller.action_name, :locale => "zh-TW"  %>
-          </li>
-          <li> 
-          <%= link_to "English", :controller => controller.controller_name, 
-             :action => controller.action_name, :locale => "en" %>  
-          </li>
+          
 
           <% if signed_in? %>
             
   
-            <li><div class="mini-img"><img class="img-round" src= <%= render_image %>  width="32" height="32"></div></li>
+            <li><div class="mini-img"><img class="img-circle" src= <%= render_image %>  width="64" height="64"></div></li>
               
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= t("header.my_account") %> <b class="caret"></b></a>
@@ -87,6 +82,15 @@
             <li><%= link_to t("header.log_in"), new_user_session_path %></li>
 
           <% end %>
+
+          <li>
+          <%= link_to "中文版", :controller => controller.controller_name, 
+             :action => controller.action_name, :locale => "zh-TW"  %>
+          </li>
+          <li> 
+          <%= link_to "English", :controller => controller.controller_name, 
+             :action => controller.action_name, :locale => "en" %>  
+          </li>
         
         </ul>
         
