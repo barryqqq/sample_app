@@ -3,6 +3,25 @@
   margin-top: -20px; 
   padding-top: 0px;
 }
+
+.input-group {
+  width:100%;
+}
+
+.navbar-input-group {
+  font-size: 0px; /*removes whitespace between button and input*/
+}
+
+.navbar-input-group input {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.navbar-input-group .btn {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: 0px;
+}
+
 </style>
 
 <nav class="navbar navbar-fixed-top navbar-custom" role="navigation">
@@ -25,15 +44,31 @@
                   
     </div>
     
+
     <div class="collapse navbar-collapse">
-    
+
+      <% if !current_page?(root_path) %>
+        <%= form_tag searches_path, :method => :get, :class => "navbar-form navbar-left navbar-input-group", :role => "search" do %>
+
+          <div class="nav navbar-nav">
+            <%= text_field_tag :location, params[:location], :class => "form-control", :id => "input_search", :style => "width:280px;", :placeholder => "Search a new location by city, zipcode ..." %>
+            <span class="">
+              <button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+        
+          </div>
+
+        <% end %>
+      <% end %>
+
       <ul class="nav navbar-nav">
         <!--
         <li class="active"> <%#= link_to "Home", home_path %> </li>
         -->
-        <li><%= link_to t("header.about"), about_path %></li>
-
-        <li class="<%= 'active' if current_page?(searches_path) %>"><%= link_to t("header.search"), searches_path,  "data-no-turbolink" => true %></li>
+        <li><%#= link_to t("header.about"), about_path %></li> 
+        <li class="<%#= 'active' if current_page?(searches_path) %>"><%#= link_to t("header.search"), searches_path,  "data-no-turbolink" => true %></li>
 
         <% if signed_in? %>
           
@@ -46,11 +81,10 @@
             <li><%= link_to  t("header.users"), users_path %> </li>
           <% end %> 
 
-
         <% end %>
-
-
       </ul>
+
+      
       
       <div class="nav-right">
         

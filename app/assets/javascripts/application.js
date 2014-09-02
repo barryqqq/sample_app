@@ -21,6 +21,9 @@
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-slider
+//= require bootstrap-select
+
+
 //= require_tree .
 
 

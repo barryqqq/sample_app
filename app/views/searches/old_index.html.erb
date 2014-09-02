@@ -3,9 +3,7 @@
   <script src='https://google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js' type='text/javascript'></script>
   <script src='https://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> 
 
-  
 
-  
 
 <style>
 
@@ -37,10 +35,33 @@
         background-color: #eee;
     }
      
-    
+    .small_photo {
+        width: 100px;
+        height: 90px;
+        overflow: auto;
+    }
 
+    .detail {
+        
+        margin-bottom: 20px;
+        
 
-    
+    } 
+
+    .detail_section {
+        border: 2px solid #E3E3E3;
+        padding: 30px;
+    }
+
+    .search_section,
+    .more_section > .row {
+       /* 
+        background-color: #F5F5F5;
+        border: 1 none;
+       */ 
+        padding: 15px;
+       
+    }
 
     .well {
         background-color: #F5F5F5 !important;
@@ -67,7 +88,7 @@
     }
 
 
-  
+    
    
 </style> 
 
@@ -78,9 +99,252 @@
 <% provide(:title, "Result ") %>
 
 
+<%#= form_tag, url: { :action => "index"}, :method => :get do |f| %>
+<%= form_tag searches_path, :method => :get, :id => "search_form" do %>
+    
 
-<div class="row" style="padding-top:30px; padding-bottom:30px;">
-    <div class="col-md-8">
+    <div class="well ">
+    <!-- search area -->
+
+    <div id="top" class="row ">
+
+        <div class="col-lg-2 col-md-6 col-xs-12" style="margin-left: 15px;">
+
+            <label for="type_select"> Category </label>
+            <select class="form-control" id="type_select" name="category">
+                <option value="">All</option>
+                <option value="0">Rent</option>
+                <option value="1">Shard Apt.</option>
+                <option value="2">Sublease</option>
+            </select>
+            
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-xs-12 ">
+            <label for="bed_select"> Bed </label>
+            <select class="form-control" id="bed_select" name="bed">
+                <option value="">Any</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3+</option>
+            </select>
+
+        </div> 
+
+        <div class="col-lg-2 col-md-6 col-xs-12">
+
+            <label for="bath_select"> Bath </label>
+            <select class="form-control" id="bath_select" name="bath" >
+                
+                <option value="">Any</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2+</option>
+            </select>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-xs-12">
+
+            <label for="datepicker"> Start Date </label>
+            <div class="input-daterange datepicker input-group" id="datepickerr" style="margin-top: -4px;">
+
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+
+                <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Start Date"/>
+            </div>     
+        </div>    
+
+        <div class="col-lg-2 col-xs-12">
+            <label for="slider"> Price </label>
+            <div class="input-group ">
+                
+                <input id="slider" type="text" class="span2 slider" value="" data-slider-min="0" data-slider-max="
+                <%= max_price @properties %>" data-slider-step="<%= slider_step @properties %>" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show" name="price" >
+                        
+            </div>
+
+        </div>
+
+         <div class="col-lg-1 col-xs-12 non-visibile" id="people-sec">
+            <label for="slider-1"> People </label>
+            <div class="input-group ">
+                
+                <input id="slider-ppl" type="text" class="span2 slider" value="" data-slider-min="" data-slider-max="10" data-slider-step="1" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="show" name="people" >
+                        
+            </div>
+
+        </div>
+
+       
+
+
+    </div><!-- /search area -->  
+    
+    <div class="row">
+         <div class="col-lg-3 col-xs-12 pull-right" style="margin-top: 25px; padding-left: 80px;padding-right: 0px;">            
+            <div class="input-group ">
+                <button id="more_btn" type="button" class="btn btn-default">More <span id="more_span" class="glyphicon glyphicon-chevron-down "></span></button>
+              
+                <%= submit_tag "Search", :class => " btn btn-success" %>
+                <button type="button" class="btn btn-link btn-sm" id="reset">reset</button>
+            </div>    
+            <!--<button type="button" class="btn btn-primary" id="search_btn">Search </button> -->
+            <%#= f.submit("Search", :class => "btn btn-primary") %>
+            <%= hidden_field_tag :direction, params[:direction] %>
+            <%= hidden_field_tag :sort, params[:sort] %>
+            <%#= hidden_field_tag :hasContract, params[:hasContract] %>
+            <%#= hidden_field_tag :hasBokerFee, params[:hasBokerFee] %>
+            <%#= hidden_field_tag :hasDeposit, params[:hasDeposit] %>
+            
+        </div>
+    </div>    
+
+
+    <div class=" more_section">
+
+        <div class="row">
+            <!--
+            <div class="col-lg-4 col-xs-12" id="utility-sec">
+                <label> include utility </label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                    <input name="utility" type="radio" value="0" /><span id="utility_0">None</span>
+                    </label>
+                    <label class="btn btn-default">
+                    <input name="utility" type="radio" value="1" /><span id="utility_1">Electrocity</span>
+                    </label>
+
+                    <label class="btn btn-default ">
+                    <input name="utility" type="radio" value="2" /><span id="utility_2">Heat</span>
+                    </label>
+
+                    <label class="btn btn-default ">
+                    <input name="utility" type="radio" value="3" /><span id="utility_3">Internet</span>
+                    </label>
+
+                    <label class="btn btn-default active ">
+                    <input  name="utility" type="radio" value="4" /><span id="utility_4">All</span>
+                    </label>
+
+                </div>
+            </div>    
+            -->
+
+            
+
+            <div class="col-lg-3 col-xs-12" id="pet-sec">
+                <label> allowed pets </label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default active">
+                    <input name="pet" type="radio" value="0"/><span id="pet_0">No</span>
+                    </label>
+                    <label class="btn btn-default">
+                    <input name="pet" type="radio" value="1" /><span id="pet_1">Cat</span>
+                    </label>
+
+                    <label class="btn btn-default ">
+                    <input  name="pet" type="radio" value="2" /><span id="pet_2">Dog</span>
+                    </label>
+
+                    <label class="btn btn-default ">
+                    <input name="pet" type="radio" value="3" /><span id="pet_3">All kinds</span>
+                    </label>
+
+                </div>
+                
+            </div> 
+
+            <div class="col-lg-3 col-xs-12" id="gender-sec">
+                <label> gender require </label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default active">
+                    <input name="gender" type="radio" value="0"/><span id="gender_0">None</span>
+                    </label>
+                    <label class="btn btn-default">
+                    <input id="" name="gender" type="radio" value="1" /><span id="gender_1">Women only</span>
+                    </label>
+
+                    <label class="btn btn-default ">
+                    <input id="" name="gender" type="radio" value="2" /><span id="gender_2">Men only</span>
+                    </label>
+
+                </div>
+            </div> 
+
+
+            <div class="col-lg-4 col-xs-12" id="bdc-sec">
+                <label> Others </label>
+                    <div class="btn-group"> 
+                    <div class="btn-group" data-toggle="buttons">     
+                        <label class="btn btn-default">
+                            <input name="noBrokerFee" type="checkbox"> No Broker Fee
+                        </label>
+                    </div>
+
+                    <div class="btn-group" data-toggle="buttons">     
+                        <label class="btn btn-default">
+                            <input name="noDeposit" type="checkbox"> No deposit
+                        </label>
+                    </div>
+
+                    <div class="btn-group" data-toggle="buttons">     
+                        <label class="btn btn-default">
+                            <input name="noContract" type="checkbox"> No Contract
+                        </label>
+                    </div>
+                </div>
+                               
+            </div>    
+            
+          
+        </div><!--/end of row -->
+
+        <div class="row">
+
+               
+
+
+            <div class="col-lg-6 col-xs-12">
+                <label> New Search </label>
+
+                <%= text_field_tag :location, params[:location], :class => "form-control input-lg", :id => "input_search" %>
+
+                
+
+            </div>
+
+        </div><!--/end of row --> 
+
+    </div><!-- /endof more> -->
+    </div>
+   
+
+<% end %> <!--end of form -->
+
+
+
+<!-- response area 
+    <div class="well-small ">
+
+        <div id="msg" style="margin-left: 15px;"><h4> You are looking for the properties near  <%= @search_query %></h4>We found : <%= pluralize(@count, "record") %>  
+        </div>
+    </div>
+
+/response area -->
+
+<!-- detail -->
+
+<div id="detail_section" class="detail_section hidden" >
+    <%= render 'detail' %>
+</div>   
+
+
+<!-- /detail -->
+
+<div class="row">
+    <div class="col-md-7">
         
         <div class="row">  
             <div class="col-sm-3" >       
@@ -90,12 +354,15 @@
                     <button type="button" class="btn btn-default">Sublease</button>
                 </div>
             </div>    
-            <div class="col-sm-4 hide">       
-                <div class="btn-group ">
+            <div class="col-sm-4">       
+                <div class="btn-group">
 
                     <button type="button" class="btn btn-default">Whole Apt.</button>
                     <button type="button" class="btn btn-default">Shared Apt.</button>
                 </div>
+            </div>
+            <div class="col-sm-2">
+                <span> Start Date </span>
             </div>
             <div class="col-sm-3">
 
@@ -115,93 +382,60 @@
        
 
         <br><br>
-        <div class="row">
-            
-
-            <div class="col-sm-3" style="margin-right:0px; padding-right:0px;">
-                <span>Bedroom</span>
-
-                <select class="selectpicker show-tick span1">
-                    <option>Any</option>
-                    <option>studio</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4+</option>
-                    
-                </select>
-            </div> 
-
-            <div class="col-sm-2" style="padding-right: 0px; margin-right:-20px; margin-left: -60px;">
-                <span>Bath</span>
-                <select class="selectpicker span1 show-tick">
-                    <option>Any</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3+</option>
-                </select>
-            
-            </div> 
-
-
-             <div class="col-sm-5" style="padding-right: 0px; top: 5px; margin-right: -40px;">
-                <span style="padding-right: 5px;">Price</span><b>$ 100</b> <input id="price_range" type="text" class="slider" value="" data-slider-min="100" data-slider-max="4000" data-slider-step="50" data-slider-value="[300,1600]" style="width:150px; height:1px;"/> <b>$4000</b>
-
-            </div>  
-
-            <div class="col-sm-2">
-                <select class="selectpicker" multiple data-selected-text-format="count>1" title='More' data-width="135%">
-                    <option>wo Broker Fee</option>
-                    <option>wo Contract</option>
-                    <option>Male Only</option>
-                    <option>Female Only</option>
-                    <option>Dog Friendly</option>
-                    <option>Cat Friendly</option>
-                    <option>No Pets</option>
-
-                </select>
-
-
-            </div> 
-
-        
-            <button type="button" class="pull-right btn btn-primary col-sm-1" style="margin-right: 20px;"><span>fliter</span></button>
+            <div class="row">
                 
 
-             
+                <div class="col-sm-3" style="margin-right: -50px;">
+                    <span>Bedroom</span><button type="button" class="btn btn-sm btn-default" style="padding-left: 5px; margin-left: 5px; padding-right: 5px;">Any&nbsp;<span class="caret"></span></button>
+                </div> 
 
-           
-        </div>
+                <div class="col-sm-2" style="padding-right: 0px;">
+                    <span>Bath</span><button type="button" class="btn btn-sm btn-default" style="padding-left: 5px; margin-left: 5px; padding-right: 5px;">Any&nbsp;<span class="caret"></button>
+                </div>  
+                 <div class="col-sm-6" style="padding-right: 0px;">
+                    <span style="padding-right: 5px;">Price</span><b>$ 100</b> <input id="price_range" type="text" class="slider" value="" data-slider-min="100" data-slider-max="4000" data-slider-step="50" data-slider-value="[300,1600]" style="width:150px; height:1px;"/> <b>$4000</b>
+
+                </div>  
+
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-sm btn-default" style="padding-left: 5px; margin-left: 5px; padding-right: 5px;"><span>more</span>&nbsp;<span class="caret"></button>
+                </div>           
+
+                 
+
+               
+            </div>
 
 
        
-    </div> <!--/ col-md-7 -->
-
-    <div class="col-md-4">
+    </div>
+    <div class="col-md-5">
         <!-- response area --> 
             <div class="well-small ">
 
                 <div id="msg" style="margin-left: 15px;"> <%= search_result @search_query %> We found : <%= pluralize(@count, "record") %>  
                 </div>
                 
+
             </div>
+
+
         <!-- /response area -->
     </div>
 </div>    
         
 
-<hr>
 
 
 <div class="row ">
-    <div class="col-lg-8 hidden-xs">
+    <div class="col-lg-7 hidden-xs">
 
 
         <div id="map-canvas"></div>
     
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         
         
         <div id="items"><%= render '/searches/property' %></div>
@@ -222,10 +456,6 @@
 </script>
 
 <script>
-    $('.selectpicker').selectpicker({
-        style: 'btn-default'
-        
-    });
 
     $(function () {
         
@@ -470,9 +700,28 @@
 
     });
 
-    
+    //close detail section
+    $( "#btn_close" ).click(function() {
+       
+        if($('.detail_section').is(':visible')){                            
+            $( ".detail_section" ).removeClass('visible');
+            $( ".detail_section" ).addClass('hidden');
+        }
 
-    
+    }); 
+
+    //replace photo
+    $( ".small_photo" ).click(function(event) {
+        // prevent link action
+        event.preventDefault();
+
+        //replace big photo's content 
+        $('#p_photo_0').html($(this).html());
+        //alert($('#p_photo_0').html());
+        //$('div#p_photo_0 img').css({'width' : '550px' , 'height' : '360px'});
+        $('div #p_photo_0 img').css({'width' : '100%' });
+        
+    }); 
 
     //add this property to user's collection
     $(document).on("click", "#collection_btn", function(){  
@@ -597,7 +846,23 @@
     // $(document).ready(function () {  
         
 
-    
+    // handle more information section
+    $( "#more_btn" ).click(function() {
+        
+        if(!$('.more_section').is(':visible')){
+            $( ".more_section" ).fadeIn( "slow");
+            $('#more_span').removeClass("glyphicon-chevron-down");
+            $('#more_span').addClass("glyphicon-chevron-up");
+
+        } else {
+            $( ".more_section" ).fadeOut( "slow");
+            $('#more_span').removeClass("glyphicon-chevron-up");
+            $('#more_span').addClass("glyphicon-chevron-down");
+        }
+        
+        //$( ".more_section" ).fadeToggle(1000);
+
+    }); //more section
 
 
 

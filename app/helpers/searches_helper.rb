@@ -24,6 +24,10 @@ module SearchesHelper
 		end	
 	end	
 
+	def search_result(area)
+		raw("You are looking for the properties near <mark>#{area} </mark>")
+	end	
+
 
 	
 

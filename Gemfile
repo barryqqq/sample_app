@@ -4,7 +4,7 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
-#gem 'bootstrap-sass', '2.3.2.0'
+#gem 'bootstrap-sass' 
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.5'
@@ -36,6 +36,8 @@ gem 'omniauth-facebook'
 #koala 6/6
 gem 'koala'
 #gem 'fb_graph'
+
+
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do

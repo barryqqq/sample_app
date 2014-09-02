@@ -11,6 +11,9 @@
  *= require bootstrap.min
  *= require bootstrap-theme
  *= require bootstrap-datepicker
+ *= require bootstrap-select
+ 
+
  *= require slider
  *= require font-awesome
  *= require_self
