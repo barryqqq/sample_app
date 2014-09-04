@@ -339,6 +339,31 @@ en:
     step2: "Step 2: Address & Uploading Photo"
     step3: "Step 3: Review"
 
+  index:
+    find_your_home: "Find Home Around U"
+    start_to_search_apt: "Start to Search Apt Around U"
+    search_by_neighborhood_city_zipcode_or_address: "Search by Neighborhood,City,Zipcode,or Address"
+    search: "Search"
+    or_detect_by: "or detect by"
+    your_location: "Your Location"
+
+  layouts:
+    footer:
+      about_around_u: "About Around-U"
+      about_around_u_content: "Not Translate Yet"
+      terms_and_privacy: "Terms & Privacy" 
+      terms_and_privacy_content: "Under Construction"
+      contact_us: "Contact us"
+      contact_us_content: "Please email to XXX@around-u.org"
+
+  contact_forms:
+     sent_mail_to_owner: "Sent Mail to Owner"
+
+  user_mailer:
+    change_password:
+      welcome_to_around-u: "Welcome to around-u.org,"
+
+
 
 
 

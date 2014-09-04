@@ -272,7 +272,7 @@ zh-TW:
     street2: "街道 2"
     city: "城市"
     state: "州"
-    zipcode: "郵遞區號"
+    zipcode: "郵編號碼"
     information: "資訊"
     type: "類別"
     rent: "租房"
@@ -292,7 +292,7 @@ zh-TW:
     deposit: "押金"
     contract: "合約"
     broker_fee: "仲介費"
-    utilities: "Utilities"
+    utilities: "其他費用"
     none: "無"
     electricity: "電費"
     heat: "暖氣"
@@ -304,7 +304,7 @@ zh-TW:
     no_: "不可"
     cat: "可以養貓"
     dog: "可以養狗"
-    all_kinds: "任何寵物都可"
+    all_kinds: "任何寵物"
     description: "描述"
     upload_photo: "上傳照片"
     contact_information: "聯絡資訊"
@@ -317,7 +317,47 @@ zh-TW:
     publish: "沒問題! 立即刊登"
     step1: "步驟 1: 刊登資訊"
     step2: "步驟 2: 地址及上傳照片"
-    step3: "步驟 3: 檢視內容"    
+    step3: "步驟 3: 檢視內容"
+
+  index:
+    find_your_home: "家，從身邊找到"
+    start_to_search_apt: "由身邊開始方便尋找您的家"
+    search_by_neighborhood_city_zipcode_or_address: "請輸入鄰近區域，城市，郵編號碼，或地址開始搜尋"
+    search: "搜尋"
+    or_detect_by: "或偵測從"
+    your_location: "您的位置"
+
+  layouts:
+    footer:
+      about_around_u: "關於身邊 Around-U.org"
+      about_around_u_content: "一群來自兩岸三地的華人留學生，初來紐約時，舉目無親，機緣巧合下因租房和二手物品交易而熟識，
+      深感華人留學生在國外尋房，轉租及買賣二手物品不易，信息不透明，因地緣限制或不熟識當地風俗民情，渠道稀少，
+      如一、大型英文网站需要一定費用, 或是眾多地產經紀消息，很多缺地址，也缺照片。二、現有的華人資訊類網站界面繁瑣，
+      信息量乏善可陳，一樣有缺地址，缺照片，甚至連價格都不透明。
+      三、通過海外學生自己創立的Facebook Page或者學校論壇進行搜索，但往往會因為海量的資訊湧入，
+      造成適合的資訊被推延到後端，而錯失機會。四、現有方便的英文網站平台，很多剛到海外的華人們，
+      因為不熟語言或是不懂的交易模式，造成許多的障礙。在這裡生活了幾年，到海外打拚的華人越來越多，
+      卻一直沒有個讓海外華人在生活資訊上可以依靠的平台，因此我們聚在一起，創造了身邊，Around-U.org ，期待讓大家看見，另一個全新的海外華人天地。
+      身邊，Around-U.org以地圖(Google Map)為基礎創立，能夠在最大的程度上給予學習和生活在大城市的海外華人們提供便利及可靠的服務。
+      我們生活在''哪裡''，就需要你在''哪裡''的生活資訊，而這一切都建立在你所在位置或你想去的位置的基礎上，
+      所以我們將使用地圖搭配上基本生活資訊的搜索及交流功能，打造一個最直觀和明了的方式得到身邊或選定區域內生活資訊的平台，
+      包括了租屋，轉租，短租，搬家二手物品買賣，生活資訊分享等等眾多的信息，
+      讓海外遊子在繁重的工作或學業之下不須再為住處和物品買賣等生活資訊而煩心，
+      甚至可以利用華人之間交易物品時的交流，更好的了解雙方誠信並結交更多海外華人朋友們，
+      進而獲得生活上的便利，並期待成為海外華人首選的生活資訊平台。"
+      terms_and_privacy: "隱私權聲明" 
+      terms_and_privacy_content: "建構中"
+      contact_us: "聯絡我們"
+      contact_us_content: "請 email 至 XXX@around-u.org"
+
+  contact_forms:
+     sent_mail_to_owner: "聯絡房主"
+
+  user_mailer:
+    change_password:
+      welcome_to_around-u: "歡迎來到身邊 Around-U.org,"
+  
+
 
 
 

@@ -41,8 +41,8 @@ $('.dropdown-menu li').click(function(e){
     
 
     <div class="vert-text">
-    		<span class="title"> Find Your Home </span><br>
-        	<span class="sec-title gray"> Start to search apt around you...</span>
+    		<span class="title"> <%= t("index.find_your_home") %>  </span><br>
+        	<span class="sec-title gray"> <%= t("index.start_to_search_apt") %></span>
     </div>
 
     <div class="row form_section">
@@ -53,20 +53,20 @@ $('.dropdown-menu li').click(function(e){
         		<div class="row">
         		<div class="form-group col-xs-12 col-md-6">
         			
-        			<%= text_field_tag :location, params[:location], :class => "form-control input-lg", :id => "input_search", :style => "width:100%;", :placeholder => "Search by neighborhood city, zipcode or address" %>
+        			<%= text_field_tag :location, params[:location], :class => "form-control input-lg", :id => "input_search", :style => "width:100%;", :placeholder => t("index.search_by_neighborhood_city_zipcode_or_address") %>
         		</div>	
 
         		<div class="form-group col-md-3">
-        			<%= submit_tag "Search", :class => "btn-lg btn btn-danger" %>
+        			<%= submit_tag t("index.search"), :class => "btn-lg btn btn-danger" %>
         			
-        			<strong style="margin-left: 80px; font-size:1.3em;">or detect by </strong>
+        			<strong style="margin-left: 80px; font-size:1.3em;"> <%=t("index.or_detect_by")%> </strong>
         			
         		</div>	
     	    	
     	    	
     	    	
     	    	<div class="form-group col-md-2">
-        			<%= submit_tag "Your location", :class => "btn-lg btn btn-danger" %>
+        			<%= submit_tag t("index.your_location"), :class => "btn-lg btn btn-danger" %>
         		</div>	
     	    	</div>
     	    	
