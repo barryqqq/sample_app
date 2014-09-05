@@ -131,28 +131,28 @@
 
         	
 	         
-	        <span><h3> Contact </h3> </span>
+	        <span><h3> <%=t("properties.contact_information")%> </h3> </span>
 
 	        <table class="table">
 	        	<tbody>
 	        		<tr>
-	        			<td>Name</td>
+	        			<td> <%=t("properties.contact_name")%> </td>
 	        			<td><strong><%= @property.contact_name %></strong></td>
 	        		</tr>
 
 	        		<% if  @property.contact_phone.present? %>
 		        		<tr>
-		        			<td>Phone</td>
+		        			<td> <%=t("properties.contact_phone")%> </td>
 		        			<td><strong><%= @property.contact_phone %></strong></td>
 		        		</tr>
 		        	<% end %>	
 
 		        	
 	        		<tr>
-	        			<td>Email</td>
+	        			<td> <%=t("properties.contact_email")%> </td>
 	        			<!--<td><button id="email_btn" data-toggle="modal" href="" data-target="#myModal" class="btn btn-lg btn-mail"><span id="span_email" class="glyphicon glyphicon-envelope"></span></button></td>-->
 	        			<td>
-	        				<a href="/contact_forms/new?id=<%= @property.id %>"  data-toggle="modal" data-target="#remoteModal" class="btn btn-default">Send Mail</a>
+	        				<a href="/contact_forms/new?id=<%= @property.id %>"  data-toggle="modal" data-target="#remoteModal" class="btn btn-default"> <%=t("contact_forms.sent_mail_to_owner")%> </a>
 	        			</td>
 	        				 
 	        		</tr>
@@ -170,38 +170,38 @@
 
 
         <div class="col-lg-6">
-        	 <span><h3 class="top_h3"> Description </h3> </span>  
+        	 <span><h3 class="top_h3"> <%=t("properties.description")%> </h3> </span>  
                 <div id="p_description"><%= @property.description %></div>
         	
-		    <span><h3> Information </h3> </span>
+		    <span><h3> <%=t("properties.information")%> </h3> </span>
 		    <div class="col-xs-12 col-md-6">
 		    	<table class="table table-hover" >
 			    	<tbody>  
 	          			<tr>  
-			            	<td>Type</td>  
+			            	<td> <%=t("properties.type")%> </td>  
 			            	<td><%= render_type @property.category %> </td>  
 			          	</tr> 
 
 			          	<tr>  
-			            	<td>Bed</td>  
+			            	<td> <%=t("properties.bed")%> </td>  
 			            	<td><strong><%= @property.bed %> </strong></td>  
 			          	</tr>
 
 			          	<tr>  
-			            	<td>Bath</td>  
+			            	<td> <%=t("properties.bath")%> </td>  
 			            	<td><strong><%= @property.bath %></strong></td>  
 			          	</tr>
 
 			          	<% if @property.start_date.present? %>
 				          	<tr>  
-				            	<td>Date</td>  
+				            	<td> <%=t("properties.start_date")%> </td>  
 				            	<td><strong><%= @property.start_date %></strong></td>  
 				          	</tr>
 			          	<% end %>
 
 			          	<% if @property.people.present? && (@property.category == '2') %>
 				          	<tr>  
-				            	<td>People</td>  
+				            	<td> <%=t("properties.people")%> </td>  
 				            	<td><strong><%= @property.people %></strong></td>  
 				          	</tr>
 			          	<% end %>
@@ -209,7 +209,7 @@
 			          	
 			          	<% if !(@property.category == '2') %>
 				          	<tr>  
-				            	<td>Utitlity</td>  
+				            	<td> <%=t("properties.utilities")%> </td>  
 				            	<td><strong><%= render_utilities @property.hasElectricity, @property.hasHeat, @property.hasInternet %></strong></td>  
 				          	</tr>
 			          	<% end %>
@@ -222,13 +222,13 @@
 		    	<table class="table table-hover" >
 			    	<tbody>  
 	          			<tr>  
-			            	<td>Price</td>  
+			            	<td> <%=t("properties.price")%> </td>  
 			            	<td><strong>$ <%= price_on_type @property.price, @property.category %></strong></td>  
 			          	</tr> 
 
 			          	<% if @property.deposit.present? && !(@property.category == '2') %>
 				          	<tr>  
-				            	<td>Deposit</td>  
+				            	<td> <%=t("properties.deposit")%> </td>  
 				            	<td><strong><%= @property.deposit %> /Month</strong></td>  
 				          	</tr>
 			          	<% end %>
@@ -236,26 +236,26 @@
 			          	
 			          	<% if @property.contract.present? && !(@property.category == '2') %>	
 				          	<tr>  
-				            	<td>Contract</td>  
+				            	<td> <%=t("properties.contract")%> </td>  
 				            	<td><strong><%= @property.contract %> /Month</strong></td>  
 				          	</tr>
 			          	<% end %>
 
 			          	<% if @property.broker_fee.present? && !(@property.category == '2') %>
 				          	<tr>  
-				            	<td>Broker Fee</td>  
+				            	<td><%=t("properties.broker_fee")%></td>  
 				            	<td><strong>$ <%= @property.broker_fee %></strong></td>  
 				          	</tr>
 			          	<% end %>
 
 			          	<tr>  
-			            	<td>Gender</td>  
+			            	<td> <%=t("properties.gender_required")%> </td>  
 			            	<td><strong><%= render_gender @property.gender %></strong></td>  
 			          	</tr>
 
 			          	<% if @property.pet.present? && !(@property.category == '2') %>
 				          	<tr>  
-				            	<td>Pet</td>  
+				            	<td> <%=t("properties.pets_allowed")%> </td>  
 				            	<td><strong><%= render_pet @property.pet %> </strong></td>  
 				          	</tr>
 			          	<% end %>

@@ -273,7 +273,7 @@ zh-TW:
     city: "城市"
     state: "州"
     zipcode: "郵編號碼"
-    information: "資訊"
+    information: "物件資訊"
     type: "類別"
     rent: "租房"
     shared_apt: "房間分租"
@@ -282,7 +282,7 @@ zh-TW:
 
     date: "日期"
     to: "到"
-    start_date: "開始日期"
+    <%=t("properties.contact_email")%>: "開始日期"
     end_date: "結束日期"
     room: "房型"
     bed: "臥房"
@@ -309,8 +309,8 @@ zh-TW:
     upload_photo: "上傳照片"
     contact_information: "聯絡資訊"
     contact_name: "聯絡人"
-    contact_phone: "聯絡電話"
-    contact_email: "聯絡 email"
+    contact_phone: "聯絡人電話"
+    contact_email: "聯絡人Email"
     update: "更新" 
     continue: "繼續"
     previous: "上一步"
@@ -352,6 +352,13 @@ zh-TW:
 
   contact_forms:
      sent_mail_to_owner: "聯絡房主"
+     your_name: "* 您的姓名:"
+     your_email: "* 您的Email:"
+     your_phone: "您的聯絡電話:"
+     your_name_pl: "您的姓名"
+     your_email_pl: "您的Email"
+     your_phone_pl: "您的聯絡電話"
+     leave_messages_here: "* 請在這裡留言:"
 
   user_mailer:
     change_password:

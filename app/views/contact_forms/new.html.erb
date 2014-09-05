@@ -13,18 +13,18 @@
 						
 						       <!-- Full Name -->
 							<div class="form-group">
-								<label for="name">* Your Name</label>
+								<label for="name"> <%= t("contact_forms.your_name")%> </label>
 								<div class="controls">
-									<%= text_field_tag 'name', nil, :class => "form-control", :placeholder => "Your Name", :required => "required" %>
+									<%= text_field_tag 'name', nil, :class => "form-control", :placeholder => t("contact_forms.your_name_pl"), :required => "required" %>
 								    
 								 
 								</div>
 							</div>
 								<!-- Email -->
 							<div class="form-group">
-								<label for="email">* Your Email</label>
+								<label for="email"><%= t("contact_forms.your_email")%></label>
 								<div class="controls">
-									<%= text_field_tag 'email', nil, :class => "form-control", :placeholder => "Your email", :required => "required"%>
+									<%= text_field_tag 'email', nil, :class => "form-control", :placeholder => t("contact_forms.your_email_pl"), :required => "required"%>
 									
 							
 								</div>
@@ -32,9 +32,9 @@
 
 								<!-- phone -->
 							<div class="form-group">
-								<label for="phone"> Your Phone</label>
+								<label for="phone"> <%= t("contact_forms.your_phone")%> </label>
 								<div class="controls">
-									<%= text_field_tag 'phone', nil, :class => "form-control", :placeholder => "Your contact phone" %>
+									<%= text_field_tag 'phone', nil, :class => "form-control", :placeholder => t("contact_forms.your_phone_pl") %>
 								   
 								 
 								</div>
@@ -57,7 +57,7 @@
 				        	</div>
 								<!-- message -->
 							<div class="form-group">
-								<label for="msg">* Leave message Here</label>
+								<label for="msg"><%= t("contact_forms.leave_messages_here")%></label>
 								<div class="controls">
 
 								    <%= text_area_tag "message", nil, :class => "form-control", :rows => "8", :required => "required"%>

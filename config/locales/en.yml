@@ -358,6 +358,13 @@ en:
 
   contact_forms:
      sent_mail_to_owner: "Sent Mail to Owner"
+     your_name: "* Your Name:"
+     your_email: "* Your Email:"
+     your_phone: "Your Phone:"
+     your_name_pl: "Your Name"
+     your_email_pl: "Your Email"
+     your_phone_pl: "Your Phone"
+     leave_messages_here: "* Please Leave Messages Here:"
 
   user_mailer:
     change_password:
